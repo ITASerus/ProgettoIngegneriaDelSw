@@ -17,6 +17,10 @@ import java.io.Serializable;
 @JsonIgnoreProperties(value = {"registrationDate"}, allowGetters = true)
 public class User implements Serializable{
     @Id
+    private Long id;
+
+    @NotBlank
+    @Column(unique=true)
     private String email;
 
     @NotBlank
@@ -35,9 +39,12 @@ public class User implements Serializable{
     private String realSurname;
     private Boolean viewRealName;
     private String role;
-
+    private Byte[] image;
 
     // Getter and Setters Methods
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
     public String getEmail() {
         return email;
@@ -90,4 +97,7 @@ public class User implements Serializable{
     public void setRole(String role) {
         this.role = role;
     }
+
+    public Byte[] getImage() { return image;}
+    public void setImage(Byte[] image) {this.image = image; }
 }

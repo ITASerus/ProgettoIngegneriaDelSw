@@ -24,6 +24,13 @@ public class UserController {
         return userRepository.findAll();
     }
 
+    // Get User by id
+    @GetMapping("/id={id}")
+    public User getUserById(@PathVariable(value = "id") Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
+    }
+
     // Get User by email
     @GetMapping("/email={email}")
     public User getUserByEmail(@PathVariable(value = "email") String userEmail) {
@@ -64,6 +71,7 @@ public class UserController {
         user.setRealSurname(userDetails.getRealSurname());
         user.setViewRealName(userDetails.getViewRealName());
         user.setRole(userDetails.getRole());
+        user.setImage(userDetails.getImage());
 
         User updatedStructure = userRepository.save(user);
         return updatedStructure;
