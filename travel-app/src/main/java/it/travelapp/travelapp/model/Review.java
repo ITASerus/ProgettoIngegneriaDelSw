@@ -1,14 +1,16 @@
 package it.travelapp.travelapp.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.Date;
+import java.io.Serializable;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import java.util.Date;
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "review")
@@ -16,6 +18,7 @@ import java.io.Serializable;
 @JsonIgnoreProperties(value = {"date"}, allowGetters = true)
 public class Review implements Serializable{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
@@ -29,8 +32,18 @@ public class Review implements Serializable{
     @CreatedDate
     private Date date;
 
-    private Long userID;
-    private Long structureID;
+    //Foreign Keys
+    @ManyToOne(fetch = FetchType.EAGER) //or lazy?
+    @JoinColumn(name = "structureID", referencedColumnName = "id", nullable = false)
+    @JsonIgnoreProperties("reviews")
+    @JsonIgnore
+    private Structure structure;
+
+    @ManyToOne(fetch = FetchType.EAGER) //or lazy?
+    @JoinColumn(name = "userID", referencedColumnName = "id", nullable = false)
+    @JsonIgnoreProperties("reviews")
+    @JsonIgnore
+    private User user;
 
     // Getter and Setters Methods
 
@@ -56,13 +69,11 @@ public class Review implements Serializable{
     }
     public void setDate(Date date) { this.date = date; }
 
-    public Long getUserID() {
-        return userID;
+    public Structure getStructure() {
+        return this.structure;
     }
-    public void setUserID(Long userID) { this.userID = userID; }
 
-    public Long getStructureID() {
-        return structureID;
+    public User getUser() {
+        return this.user;
     }
-    public void setStructureID(Long structureID) { this.structureID = structureID; }
 }

@@ -1,15 +1,17 @@
 package it.travelapp.travelapp.model;
 
+import java.util.Date;
+import java.io.Serializable;
+import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import java.util.Date;
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "user")
@@ -17,6 +19,7 @@ import java.io.Serializable;
 @JsonIgnoreProperties(value = {"registrationDate"}, allowGetters = true)
 public class User implements Serializable{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
@@ -40,6 +43,12 @@ public class User implements Serializable{
     private Boolean viewRealName;
     private String role;
     private Byte[] image;
+
+    //Foreign Keys
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER) //or lazy?
+    @JsonIgnoreProperties("user")
+    @JsonIgnore
+    private Set<Review> reviews;
 
     // Getter and Setters Methods
 
@@ -100,4 +109,6 @@ public class User implements Serializable{
 
     public Byte[] getImage() { return image;}
     public void setImage(Byte[] image) {this.image = image; }
+
+    public Set<Review> getReviews() { return this.reviews; }
 }

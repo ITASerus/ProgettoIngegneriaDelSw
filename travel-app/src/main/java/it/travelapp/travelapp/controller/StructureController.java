@@ -1,13 +1,18 @@
 package it.travelapp.travelapp.controller;
 
-import it.travelapp.travelapp.exception.ResourceNotFoundException;
-import it.travelapp.travelapp.model.Structure;
-import it.travelapp.travelapp.repository.StructureRepository;
+import java.util.List;
+import java.util.Set;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import javax.validation.Valid;
-import java.util.List;
+
+import it.travelapp.travelapp.exception.ResourceNotFoundException;
+import it.travelapp.travelapp.model.Review;
+import it.travelapp.travelapp.model.Structure;
+import it.travelapp.travelapp.repository.StructureRepository;
 
 @RestController
 @RequestMapping("/structures")
@@ -15,6 +20,12 @@ public class StructureController {
 
     @Autowired
     StructureRepository structureRepository;
+
+    //Get number of structures
+    @GetMapping("/getNum")
+    public long getNumberOfStructures() {
+        return structureRepository.count();
+    }
 
     // Get All Structures
     @GetMapping("/getAll")
@@ -27,6 +38,12 @@ public class StructureController {
     public Structure getStructureById(@PathVariable(value = "id") Long structureId) {
         return structureRepository.findById(structureId)
                 .orElseThrow(() -> new ResourceNotFoundException("Structure", "id", structureId));
+    }
+
+    // Get Structure by Name
+    @GetMapping("/name={name}")
+    public Structure getStructureByName(@PathVariable(value = "name") String structureName) {
+        return structureRepository.findByName(structureName).orElseThrow(() -> new ResourceNotFoundException("Structure", "name", structureName));
     }
 
     // Create a new Structure
@@ -66,4 +83,14 @@ public class StructureController {
         Structure updatedStructure = structureRepository.save(structure);
         return updatedStructure;
     }
+
+    //---- ENDPOINT FOR FOREIGN KEYS
+
+    // Get Reviews by StructureID
+    @GetMapping("/id={id}/getReviews")
+    public Set<Review> getReviewsByStructureId(@PathVariable(value = "id") Long structureId) {
+        Structure structure = structureRepository.findById(structureId).orElseThrow(() -> new ResourceNotFoundException("Structure", "id", structureId));
+        return structure.getReviews();
+    }
+
 }

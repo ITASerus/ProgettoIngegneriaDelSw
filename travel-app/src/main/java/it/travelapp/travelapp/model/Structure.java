@@ -1,9 +1,15 @@
 package it.travelapp.travelapp.model;
 
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import java.io.Serializable;
+import java.util.Set;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Table(name = "structure")
@@ -28,6 +34,14 @@ public class Structure implements Serializable {
     @Column(length=100000)
     private Byte[] image;
 
+    //Foreign Keys
+    @OneToMany(mappedBy = "structure", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER) //or lazy?
+    @JsonIgnoreProperties("structure")
+    @JsonIgnore
+    private Set<Review> reviews;
+
+
+    //Getter and Setter methods
 
     public Long getId() {
         return id;
@@ -94,4 +108,6 @@ public class Structure implements Serializable {
 
     public Byte[] getImage() { return image;}
     public void setImage(Byte[] image) {this.image = image; }
+
+    public Set<Review> getReviews() { return this.reviews; }
 }

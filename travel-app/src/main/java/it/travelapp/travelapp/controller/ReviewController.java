@@ -1,14 +1,18 @@
 package it.travelapp.travelapp.controller;
 
-import it.travelapp.travelapp.exception.ResourceNotFoundException;
-import it.travelapp.travelapp.model.Review;
-import it.travelapp.travelapp.repository.ReviewRepository;
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.List;
+import it.travelapp.travelapp.exception.ResourceNotFoundException;
+import it.travelapp.travelapp.model.Review;
+import it.travelapp.travelapp.model.Structure;
+import it.travelapp.travelapp.model.User;
+import it.travelapp.travelapp.repository.ReviewRepository;
 
 @RestController
 @RequestMapping("/reviews")
@@ -16,6 +20,13 @@ public class ReviewController {
 
     @Autowired
     ReviewRepository reviewRepository;
+
+    //Get number of structures
+    @GetMapping("/getNum")
+    public long getNumberOfReviews() {
+        return reviewRepository.count();
+    }
+
 
     // Get All Reviews
     @GetMapping("/getAll")
@@ -57,11 +68,24 @@ public class ReviewController {
 
         review.setDescription(reviewDetails.getDescription());
         review.setPoints(reviewDetails.getPoints());
-        //review.setDate(reviewDetails.getDate());
-        review.setUserID(reviewDetails.getUserID());
-        review.setStructureID(reviewDetails.getStructureID());
 
         Review updateReview = reviewRepository.save(review);
         return updateReview;
+    }
+
+    //---- ENDPOINT FOR FOREIGN KEYS
+
+    // Get User by ReviewID
+    @GetMapping("/id={id}/getUser")
+    public User getUserByReviewId(@PathVariable(value = "id") Long reviewID) {
+        Review review = reviewRepository.findById(reviewID).orElseThrow(() -> new ResourceNotFoundException("Review", "id", reviewID));
+        return review.getUser();
+    }
+
+    //Get Structure by ReviewID
+    @GetMapping("/id={id}/getStructure")
+    public Structure getStructure(@PathVariable(value = "id") Long reviewID) {
+        Review review = reviewRepository.findById(reviewID).orElseThrow(() -> new ResourceNotFoundException("Review", "id", reviewID));
+        return review.getStructure();
     }
 }
