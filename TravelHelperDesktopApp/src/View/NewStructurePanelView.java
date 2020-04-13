@@ -5,46 +5,41 @@
  */
 package View;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-
+import Controller.NewStructurePanelController;
+import Helper.JTextAreaRegularPopupMenu;
+import Helper.JTextFieldRegularPopupMenu;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BoxLayout;
-import java.awt.BorderLayout;
-import java.awt.Container;
-import javax.swing.DefaultListModel;
-import javax.swing.BorderFactory;
-import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
-import javax.swing.JList;
-import javax.swing.JTextArea;
-import javax.swing.ListModel;
-import javax.swing.WindowConstants;
-import javax.swing.border.Border;
-import javax.swing.*;
+import javax.swing.JCheckBox;
+import java.net.http.HttpResponse;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author ernestodecrecchio
  */
-public class NewStructureFrame extends javax.swing.JFrame {
+public class NewStructurePanelView extends javax.swing.JPanel {
 
-    private final HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build(); //Per la connessione del client al server
+    NewStructurePanelController controller;
+    MainFrameView parent;
     
     /**
-     * Creates new form NewStructureFrame
+     * Creates new form NewStructurePanelView
      */
-    public NewStructureFrame() {
+    public NewStructurePanelView(MainFrameView parent) {
         initComponents();
         
-        //setTagPanel();
-        
+        controller = new NewStructurePanelController();
+        this.parent = parent;
+
+        JTextFieldRegularPopupMenu.addTo(nameTextField);
+        JTextFieldRegularPopupMenu.addTo(contactsTextField);
+        JTextFieldRegularPopupMenu.addTo(placeTextField);
+        JTextFieldRegularPopupMenu.addTo(webSiteTextField);
+        JTextAreaRegularPopupMenu.addTo(descriptionTextArea);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,10 +71,9 @@ public class NewStructureFrame extends javax.swing.JFrame {
         categoryComboBox = new javax.swing.JComboBox<>();
         tagLabel = new javax.swing.JLabel();
         tagPanel = new javax.swing.JPanel();
+        enablePriceCheckBox = new javax.swing.JCheckBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        nameLabel.setText("Nome");
+        nameLabel.setText("Nome*");
 
         placeLabel.setText("Luogo");
 
@@ -87,7 +81,7 @@ public class NewStructureFrame extends javax.swing.JFrame {
 
         descriptionLabel.setText("Descrizione");
 
-        priceLabel.setText("Prezzo Medio");
+        priceLabel.setText("Prezzo Medio (in €)");
 
         descriptionTextArea.setColumns(20);
         descriptionTextArea.setRows(5);
@@ -101,18 +95,8 @@ public class NewStructureFrame extends javax.swing.JFrame {
         });
 
         cancelButton.setText("Annulla");
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
-            }
-        });
 
-        priceTextField.setText("250€");
-        priceTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                priceTextFieldActionPerformed(evt);
-            }
-        });
+        priceTextField.setText("0");
 
         contactsLabel.setText("Contatti");
 
@@ -123,7 +107,7 @@ public class NewStructureFrame extends javax.swing.JFrame {
         priceSlider.setPaintTicks(true);
         priceSlider.setSnapToTicks(true);
         priceSlider.setToolTipText("");
-        priceSlider.setValue(250);
+        priceSlider.setValue(0);
         priceSlider.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         priceSlider.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -165,8 +149,16 @@ public class NewStructureFrame extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        enablePriceCheckBox.setSelected(true);
+        enablePriceCheckBox.setText("Abilita Prezzo");
+        enablePriceCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enablePriceCheckBoxActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -179,19 +171,25 @@ public class NewStructureFrame extends javax.swing.JFrame {
                     .addComponent(nameTextField)
                     .addComponent(placeTextField)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(priceSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                        .addComponent(priceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(priceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tagPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(placeLabel))
-                    .addComponent(contactsLabel)
-                    .addComponent(priceLabel)
-                    .addComponent(webSiteLabel)
-                    .addComponent(categoryLabel)
-                    .addComponent(tagLabel)
-                    .addComponent(nameLabel)
-                    .addComponent(tagPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(placeLabel))
+                            .addComponent(contactsLabel)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(priceLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(enablePriceCheckBox))
+                            .addComponent(webSiteLabel)
+                            .addComponent(categoryLabel)
+                            .addComponent(tagLabel)
+                            .addComponent(nameLabel))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -234,7 +232,9 @@ public class NewStructureFrame extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(webSiteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(priceLabel)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(priceLabel)
+                                    .addComponent(enablePriceCheckBox))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(priceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -252,40 +252,47 @@ public class NewStructureFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 111, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(confirmButton)
                                     .addComponent(cancelButton)))
                             .addComponent(tagPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void enablePriceCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enablePriceCheckBoxActionPerformed
+        if(enablePriceCheckBox.isSelected()) {
+            priceSlider.setEnabled(true);
+            priceTextField.setEnabled(true);
+        } else {
+            priceSlider.setEnabled(false);
+            priceTextField.setEnabled(false);
+        }
+    }//GEN-LAST:event_enablePriceCheckBoxActionPerformed
+
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-        try{
-            sendPOST();
-        } catch(IOException e) {
+        HttpResponse<String> response = controller.sendPOST(nameTextField.getText(), 
+                                                            placeTextField.getText(), 
+                                                            priceTextField.getText(), 
+                                                            webSiteTextField.getText(), 
+                                                            contactsTextField.getText(), 
+                                                            descriptionTextArea.getText());
+        
+        if(response.statusCode() == 200) {
+            JOptionPane.showMessageDialog(this, "Struttura aggiunta con successo!\nStatus code:" + response.statusCode(), "OK!", JOptionPane.INFORMATION_MESSAGE);
             
-        } catch(InterruptedException i) {
-            
+            controller.changePanel(parent, response.body()); //Change the panel shown
+        } else {
+            JOptionPane.showMessageDialog(this, "Struttura non aggiunta. Controllare i campi inseriti!\nStatus code: " + response.statusCode(), "ERRORE!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_confirmButtonActionPerformed
 
-    private void priceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_priceTextFieldActionPerformed
-
     private void priceSliderMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_priceSliderMouseReleased
-        priceTextField.setText(priceSlider.getValue() + "€");
+        priceTextField.setText(Integer.toString(priceSlider.getValue()));
     }//GEN-LAST:event_priceSliderMouseReleased
 
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_cancelButtonActionPerformed
-
-private void setTagPanel() {
+    private void setTagPanel() {
         tagPanel.setLayout(new BoxLayout(tagPanel, BoxLayout.PAGE_AXIS)); //Box layout to manage more than one object in one panel
         List<JCheckBox> checkboxes = new ArrayList<>();
         
@@ -295,94 +302,6 @@ private void setTagPanel() {
             checkboxes.add(box);
             tagPanel.add(box);
         }
-    }
-    
-    private void sendPOST() throws IOException, InterruptedException {
-
-        // json formatted data
-        String json = new StringBuilder()
-                .append("{")
-                
-                .append("\"name\":\"")
-                .append(nameTextField.getText())
-                .append("\",")
-                
-                .append("\"place\":\"")
-                .append(placeTextField.getText())
-                .append("\",")
-                
-                .append("\"price\":\"")
-                .append(priceTextField.getText())
-                .append("\",")
-                
-                .append("\"webSite\":\"")
-                .append(webSiteTextField.getText())
-                .append("\",")
-                
-                .append("\"contacts\":\"")
-                .append(contactsTextField.getText())
-                .append("\",")
-                
-                
-                .append("\"description\":\"")
-                .append(descriptionTextArea.getText())
-                .append("\",")
-                
-                
-                
-                .append("}").toString();
-
-		// add json header
-        HttpRequest request = HttpRequest.newBuilder()
-                .POST(HttpRequest.BodyPublishers.ofString(json))
-                .uri(URI.create("http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/create"))
-                .setHeader("User-Agent", "Java 11 HttpClient Bot") // add request header
-                .header("Content-Type", "application/json")
-                .build();
-
-        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-
-        // print status code
-        System.out.println(response.statusCode());
-
-        // print response body
-        System.out.println(response.body());
-
-    }
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewStructureFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewStructureFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewStructureFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewStructureFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NewStructureFrame().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -395,6 +314,7 @@ private void setTagPanel() {
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JScrollPane descriptionScrollPane;
     private javax.swing.JTextArea descriptionTextArea;
+    private javax.swing.JCheckBox enablePriceCheckBox;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel mapPanel;
     private javax.swing.JLabel nameLabel;

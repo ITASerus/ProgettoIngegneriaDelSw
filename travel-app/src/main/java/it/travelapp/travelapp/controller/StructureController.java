@@ -1,13 +1,13 @@
 package it.travelapp.travelapp.controller;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.jpa.repository.Query;
 
 import it.travelapp.travelapp.exception.ResourceNotFoundException;
 import it.travelapp.travelapp.model.Review;
@@ -93,4 +93,24 @@ public class StructureController {
         return structure.getReviews();
     }
 
+    // Get Name, Num Rev and Average Points
+    @GetMapping("/getInfo")
+    public List<Map<String, Object>> getInfo() {
+        List<Map<String, Object>> listInfos = new ArrayList<>();
+
+        List<Structure> structureList = structureRepository.findAll();
+
+        for (Structure structure : structureList) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("structureId", structure.getId());
+            map.put("name", structure.getName());
+            map.put("numberOfReviews", structure.getReviews().size());
+
+            map.put("averagePoints", structureRepository.getAveragePoints(structure.getId()));
+
+            listInfos.add(map);
+        }
+
+        return listInfos;
+    }
 }
