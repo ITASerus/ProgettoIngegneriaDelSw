@@ -17,20 +17,16 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="contactsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="descriptionLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="descriptionValueLabel" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="nameLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="idValueLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="nameValueLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <Component id="idLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="placeLabel" min="-2" max="-2" attributes="0"/>
@@ -38,20 +34,15 @@
                       <Component id="placeValueLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="nameLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="idValueLabel" min="-2" max="-2" attributes="0"/>
-                          <Component id="nameValueLabel" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <Component id="categoryLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="categoryValueLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="webSiteLabel" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="webSiteLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="contactsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="contactsValueLabel" min="-2" max="-2" attributes="0"/>
@@ -65,7 +56,23 @@
                   </Group>
                   <Component id="tagLabel" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="592" max="32767" attributes="0"/>
+              <EmptySpace pref="265" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="descriptionValueLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="descriptionLabel" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="249" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="editButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jPanel1" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="imageLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -76,11 +83,13 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="idLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="idValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="descriptionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="nameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="nameValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="descriptionValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -92,10 +101,10 @@
                   <Component id="categoryLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="categoryValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="webSiteLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="webSiteValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="webSiteValueLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="webSiteLabel" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -107,14 +116,15 @@
                   <Component id="priceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="priceValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="descriptionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="descriptionValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Component id="tagLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="329" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="imageLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="editButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -203,6 +213,36 @@
     <Component class="javax.swing.JLabel" name="descriptionValueLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="---"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="99" type="rgb"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="389" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="256" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+    </Container>
+    <Component class="javax.swing.JButton" name="editButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Modifica"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="imageLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Foto:"/>
       </Properties>
     </Component>
   </SubComponents>

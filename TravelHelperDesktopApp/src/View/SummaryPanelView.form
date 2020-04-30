@@ -107,7 +107,7 @@
               <Table columnCount="4" rowCount="4">
                 <Column editable="false" title="ID" type="java.lang.Integer"/>
                 <Column editable="false" title="Nome" type="java.lang.String"/>
-                <Column editable="false" title="Punteggio Medio" type="java.lang.Integer"/>
+                <Column editable="false" title="Punteggio Medio" type="java.lang.String"/>
                 <Column editable="false" title="Numero Recensioni" type="java.lang.Integer"/>
               </Table>
             </Property>

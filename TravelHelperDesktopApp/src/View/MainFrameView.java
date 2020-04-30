@@ -179,7 +179,11 @@ public class MainFrameView extends javax.swing.JFrame {
     }//GEN-LAST:event_summaryMenuItemActionPerformed
 
     private void searchStructureMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStructureMenuItemActionPerformed
-
+        SearchStructurePanelView s = new SearchStructurePanelView(this);
+        s.setVisible(true);
+        s.validate();
+        validate();
+        changePanel(s);
     }//GEN-LAST:event_searchStructureMenuItemActionPerformed
     
     /**

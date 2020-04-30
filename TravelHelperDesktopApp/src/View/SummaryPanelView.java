@@ -9,16 +9,10 @@ import Controller.SummaryPanelController;
 
 //Swing
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JFrame;
 
 //Google GSON
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import javax.swing.JPanel;
-
 
 /**
  *
@@ -99,7 +93,7 @@ public class SummaryPanelView extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false

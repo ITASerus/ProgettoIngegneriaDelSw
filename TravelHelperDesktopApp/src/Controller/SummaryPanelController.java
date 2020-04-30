@@ -12,12 +12,7 @@ import DAO.StructureDAO;
 import DAO.UserDAO;
 
 //Google GSON
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import javax.swing.JPanel;
 
 /**
  *

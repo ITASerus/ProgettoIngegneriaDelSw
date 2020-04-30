@@ -25,4 +25,6 @@ public interface StructureDAO {
     public JsonArray getInfo();
     
     public HttpResponse<String> newStructure(String body);
+    
+    public JsonArray getByFilter(String name, String place, String contacts, String category, String webSite, Double lowerPrice, Double upperPrice, String avgPoints);
 }
