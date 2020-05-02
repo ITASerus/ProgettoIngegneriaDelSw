@@ -29,15 +29,15 @@ public class SummaryPanelController {
         user = DAOFactory.getUserDAO("AWSElasticBeanstalk");
     }
     
-    public String getStructureNumber() {
+    public Integer getStructureNumber() {
         return structure.getNum();
     }
     
-    public String getUserNumber() {
+    public Integer getUserNumber() {
         return user.getNum();
     }
     
-    public String getReviewNumber() {
+    public Integer getReviewNumber() {
         return review.getNum();
     }
     

@@ -54,7 +54,7 @@
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="descriptionLabel" min="-2" max="-2" attributes="0"/>
@@ -66,9 +66,9 @@
                           <Component id="confirmButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="descriptionScrollPane" alignment="0" min="-2" pref="330" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -117,8 +117,8 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="descriptionLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="descriptionScrollPane" min="-2" pref="191" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="209" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="151" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -171,21 +171,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="webSiteTextField">
     </Component>
-    <Container class="javax.swing.JScrollPane" name="descriptionScrollPane">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JTextArea" name="descriptionTextArea">
-          <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
     <Component class="javax.swing.JButton" name="confirmButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Conferma"/>
@@ -265,8 +250,8 @@
           <StringArray count="5">
             <StringItem index="0" value="---"/>
             <StringItem index="1" value="Hotel"/>
-            <StringItem index="2" value="Restort"/>
-            <StringItem index="3" value="Attiivit&#xe0;"/>
+            <StringItem index="2" value="Resort"/>
+            <StringItem index="3" value="Attivit&#xe0;"/>
             <StringItem index="4" value="Cibo"/>
           </StringArray>
         </Property>
@@ -309,5 +294,16 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enablePriceCheckBoxActionPerformed"/>
       </Events>
     </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JEditorPane" name="descriptionTextPane">
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>

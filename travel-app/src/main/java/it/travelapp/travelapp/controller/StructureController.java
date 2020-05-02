@@ -2,6 +2,8 @@ package it.travelapp.travelapp.controller;
 
 import java.util.*;
 
+import java.util.regex.Pattern;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -129,16 +131,16 @@ public class StructureController {
 
     @GetMapping("/search/name={name}" +
                         "&place={place}" +
-                        "&contacts={contacts}" +
                         "&category={category}" +
+                        "&contacts={contacts}" +
                         "&webSite={webSite}" +
                         "&lowerPrice={lowerPrice}" +
                         "&upperPrice={upperPrice}" +
                         "&avgPoints={avgPoints}")
     public List<Structure> getByFilter(@PathVariable(value = "name") String name,
                                        @PathVariable(value = "place") String place,
-                                       @PathVariable(value = "contacts") String contacts,
                                        @PathVariable(value = "category") String category,
+                                       @PathVariable(value = "contacts") String contacts,
                                        @PathVariable(value = "webSite") String webSite,
                                        @PathVariable(value = "lowerPrice") Integer lowerPrice,
                                        @PathVariable(value = "upperPrice") Integer upperPrice,
@@ -147,27 +149,35 @@ public class StructureController {
         List<Structure> resultStructure = new LinkedList<Structure>();
 
         for (Structure structure : allStructure) {
-            if (!name.equals("null") && !structure.getName().contains(name)) {
+
+            if (!name.equals("null") && !containsIgnoreCase(structure.getName(), name)) {
                 continue;
             }
-            if (!place.equals("null") && (structure.getPlace() != null) && !structure.getPlace().contains(place)) {
+
+            if (!place.equals("null") && (structure.getPlace() == null || (structure.getPlace() != null && !containsIgnoreCase(structure.getPlace(), place)))) {//!structure.getPlace().contains(place)) {
                 continue;
             }
-            if (!contacts.equals("null") && (structure.getContacts() != null) && !structure.getContacts().contains(contacts)) {
+
+            if (!category.equals("null") && (structure.getCategory() == null || (structure.getCategory() != null && !structure.getCategory().equals(category)))) {
                 continue;
             }
-            if (!category.equals("null")  && (structure.getCategory() != null) && !structure.getCategory().equals(category)) {
+
+            if (!contacts.equals("null") && (structure.getContacts() == null || (structure.getContacts() != null && !containsIgnoreCase(structure.getContacts(), contacts)))) {
                 continue;
             }
-            if (!webSite.equals("null") && (structure.getWebSite() != null) && !structure.getWebSite().contains(webSite)) {
+
+            if (!webSite.equals("null") && (structure.getWebSite() == null || (structure.getWebSite() != null && !containsIgnoreCase(structure.getWebSite(), webSite)))) {
                 continue;
             }
-            if (lowerPrice != -1 && (structure.getPrice() != null) && !(structure.getPrice() > lowerPrice)) {
+
+            if (lowerPrice != -1 && (structure.getPrice() == null || (structure.getPrice() != null && structure.getPrice() < lowerPrice))) {
                 continue;
             }
-            if (upperPrice != -1 && (structure.getPrice() != null) && !(structure.getPrice() < upperPrice)) {
+
+            if (upperPrice != -1 && (structure.getPrice() == null || (structure.getPrice() != null && structure.getPrice() > upperPrice))) {
                 continue;
             }
+
             if (!avgPoints.equals("null")) {
                 System.out.println("CONTROLLO MEDIA RECENSIONI " + avgPoints);
                 avgPoints = avgPoints.replace("'", "");
@@ -196,10 +206,30 @@ public class StructureController {
                 }
             }
 
-            System.out.println("VA BENE");
             resultStructure.add(structure);
         }
 
         return resultStructure;
+    }
+
+    public static boolean containsIgnoreCase(String src, String what) {
+        final int length = what.length();
+        if (length == 0)
+            return true; // Empty string is contained
+
+        final char firstLo = Character.toLowerCase(what.charAt(0));
+        final char firstUp = Character.toUpperCase(what.charAt(0));
+
+        for (int i = src.length() - length; i >= 0; i--) {
+            // Quick check before calling the more expensive regionMatches() method:
+            final char ch = src.charAt(i);
+            if (ch != firstLo && ch != firstUp)
+                continue;
+
+            if (src.regionMatches(true, i, what, 0, length))
+                return true;
+        }
+
+        return false;
     }
 }

@@ -12,6 +12,8 @@ import DAO.StructureDAO;
 //Google GSON
 import com.google.gson.JsonArray;
 
+import Model.Structure;
+
 /**
  *
  * @author ernestodecrecchio
@@ -23,7 +25,11 @@ public class SearchStructurePanelController {
         structure = DAOFactory.getStructureDAO("AWSElasticBeanstalk");
     }
     
-    public JsonArray getByFilter(String name, String place, String contacts, String category, String webSite, Double lowerPrice, Double upperPrice, String avgPoints) {
+    public JsonArray getByFilter(String name, String place, String contacts, String category, String webSite, Integer lowerPrice, Integer upperPrice, String avgPoints) {
         return structure.getByFilter(name, place, contacts, category, webSite, lowerPrice, upperPrice, avgPoints);
+    }
+    
+    public Structure getSelectedStructure(Integer id) {
+        return structure.getByID(id);
     }
 }

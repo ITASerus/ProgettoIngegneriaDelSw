@@ -30,9 +30,9 @@ public class SummaryPanelView extends javax.swing.JPanel {
         
         controller = new SummaryPanelController();
         
-        nOfStructuresLabel.setText(controller.getStructureNumber());
-        nOfReviewsLabel.setText(controller.getReviewNumber());
-        nOfUsersLabel.setText(controller.getUserNumber());
+        nOfStructuresLabel.setText(controller.getStructureNumber().toString());
+        nOfReviewsLabel.setText(controller.getReviewNumber().toString());
+        nOfUsersLabel.setText(controller.getUserNumber().toString());
         
         generateStructuresTable();
     }

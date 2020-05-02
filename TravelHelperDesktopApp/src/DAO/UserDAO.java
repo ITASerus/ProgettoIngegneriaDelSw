@@ -11,5 +11,5 @@ package DAO;
  */
 public interface UserDAO {
     
-    public String getNum();
+    public Integer getNum();
 }

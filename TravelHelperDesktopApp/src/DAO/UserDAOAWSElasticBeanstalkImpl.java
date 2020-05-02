@@ -18,8 +18,8 @@ import java.net.http.HttpResponse;
 public class UserDAOAWSElasticBeanstalkImpl implements UserDAO {
     private static final String GET_NUM_USERS = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/users/getNum";
 
-    public String getNum() {
-        String num = "";
+    public Integer getNum() {
+        Integer num = -1;
         
         HttpClient client = HttpClient.newHttpClient(); // SHUTDOWN?
         HttpRequest requestNumOfStructures = HttpRequest.newBuilder().uri(URI.create(GET_NUM_USERS)).build();
@@ -27,12 +27,14 @@ public class UserDAOAWSElasticBeanstalkImpl implements UserDAO {
         try{
             HttpResponse<String> responseNumOfUsers = client.send(requestNumOfStructures, HttpResponse.BodyHandlers.ofString());
 
-            num = responseNumOfUsers.body();
+            num = Integer.parseInt(responseNumOfUsers.body());
             
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException i) {
             i.printStackTrace();
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
         }
         
         return num;

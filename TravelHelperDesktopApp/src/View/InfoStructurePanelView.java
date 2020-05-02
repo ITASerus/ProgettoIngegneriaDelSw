@@ -22,8 +22,10 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
         categoryValueLabel.setText(structure.getCategory());
         webSiteValueLabel.setText(structure.getWebSite());
         contactsValueLabel.setText(structure.getContacts());
-        priceValueLabel.setText(structure.getPrice().toString());
-        descriptionValueLabel.setText(structure.getDescription());
+        if(structure.getPrice() != null) {
+            priceValueLabel.setText(structure.getPrice().toString());
+        }
+        descriptionValueTextPane.setText(structure.getDescription());
     }
 
     /**
@@ -51,10 +53,10 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
         webSiteValueLabel = new javax.swing.JLabel();
         priceValueLabel = new javax.swing.JLabel();
         nameValueLabel = new javax.swing.JLabel();
-        descriptionValueLabel = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         editButton = new javax.swing.JButton();
         imageLabel = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        descriptionValueTextPane = new javax.swing.JTextPane();
 
         idLabel.setText("ID:");
 
@@ -88,24 +90,12 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
 
         nameValueLabel.setText("---");
 
-        descriptionValueLabel.setText("---");
-
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 389, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 256, Short.MAX_VALUE)
-        );
-
         editButton.setText("Modifica");
 
         imageLabel.setText("Foto:");
+
+        descriptionValueTextPane.setEditable(false);
+        jScrollPane2.setViewportView(descriptionValueTextPane);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -137,24 +127,23 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(contactsValueLabel)
                             .addComponent(webSiteValueLabel)))
+                    .addComponent(tagLabel)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(priceLabel)
                         .addGap(30, 30, 30)
-                        .addComponent(priceValueLabel))
-                    .addComponent(tagLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 265, Short.MAX_VALUE)
+                        .addComponent(priceValueLabel)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(descriptionValueLabel)
-                    .addComponent(descriptionLabel))
-                .addGap(249, 249, 249))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(editButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(imageLabel))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(imageLabel)
+                            .addComponent(descriptionLabel))
+                        .addGap(311, 311, 311))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(editButton))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,39 +154,38 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
                     .addComponent(idValueLabel)
                     .addComponent(descriptionLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameLabel)
-                    .addComponent(nameValueLabel)
-                    .addComponent(descriptionValueLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(placeLabel)
-                    .addComponent(placeValueLabel))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(categoryLabel)
-                    .addComponent(categoryValueLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(webSiteValueLabel)
-                    .addComponent(webSiteLabel))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(contactsLabel)
-                    .addComponent(contactsValueLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(priceLabel)
-                    .addComponent(priceValueLabel))
-                .addGap(34, 34, 34)
-                .addComponent(tagLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nameLabel)
+                            .addComponent(nameValueLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(placeLabel)
+                            .addComponent(placeValueLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(categoryLabel)
+                            .addComponent(categoryValueLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(webSiteValueLabel)
+                            .addComponent(webSiteLabel))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(contactsLabel)
+                            .addComponent(contactsValueLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(priceLabel)
+                            .addComponent(priceValueLabel))
+                        .addGap(34, 34, 34)
+                        .addComponent(tagLabel))
+                    .addComponent(jScrollPane2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(imageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(editButton)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                .addComponent(editButton))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -208,12 +196,12 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
     private javax.swing.JLabel contactsLabel;
     private javax.swing.JLabel contactsValueLabel;
     private javax.swing.JLabel descriptionLabel;
-    private javax.swing.JLabel descriptionValueLabel;
+    private javax.swing.JTextPane descriptionValueTextPane;
     private javax.swing.JButton editButton;
     private javax.swing.JLabel idLabel;
     private javax.swing.JLabel idValueLabel;
     private javax.swing.JLabel imageLabel;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel nameValueLabel;
     private javax.swing.JLabel placeLabel;

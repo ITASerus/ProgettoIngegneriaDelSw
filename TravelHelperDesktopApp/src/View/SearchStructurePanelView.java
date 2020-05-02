@@ -60,6 +60,7 @@ public class SearchStructurePanelView extends javax.swing.JPanel {
         upperPriceTextField = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        infoButton = new javax.swing.JButton();
 
         separator.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -77,9 +78,16 @@ public class SearchStructurePanelView extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(resultTable);
@@ -92,7 +100,7 @@ public class SearchStructurePanelView extends javax.swing.JPanel {
 
         jLabel4.setText("Categoria:");
 
-        categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "Hotel", "Restort", "Attiività", "Cibo" }));
+        categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "Hotel", "Resort", "Attività", "Cibo" }));
 
         jLabel5.setText("Sito Web:");
 
@@ -112,6 +120,13 @@ public class SearchStructurePanelView extends javax.swing.JPanel {
         jLabel8.setText("tra");
 
         jLabel9.setText("e");
+
+        infoButton.setText("Info Struttura");
+        infoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                infoButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -145,14 +160,23 @@ public class SearchStructurePanelView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(infoButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(separator)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(infoButton))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -162,13 +186,13 @@ public class SearchStructurePanelView extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(placeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(contactsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(contactsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -185,11 +209,9 @@ public class SearchStructurePanelView extends javax.swing.JPanel {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(avgPointsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
-                        .addComponent(searchButton))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(searchButton)))
                 .addContainerGap())
-            .addComponent(separator)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -199,27 +221,34 @@ public class SearchStructurePanelView extends javax.swing.JPanel {
         model.setRowCount(0);
         
         JsonArray results = controller.getByFilter(
-                nameTextField.getText().isBlank() ? null : nameTextField.getText(),
-                placeTextField.getText().isBlank() ? null : placeTextField.getText(),
-                contactsTextField.getText().isBlank() ? null : contactsTextField.getText(),
-                null, 
-                webSiteTextField.getText().isBlank() ? null : webSiteTextField.getText(),
-                null,
-                null,
-                null);
+                                                    nameTextField.getText().isBlank() ? null : nameTextField.getText(),
+                                                    placeTextField.getText().isBlank() ? null : placeTextField.getText(),
+                                                    categoryComboBox.getSelectedItem().toString().equals("---") ? null : categoryComboBox.getSelectedItem().toString(),
+                                                    contactsTextField.getText().isBlank() ? null : contactsTextField.getText(),
+                                                    webSiteTextField.getText().isBlank() ? null : webSiteTextField.getText(),
+                                                    lowerPriceTextField.getText().isBlank() ? null : Integer.parseInt(lowerPriceTextField.getText()),
+                                                    upperPriceTextField.getText().isBlank() ? null : Integer.parseInt(upperPriceTextField.getText()),
+                                                    null);
         
         for(int i = 0; i < results.size(); i++) {
             JsonObject element = results.get(i).getAsJsonObject();
                 
-            model.addRow(new Object[] {element.get("id"), element.get("name").getAsString()});
+            model.addRow(new Object[] {element.get("id").getAsInt(), element.get("name").getAsString()});
         }
     }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void infoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoButtonActionPerformed
+        Integer id = (Integer)resultTable.getValueAt(resultTable.getSelectedRow(), 0);
+        
+        parent.setInfoStructurePanel(controller.getSelectedStructure(id));
+    }//GEN-LAST:event_infoButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> avgPointsComboBox;
     private javax.swing.JComboBox<String> categoryComboBox;
     private javax.swing.JTextField contactsTextField;
+    private javax.swing.JButton infoButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

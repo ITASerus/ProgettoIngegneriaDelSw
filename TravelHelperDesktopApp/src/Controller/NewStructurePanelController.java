@@ -23,7 +23,7 @@ public class NewStructurePanelController {
         structureDAO = DAOFactory.getStructureDAO("AWSElasticBeanstalk");
     }
     
-    public HttpResponse<String> sendPOST(String name, String place, String price, String webSite, String contacts, String description) {
+    public HttpResponse<String> sendPOST(String name, String place, String category, String price, String webSite, String contacts, String description) {
         // json formatted data
         String json = new StringBuilder()
                 .append("{")
@@ -32,7 +32,10 @@ public class NewStructurePanelController {
                 .append("\"" + name + "\"") 
                 
                 .append(",\"place\":")
-                .append("\"" + place + "\"")
+                .append(place.isBlank() ? "null" : "\"" + place + "\"")
+                
+                .append(",\"category\":")
+                .append(category.equals("---") ? "null" : "\"" + category + "\"")
                 
                 .append(",\"price\":")
                 .append(price.isBlank() ? "null" : "\"" + price + "\"")
@@ -50,6 +53,10 @@ public class NewStructurePanelController {
                 
                 HttpResponse<String> response = structureDAO.newStructure(json);   
                 
+                System.out.println(json);
+                
+                System.out.println(response);
+                
                 return response;
     }
     
@@ -57,7 +64,8 @@ public class NewStructurePanelController {
         Gson gson = new Gson();
         
         Structure structure = gson.fromJson(responseBody, Structure.class);
-        if (structure.getId() != null) {            
+        if (structure.getId() != null) {         
+            System.out.println("id " + structure.getId());
             parent.setInfoStructurePanel(structure); //Shows the infos of the  structure just added
         } else {
             parent.setInfoStructurePanel(null); //If the structure doesn't found, shows the summary of the structures (NEVER WILL HAPPEN)

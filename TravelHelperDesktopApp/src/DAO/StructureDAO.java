@@ -5,9 +5,8 @@
  */
 package DAO;
 
-import java.util.List;
+import Model.Structure;
 import com.google.gson.JsonArray;
-import java.io.IOException;
 import java.net.http.HttpResponse;
 
 /**
@@ -20,11 +19,13 @@ import java.net.http.HttpResponse;
  */
 public interface StructureDAO {
     
-    public String getNum();
+    public Integer getNum();
+    
+    public Structure getByID(Integer id);
     
     public JsonArray getInfo();
     
-    public HttpResponse<String> newStructure(String body);
-    
-    public JsonArray getByFilter(String name, String place, String contacts, String category, String webSite, Double lowerPrice, Double upperPrice, String avgPoints);
+    public JsonArray getByFilter(String name, String place, String category, String contacts, String webSite, Integer lowerPrice, Integer upperPrice, String avgPoints);
+
+    public HttpResponse<String> newStructure(String body); 
 }

@@ -18,8 +18,8 @@ import java.net.http.HttpResponse;
 public class ReviewDAOAWSElasticBeanstalkImpl implements ReviewDAO {
     private static final String GET_NUM_REVIEWS = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/reviews/getNum";
 
-    public String getNum() {
-        String num = "";
+    public Integer getNum() {
+        Integer num = -1;
         
         HttpClient client = HttpClient.newHttpClient(); // SHUTDOWN?
         HttpRequest requestNumOfStructures = HttpRequest.newBuilder().uri(URI.create(GET_NUM_REVIEWS)).build();
@@ -27,12 +27,14 @@ public class ReviewDAOAWSElasticBeanstalkImpl implements ReviewDAO {
         try{
             HttpResponse<String> responseNumOfReviews = client.send(requestNumOfStructures, HttpResponse.BodyHandlers.ofString());
 
-            num = responseNumOfReviews.body();
+            num = Integer.parseInt(responseNumOfReviews.body());
             
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException i) {
             i.printStackTrace();
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
         }
         
         return num;

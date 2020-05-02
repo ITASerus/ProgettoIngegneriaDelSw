@@ -37,7 +37,7 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         JTextFieldRegularPopupMenu.addTo(contactsTextField);
         JTextFieldRegularPopupMenu.addTo(placeTextField);
         JTextFieldRegularPopupMenu.addTo(webSiteTextField);
-        JTextAreaRegularPopupMenu.addTo(descriptionTextArea);
+        //JTextAreaRegularPopupMenu.addTo(descriptionTextPane);
     }
 
     /**
@@ -57,8 +57,6 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         nameTextField = new javax.swing.JTextField();
         placeTextField = new javax.swing.JTextField();
         webSiteTextField = new javax.swing.JTextField();
-        descriptionScrollPane = new javax.swing.JScrollPane();
-        descriptionTextArea = new javax.swing.JTextArea();
         confirmButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         priceTextField = new javax.swing.JTextField();
@@ -72,6 +70,8 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         tagLabel = new javax.swing.JLabel();
         tagPanel = new javax.swing.JPanel();
         enablePriceCheckBox = new javax.swing.JCheckBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        descriptionTextPane = new javax.swing.JEditorPane();
 
         nameLabel.setText("Nome*");
 
@@ -82,10 +82,6 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         descriptionLabel.setText("Descrizione");
 
         priceLabel.setText("Prezzo Medio (in €)");
-
-        descriptionTextArea.setColumns(20);
-        descriptionTextArea.setRows(5);
-        descriptionScrollPane.setViewportView(descriptionTextArea);
 
         confirmButton.setText("Conferma");
         confirmButton.addActionListener(new java.awt.event.ActionListener() {
@@ -132,7 +128,7 @@ public class NewStructurePanelView extends javax.swing.JPanel {
 
         categoryLabel.setText("Categoria");
 
-        categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "Hotel", "Restort", "Attiività", "Cibo" }));
+        categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "Hotel", "Resort", "Attività", "Cibo" }));
 
         tagLabel.setText("Tag");
 
@@ -156,6 +152,8 @@ public class NewStructurePanelView extends javax.swing.JPanel {
                 enablePriceCheckBoxActionPerformed(evt);
             }
         });
+
+        jScrollPane1.setViewportView(descriptionTextPane);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -193,7 +191,7 @@ public class NewStructurePanelView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(descriptionLabel)
@@ -202,7 +200,7 @@ public class NewStructurePanelView extends javax.swing.JPanel {
                             .addComponent(cancelButton)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(confirmButton)))
-                    .addComponent(descriptionScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -247,8 +245,8 @@ public class NewStructurePanelView extends javax.swing.JPanel {
                                 .addComponent(tagLabel))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(descriptionLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(descriptionScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(209, 209, 209)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -265,19 +263,22 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         if(enablePriceCheckBox.isSelected()) {
             priceSlider.setEnabled(true);
             priceTextField.setEnabled(true);
+            priceTextField.setText(String.valueOf(priceSlider.getValue()));
         } else {
             priceSlider.setEnabled(false);
             priceTextField.setEnabled(false);
+            priceTextField.setText("");
         }
     }//GEN-LAST:event_enablePriceCheckBoxActionPerformed
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
         HttpResponse<String> response = controller.sendPOST(nameTextField.getText(), 
                                                             placeTextField.getText(), 
+                                                            categoryComboBox.getSelectedItem().toString(),
                                                             priceTextField.getText(), 
                                                             webSiteTextField.getText(), 
                                                             contactsTextField.getText(), 
-                                                            descriptionTextArea.getText());
+                                                            descriptionTextPane.getText());
         
         if(response.statusCode() == 200) {
             JOptionPane.showMessageDialog(this, "Struttura aggiunta con successo!\nStatus code:" + response.statusCode(), "OK!", JOptionPane.INFORMATION_MESSAGE);
@@ -292,18 +293,6 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         priceTextField.setText(Integer.toString(priceSlider.getValue()));
     }//GEN-LAST:event_priceSliderMouseReleased
 
-    private void setTagPanel() {
-        tagPanel.setLayout(new BoxLayout(tagPanel, BoxLayout.PAGE_AXIS)); //Box layout to manage more than one object in one panel
-        List<JCheckBox> checkboxes = new ArrayList<>();
-        
-        String[] myArrayList = {"ciao", "come", "va", "tutto", "ok", "a", "me", "abbastanza bene", "vediamo se", "funzioni"};
-        for(String element : myArrayList) {
-            JCheckBox box = new JCheckBox(element);
-            checkboxes.add(box);
-            tagPanel.add(box);
-        }
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JComboBox<String> categoryComboBox;
@@ -312,9 +301,9 @@ public class NewStructurePanelView extends javax.swing.JPanel {
     private javax.swing.JLabel contactsLabel;
     private javax.swing.JTextField contactsTextField;
     private javax.swing.JLabel descriptionLabel;
-    private javax.swing.JScrollPane descriptionScrollPane;
-    private javax.swing.JTextArea descriptionTextArea;
+    private javax.swing.JEditorPane descriptionTextPane;
     private javax.swing.JCheckBox enablePriceCheckBox;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel mapPanel;
     private javax.swing.JLabel nameLabel;

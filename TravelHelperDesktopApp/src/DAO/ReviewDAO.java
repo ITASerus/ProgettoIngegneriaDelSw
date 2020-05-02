@@ -11,5 +11,5 @@ package DAO;
  */
 public interface ReviewDAO {
     
-    public String getNum();
+    public Integer getNum();
 }
