@@ -11,6 +11,7 @@ import Model.Structure;
 import com.google.gson.Gson;
 import java.net.http.HttpResponse;
 import View.MainFrameView;
+import com.google.gson.JsonArray;
 
 /**
  *
@@ -23,7 +24,7 @@ public class NewStructurePanelController {
         structureDAO = DAOFactory.getStructureDAO("AWSElasticBeanstalk");
     }
     
-    public HttpResponse<String> sendPOST(String name, String place, String category, String price, String webSite, String contacts, String description) {
+    public Structure createNewStructure(String name, String place, String category, String price, String webSite, String contacts, String description) {
         // json formatted data
         String json = new StringBuilder()
                 .append("{")
@@ -53,17 +54,14 @@ public class NewStructurePanelController {
                 
                 HttpResponse<String> response = structureDAO.newStructure(json);   
                 
-                System.out.println(json);
+                Gson gson = new Gson();
+            
+                Structure structure = gson.fromJson(response.body(), Structure.class); // Convert json text to Structure
                 
-                System.out.println(response);
-                
-                return response;
+                return structure;
     }
     
-    public void changePanel(MainFrameView parent, String responseBody) { //Changes the panel (View) showing the structureInfo or the summary of all structures
-        Gson gson = new Gson();
-        
-        Structure structure = gson.fromJson(responseBody, Structure.class);
+    public void setInfoStructurePanel(MainFrameView parent, Structure structure) { //Changes the panel (View) showing the structureInfo or the summary of all structures
         if (structure.getId() != null) {         
             System.out.println("id " + structure.getId());
             parent.setInfoStructurePanel(structure); //Shows the infos of the  structure just added

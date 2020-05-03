@@ -5,17 +5,62 @@
  */
 package View;
 
+import Model.Structure;
+import Controller.EditStructurePanelController;
+import com.google.gson.Gson;
+import java.util.Locale;
+import javax.swing.JOptionPane;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.net.http.HttpResponse;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+
 /**
  *
  * @author ernestodecrecchio
  */
 public class EditStructurePanelView extends javax.swing.JPanel {
-
+    
+    EditStructurePanelController controller;
+    MainFrameView parent;
+    Structure structure;
+    
     /**
      * Creates new form EditStructurePanelView
      */
-    public EditStructurePanelView() {
+    public EditStructurePanelView(MainFrameView parent, Structure structure) {
         initComponents();
+        
+        controller = new EditStructurePanelController();
+        this.parent = parent;
+        this.structure = structure;
+        
+        idTextField.setText(structure.getId().toString());
+        nameTextField.setText(structure.getName());
+        placeTextField.setText(structure.getPlace());
+        
+        if(structure.getCategory() != null) {
+            categoryComboBox.setSelectedItem(structure.getCategory());
+        } else {
+            categoryComboBox.setSelectedIndex(0);
+        }
+
+        webSiteTextField.setText(structure.getWebSite());
+        
+        if(structure.getPrice() != null) {
+            enablePriceCheckBox.setSelected(true);
+            priceTextField.setText(structure.getPrice().toString());
+            priceSlider.setValue(structure.getPrice());
+        } else {
+            enablePriceCheckBox.setSelected(false);
+            priceSlider.setEnabled(false);
+            priceTextField.setEnabled(false);
+            priceTextField.setText("");
+        }
+        
+        contactsTextField.setText(structure.getContacts());
+        descriptionTextPane.setText(structure.getDescription());
     }
 
     /**
@@ -27,19 +72,327 @@ public class EditStructurePanelView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jComboBox1 = new javax.swing.JComboBox<>();
+        nameLabel = new javax.swing.JLabel();
+        placeLabel = new javax.swing.JLabel();
+        webSiteLabel = new javax.swing.JLabel();
+        descriptionLabel = new javax.swing.JLabel();
+        priceLabel = new javax.swing.JLabel();
+        nameTextField = new javax.swing.JTextField();
+        placeTextField = new javax.swing.JTextField();
+        webSiteTextField = new javax.swing.JTextField();
+        confirmButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
+        priceTextField = new javax.swing.JTextField();
+        contactsLabel = new javax.swing.JLabel();
+        contactsTextField = new javax.swing.JTextField();
+        priceSlider = new javax.swing.JSlider();
+        jSeparator1 = new javax.swing.JSeparator();
+        mapPanel = new javax.swing.JPanel();
+        categoryLabel = new javax.swing.JLabel();
+        categoryComboBox = new javax.swing.JComboBox<>();
+        tagLabel = new javax.swing.JLabel();
+        tagPanel = new javax.swing.JPanel();
+        enablePriceCheckBox = new javax.swing.JCheckBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        descriptionTextPane = new javax.swing.JEditorPane();
+        idLabel = new javax.swing.JLabel();
+        idTextField = new javax.swing.JTextField();
+        deleteButton = new javax.swing.JButton();
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        nameLabel.setText("Nome*");
+
+        placeLabel.setText("Luogo");
+
+        webSiteLabel.setText("Sito Web");
+
+        descriptionLabel.setText("Descrizione");
+
+        priceLabel.setText("Prezzo Medio (in €)");
+
+        confirmButton.setText("Conferma Modifiche");
+        confirmButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmButtonActionPerformed(evt);
+            }
+        });
+
+        cancelButton.setText("Annulla Modifiche");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+
+        priceTextField.setText("0");
+
+        contactsLabel.setText("Contatti");
+
+        priceSlider.setMajorTickSpacing(100);
+        priceSlider.setMaximum(500);
+        priceSlider.setMinorTickSpacing(50);
+        priceSlider.setPaintLabels(true);
+        priceSlider.setPaintTicks(true);
+        priceSlider.setSnapToTicks(true);
+        priceSlider.setToolTipText("");
+        priceSlider.setValue(0);
+        priceSlider.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        priceSlider.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                priceSliderMouseReleased(evt);
+            }
+        });
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        mapPanel.setBackground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout mapPanelLayout = new javax.swing.GroupLayout(mapPanel);
+        mapPanel.setLayout(mapPanelLayout);
+        mapPanelLayout.setHorizontalGroup(
+            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        mapPanelLayout.setVerticalGroup(
+            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        categoryLabel.setText("Categoria");
+
+        categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "Hotel", "Resort", "Attività", "Cibo" }));
+
+        tagLabel.setText("Tag");
+
+        tagPanel.setBackground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout tagPanelLayout = new javax.swing.GroupLayout(tagPanel);
+        tagPanel.setLayout(tagPanelLayout);
+        tagPanelLayout.setHorizontalGroup(
+            tagPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        tagPanelLayout.setVerticalGroup(
+            tagPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        enablePriceCheckBox.setSelected(true);
+        enablePriceCheckBox.setText("Abilita Prezzo");
+        enablePriceCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enablePriceCheckBoxActionPerformed(evt);
+            }
+        });
+
+        jScrollPane1.setViewportView(descriptionTextPane);
+
+        idLabel.setText("ID");
+
+        idTextField.setEditable(false);
+        idTextField.setEnabled(false);
+
+        deleteButton.setText("Elimina Struttura");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(idTextField)
+                    .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nameTextField)
+                    .addComponent(placeTextField)
+                    .addComponent(categoryComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(webSiteTextField)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(priceSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(priceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(contactsTextField)
+                    .addComponent(tagPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(idLabel)
+                            .addComponent(nameLabel)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(placeLabel))
+                            .addComponent(categoryLabel)
+                            .addComponent(webSiteLabel)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(priceLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(enablePriceCheckBox))
+                            .addComponent(contactsLabel)
+                            .addComponent(tagLabel))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(descriptionLabel)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(confirmButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(deleteButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(descriptionLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(idLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nameLabel)
+                                .addGap(3, 3, 3)
+                                .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(placeLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(placeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(mapPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(categoryLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(webSiteLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(webSiteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(priceLabel)
+                                    .addComponent(enablePriceCheckBox))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(priceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(priceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(contactsLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(contactsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tagLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tagPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(confirmButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cancelButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
+        if(nameTextField.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "I campi obbligatori devono contenere un valore", "ERRORE!", JOptionPane.WARNING_MESSAGE);
+        } else {
+            if(controller.editStructure(structure.getId(),
+                                     nameTextField.getText(), 
+                                     placeTextField.getText(), 
+                                     categoryComboBox.getSelectedItem().toString(),
+                                     priceTextField.getText(), 
+                                     webSiteTextField.getText(), 
+                                     contactsTextField.getText(), 
+                                     descriptionTextPane.getText())) {
+                JOptionPane.showMessageDialog(null, "Struttura modificata con successo!");
+                parent.setSummaryPanel();
+            } else {
+                JOptionPane.showMessageDialog(null, "Modifiche non effettuate", "ERRORE!", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_confirmButtonActionPerformed
+
+    private void priceSliderMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_priceSliderMouseReleased
+        priceTextField.setText(Integer.toString(priceSlider.getValue()));
+    }//GEN-LAST:event_priceSliderMouseReleased
+
+    private void enablePriceCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enablePriceCheckBoxActionPerformed
+        if(enablePriceCheckBox.isSelected()) {
+            priceSlider.setEnabled(true);
+            priceTextField.setEnabled(true);
+            priceTextField.setText(String.valueOf(priceSlider.getValue()));
+        } else {
+            priceSlider.setEnabled(false);
+            priceTextField.setEnabled(false);
+            priceTextField.setText("");
+        }
+    }//GEN-LAST:event_enablePriceCheckBoxActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        controller.setInfoPanel(parent, structure);
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        Object[] options = { "Sì", "No"}; 
+        int result = JOptionPane.showOptionDialog(null, "Una volta eliminata la struttura\nnon sarà possibile tornare indietro!", "Sei sicuro?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, null);
+        if (result == JOptionPane.YES_OPTION) {
+            if (controller.deleteStructure(structure)) {
+                JOptionPane.showMessageDialog(null, "Struttura eliminata con successo!");
+                parent.setSummaryPanel();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERRORE eliminazione!", "ERRORE!", JOptionPane.WARNING_MESSAGE);
+                parent.setSummaryPanel();
+            }  
+        }
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JComboBox<String> categoryComboBox;
+    private javax.swing.JLabel categoryLabel;
+    private javax.swing.JButton confirmButton;
+    private javax.swing.JLabel contactsLabel;
+    private javax.swing.JTextField contactsTextField;
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JLabel descriptionLabel;
+    private javax.swing.JEditorPane descriptionTextPane;
+    private javax.swing.JCheckBox enablePriceCheckBox;
+    private javax.swing.JLabel idLabel;
+    private javax.swing.JTextField idTextField;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPanel mapPanel;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JTextField nameTextField;
+    private javax.swing.JLabel placeLabel;
+    private javax.swing.JTextField placeTextField;
+    private javax.swing.JLabel priceLabel;
+    private javax.swing.JSlider priceSlider;
+    private javax.swing.JTextField priceTextField;
+    private javax.swing.JLabel tagLabel;
+    private javax.swing.JPanel tagPanel;
+    private javax.swing.JLabel webSiteLabel;
+    private javax.swing.JTextField webSiteTextField;
     // End of variables declaration//GEN-END:variables
 }

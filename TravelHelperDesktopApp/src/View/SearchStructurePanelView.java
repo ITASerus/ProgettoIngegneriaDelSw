@@ -228,7 +228,7 @@ public class SearchStructurePanelView extends javax.swing.JPanel {
                                                     webSiteTextField.getText().isBlank() ? null : webSiteTextField.getText(),
                                                     lowerPriceTextField.getText().isBlank() ? null : Integer.parseInt(lowerPriceTextField.getText()),
                                                     upperPriceTextField.getText().isBlank() ? null : Integer.parseInt(upperPriceTextField.getText()),
-                                                    null);
+                                                    avgPointsComboBox.getSelectedItem().toString().equals("---") ? null : avgPointsComboBox.getSelectedItem().toString());
         
         for(int i = 0; i < results.size(); i++) {
             JsonObject element = results.get(i).getAsJsonObject();

@@ -54,17 +54,6 @@ public class StructureController {
         return structureRepository.save(structure);
     }
 
-    // Delete a Note
-    @DeleteMapping("/id={id}")
-    public ResponseEntity<?> deleteStructure(@PathVariable(value = "id") Long structureId) {
-        Structure structure = structureRepository.findById(structureId)
-                .orElseThrow(() -> new ResourceNotFoundException("Structure", "id", structureId));
-
-        structureRepository.delete(structure);
-
-        return ResponseEntity.ok().build();
-    }
-
     // Update a Structure
     @PutMapping("/id={id}")
     public Structure updateStructure(@PathVariable(value = "id") Long structureId,
@@ -84,6 +73,17 @@ public class StructureController {
 
         Structure updatedStructure = structureRepository.save(structure);
         return updatedStructure;
+    }
+
+    // Delete a Note
+    @DeleteMapping("/id={id}")
+    public ResponseEntity<?> deleteStructure(@PathVariable(value = "id") Long structureId) {
+        Structure structure = structureRepository.findById(structureId)
+                .orElseThrow(() -> new ResourceNotFoundException("Structure", "id", structureId));
+
+        structureRepository.delete(structure);
+
+        return ResponseEntity.ok().build();
     }
 
     //---- ENDPOINT FOR FOREIGN KEYS
@@ -179,26 +179,25 @@ public class StructureController {
             }
 
             if (!avgPoints.equals("null")) {
-                System.out.println("CONTROLLO MEDIA RECENSIONI " + avgPoints);
-                avgPoints = avgPoints.replace("'", "");
                 Double avgPointsStructure = structureRepository.getAveragePoints(structure.getId());
-                System.out.println(avgPointsStructure);
 
                 if (avgPointsStructure != null) {
-                    if(avgPoints.equals(">=1") && avgPointsStructure < 1) {
+                    if(avgPoints.equals("0 e oltre") && avgPointsStructure < 0) {
                         continue;
                     }
-                    if(avgPoints.equals(">=2") && avgPointsStructure < 2) {
+                    if(avgPoints.equals("1 e oltre") && avgPointsStructure < 1) {
                         continue;
                     }
-                    if(avgPoints.equals(">=3") && avgPointsStructure < 3) {
-                        System.out.println("ESCO");
+                    if(avgPoints.equals("2 e oltre") && avgPointsStructure < 2) {
                         continue;
                     }
-                    if(avgPoints.equals(">=4") && avgPointsStructure < 4) {
+                    if(avgPoints.equals("3 e oltre") && avgPointsStructure < 3) {
                         continue;
                     }
-                    if(avgPoints.equals("==5") && avgPointsStructure != 5) {
+                    if(avgPoints.equals("4 e oltre") && avgPointsStructure < 4) {
+                        continue;
+                    }
+                    if(avgPoints.equals("5") && avgPointsStructure != 5) {
                         continue;
                     }
                 } else {
@@ -212,7 +211,7 @@ public class StructureController {
         return resultStructure;
     }
 
-    public static boolean containsIgnoreCase(String src, String what) {
+    private static boolean containsIgnoreCase(String src, String what) {
         final int length = what.length();
         if (length == 0)
             return true; // Empty string is contained

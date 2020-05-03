@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.InfoStructurePanelController;
 import Model.Structure;
 
 /**
@@ -12,9 +13,18 @@ import Model.Structure;
  * @author ernestodecrecchio
  */
 public class InfoStructurePanelView extends javax.swing.JPanel {
-
-    public InfoStructurePanelView(Structure structure) {
+    
+    InfoStructurePanelController controller;
+    MainFrameView parent;
+    Structure structure;
+    
+    
+    public InfoStructurePanelView(MainFrameView parent, Structure structure) {
         initComponents();
+        
+        controller = new InfoStructurePanelController();
+        this.parent = parent;
+        this.structure = structure;
         
         idValueLabel.setText(structure.getId().toString());
         nameValueLabel.setText(structure.getName());
@@ -91,6 +101,11 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
         nameValueLabel.setText("---");
 
         editButton.setText("Modifica");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
 
         imageLabel.setText("Foto:");
 
@@ -105,45 +120,47 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(nameLabel)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(idValueLabel)
-                            .addComponent(nameValueLabel)))
-                    .addComponent(idLabel)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(placeLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(placeValueLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(categoryLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(categoryValueLabel))
-                    .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(nameLabel)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(idValueLabel)
+                                    .addComponent(nameValueLabel)))
+                            .addComponent(idLabel)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(placeLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(placeValueLabel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(categoryLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(categoryValueLabel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(webSiteLabel)
+                                    .addComponent(contactsLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(contactsValueLabel)
+                                    .addComponent(webSiteValueLabel)))
+                            .addComponent(tagLabel)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(priceLabel)
+                                .addGap(30, 30, 30)
+                                .addComponent(priceValueLabel)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(webSiteLabel)
-                            .addComponent(contactsLabel))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(contactsValueLabel)
-                            .addComponent(webSiteValueLabel)))
-                    .addComponent(tagLabel)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(imageLabel)
+                                    .addComponent(descriptionLabel))
+                                .addGap(311, 311, 311))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(priceLabel)
-                        .addGap(30, 30, 30)
-                        .addComponent(priceValueLabel)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(imageLabel)
-                            .addComponent(descriptionLabel))
-                        .addGap(311, 311, 311))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(editButton)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(editButton))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,6 +205,10 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
                 .addComponent(editButton))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        controller.setEditPanel(parent, structure);
+    }//GEN-LAST:event_editButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

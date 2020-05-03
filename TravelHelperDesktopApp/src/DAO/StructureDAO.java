@@ -27,5 +27,9 @@ public interface StructureDAO {
     
     public JsonArray getByFilter(String name, String place, String category, String contacts, String webSite, Integer lowerPrice, Integer upperPrice, String avgPoints);
 
-    public HttpResponse<String> newStructure(String body); 
+    public HttpResponse<String> newStructure(String body);
+    
+    public HttpResponse<String> editStructure(Long structureID, String body);
+    
+    public HttpResponse<String> deleteStructure(Long id);
 }

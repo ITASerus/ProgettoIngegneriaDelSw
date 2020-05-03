@@ -28,7 +28,7 @@ public class StructureDAOAWSElasticBeanstalkImpl implements StructureDAO {
     private static final String GET_BY_STR_NAME= "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/name=";
     private static final String GET_BY_REV_STRID = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/id=3/getReviews";
     private static final String GET_INFO = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/getInfo";
-    private static final String GET_BY_FILTER ="http://localhost:5000/structures/search/";
+    private static final String GET_BY_FILTER ="http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/search/";
     
     @Override
     public Integer getNum() {
@@ -115,6 +115,7 @@ public class StructureDAOAWSElasticBeanstalkImpl implements StructureDAO {
                                             + (upperPrice == null ? "&upperPrice=-1" : "&upperPrice="+upperPrice)
                                             + (avgPoints == null ? "&avgPoints=null" : "&avgPoints="+avgPoints);
         
+        ENDPOINT_URL = ENDPOINT_URL.replace(" ", "%20");
         System.out.println(ENDPOINT_URL);
         
         HttpClient client = HttpClient.newHttpClient();
@@ -145,21 +146,63 @@ public class StructureDAOAWSElasticBeanstalkImpl implements StructureDAO {
                 .setHeader("User-Agent", "Java 11 HttpClient Bot") // add request header
                 .header("Content-Type", "application/json")
                 .build();
-
-        
         HttpResponse<String> response = null;
         
         try {
         response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException e) {
-            //System.err.print(e);
+            e.printStackTrace();
         }catch (InterruptedException i) {
-            //System.err.print(i);
-        }
-        finally {
+            i.printStackTrace();
+        } finally {
             return response;
         }
-  
     }
   
+    @Override
+    public HttpResponse<String> editStructure(Long structureID, String body) {
+        String ENDPOINT_URL = UPDATE_STRUCTURE + structureID;
+         
+        final HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build(); //Per la connessione del client al server
+
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(ENDPOINT_URL))
+                .setHeader("User-Agent", "Java 11 HttpClient Bot") // add request header
+                .header("Content-Type", "application/json")
+                .PUT(HttpRequest.BodyPublishers.ofString(body))
+                .build();
+        HttpResponse<String> response = null;
+        
+        try {
+        response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }catch (InterruptedException i) {
+            i.printStackTrace();
+        } finally {
+            return response;
+        }
+    }
+    
+    @Override
+    public HttpResponse<String> deleteStructure(Long id) {
+        String ENDPOINT_URL = DELETE_STRUCTURE + id;
+        
+        System.out.println(ENDPOINT_URL);
+        
+        HttpClient client = HttpClient.newHttpClient(); // SHUTDOWN?
+        HttpRequest requestDeleteStructure = HttpRequest.newBuilder().uri(URI.create(ENDPOINT_URL)).DELETE().build();
+        HttpResponse<String> response = null;
+        
+        try{
+            response = client.send(requestDeleteStructure, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException i) {
+            i.printStackTrace();
+        } finally {
+            return response;
+        }
+    }
+    
+    
 }

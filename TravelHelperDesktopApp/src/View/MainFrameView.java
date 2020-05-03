@@ -61,11 +61,23 @@ public class MainFrameView extends javax.swing.JFrame {
     
     public void setInfoStructurePanel(Structure structure) {
         if(structure != null) {
-            InfoStructurePanelView i = new InfoStructurePanelView(structure);
+            InfoStructurePanelView i = new InfoStructurePanelView(this, structure);
             i.setVisible(true);
             i.validate();
             validate();
             changePanel(i);
+        } else {
+            setSummaryPanel();
+        }    
+    }
+    
+    public void setEditStructurePanel(Structure structure) {
+        if(structure != null) {
+            EditStructurePanelView e = new EditStructurePanelView(this, structure);
+            e.setVisible(true);
+            e.validate();
+            validate();
+            changePanel(e);
         } else {
             setSummaryPanel();
         }    

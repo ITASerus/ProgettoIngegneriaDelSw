@@ -6,14 +6,9 @@
 package View;
 
 import Controller.NewStructurePanelController;
-import Helper.JTextAreaRegularPopupMenu;
 import Helper.JTextFieldRegularPopupMenu;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.BoxLayout;
-import javax.swing.JCheckBox;
-import java.net.http.HttpResponse;
 import javax.swing.JOptionPane;
+import Model.Structure;
 
 /**
  *
@@ -92,7 +87,12 @@ public class NewStructurePanelView extends javax.swing.JPanel {
 
         cancelButton.setText("Annulla");
 
-        priceTextField.setText("0");
+        priceTextField.setEnabled(false);
+        priceTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                priceTextFieldFocusLost(evt);
+            }
+        });
 
         contactsLabel.setText("Contatti");
 
@@ -105,6 +105,7 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         priceSlider.setToolTipText("");
         priceSlider.setValue(0);
         priceSlider.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        priceSlider.setEnabled(false);
         priceSlider.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 priceSliderMouseReleased(evt);
@@ -145,7 +146,6 @@ public class NewStructurePanelView extends javax.swing.JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        enablePriceCheckBox.setSelected(true);
         enablePriceCheckBox.setText("Abilita Prezzo");
         enablePriceCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,7 +191,7 @@ public class NewStructurePanelView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(descriptionLabel)
@@ -200,7 +200,7 @@ public class NewStructurePanelView extends javax.swing.JPanel {
                             .addComponent(cancelButton)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(confirmButton)))
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -245,8 +245,8 @@ public class NewStructurePanelView extends javax.swing.JPanel {
                                 .addComponent(tagLabel))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(descriptionLabel)
-                                .addGap(209, 209, 209)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -272,26 +272,29 @@ public class NewStructurePanelView extends javax.swing.JPanel {
     }//GEN-LAST:event_enablePriceCheckBoxActionPerformed
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-        HttpResponse<String> response = controller.sendPOST(nameTextField.getText(), 
-                                                            placeTextField.getText(), 
-                                                            categoryComboBox.getSelectedItem().toString(),
-                                                            priceTextField.getText(), 
-                                                            webSiteTextField.getText(), 
-                                                            contactsTextField.getText(), 
-                                                            descriptionTextPane.getText());
+        Structure newStructure = controller.createNewStructure(nameTextField.getText(), 
+                                                               placeTextField.getText(), 
+                                                               categoryComboBox.getSelectedItem().toString(),
+                                                               priceTextField.getText(), 
+                                                               webSiteTextField.getText(), 
+                                                               contactsTextField.getText(), 
+                                                               descriptionTextPane.getText());
         
-        if(response.statusCode() == 200) {
-            JOptionPane.showMessageDialog(this, "Struttura aggiunta con successo!\nStatus code:" + response.statusCode(), "OK!", JOptionPane.INFORMATION_MESSAGE);
-            
-            controller.changePanel(parent, response.body()); //Change the panel shown
+        if(newStructure != null) {
+             JOptionPane.showMessageDialog(this, "Struttura aggiunta con successo!", "OK!", JOptionPane.INFORMATION_MESSAGE);
+            controller.setInfoStructurePanel(parent, newStructure); //Change the panel shown
         } else {
-            JOptionPane.showMessageDialog(this, "Struttura non aggiunta. Controllare i campi inseriti!\nStatus code: " + response.statusCode(), "ERRORE!", JOptionPane.ERROR_MESSAGE);
-        }
+            JOptionPane.showMessageDialog(this, "Struttura non aggiunta. Controllare i campi inseriti!", "ERRORE!", JOptionPane.ERROR_MESSAGE);
+        }   
     }//GEN-LAST:event_confirmButtonActionPerformed
 
     private void priceSliderMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_priceSliderMouseReleased
         priceTextField.setText(Integer.toString(priceSlider.getValue()));
     }//GEN-LAST:event_priceSliderMouseReleased
+
+    private void priceTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_priceTextFieldFocusLost
+        priceSlider.setValue(Integer.parseInt(priceTextField.getText()));
+    }//GEN-LAST:event_priceTextFieldFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
