@@ -13,6 +13,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import Model.Structure;
+import com.google.gson.JsonObject;
+import java.util.HashMap;
 
 /**
  *
@@ -90,7 +92,6 @@ public class StructureDAOAWSElasticBeanstalkImpl implements StructureDAO {
            HttpResponse<String> responseStructuresDetail = client.send(requestStructuresDetail, HttpResponse.BodyHandlers.ofString());
             
            Gson gson = new Gson();
-            
            results = gson.fromJson(responseStructuresDetail.body(), JsonArray.class); // Convert json text to JsonArray      
           
         } catch (IOException e) {
@@ -204,5 +205,45 @@ public class StructureDAOAWSElasticBeanstalkImpl implements StructureDAO {
         }
     }
     
+    @Override
+    public HashMap<String,Double> getCoordinates(String place) {
+        HashMap<String, Double> coordinates = new HashMap();
+        
+        String key = "QLRWkvF8XwkjXISHbeArUig6dSOw4dav";
+        String placeConv = place.replace(" ", "%20");
+        
+        String URL = "https://www.mapquestapi.com/geocoding/v1/address?key=" + key + "&inFormat=kvp&outFormat=json&location=" + placeConv;
+        
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest requestInfoPlace = HttpRequest.newBuilder().uri(URI.create(URL)).build();
+       
+        try{
+           HttpResponse<String> response = client.send(requestInfoPlace, HttpResponse.BodyHandlers.ofString());
+            
+           System.out.println(response.body());
+           
+           Gson gson = new Gson();
+           JsonObject r = gson.fromJson(response.body(), JsonObject.class); // Convert json text to JsonArray      
+
+           JsonArray results = r.get("results").getAsJsonArray();
+           
+           JsonObject zero = results.get(0).getAsJsonObject();
+           JsonArray locations = zero.get("locations").getAsJsonArray();
+           JsonObject uno = locations.get(0).getAsJsonObject();
+           JsonObject latlng = uno.getAsJsonObject("latLng");
+     
+           coordinates = new Gson().fromJson(latlng.toString(), HashMap.class);
+
+           return coordinates;
+         
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException i) {
+            i.printStackTrace();
+        } finally {
+            return coordinates;
+        }
+    }
     
 }

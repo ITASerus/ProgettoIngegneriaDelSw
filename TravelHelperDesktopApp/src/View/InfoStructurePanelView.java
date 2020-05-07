@@ -7,6 +7,7 @@ package View;
 
 import Controller.InfoStructurePanelController;
 import Model.Structure;
+import java.awt.BorderLayout;
 
 /**
  *
@@ -18,7 +19,6 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
     MainFrameView parent;
     Structure structure;
     
-    
     public InfoStructurePanelView(MainFrameView parent, Structure structure) {
         initComponents();
         
@@ -27,14 +27,25 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
         this.structure = structure;
         
         idValueLabel.setText(structure.getId().toString());
+        
         nameValueLabel.setText(structure.getName());
+        
         placeValueLabel.setText(structure.getPlace());
+        
+        mapPanel.setLayout(new BorderLayout());
+        mapPanel.add(controller.getMapOfPlace(structure.getPlace()), BorderLayout.CENTER);
+        mapPanel.updateUI();
+        
         categoryValueLabel.setText(structure.getCategory());
+        
         webSiteValueLabel.setText(structure.getWebSite());
+        
         contactsValueLabel.setText(structure.getContacts());
+        
         if(structure.getPrice() != null) {
             priceValueLabel.setText(structure.getPrice().toString());
         }
+        
         descriptionValueTextPane.setText(structure.getDescription());
     }
 
@@ -67,6 +78,8 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
         imageLabel = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         descriptionValueTextPane = new javax.swing.JTextPane();
+        mapPanel = new javax.swing.JPanel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         idLabel.setText("ID:");
 
@@ -112,6 +125,21 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
         descriptionValueTextPane.setEditable(false);
         jScrollPane2.setViewportView(descriptionValueTextPane);
 
+        mapPanel.setBackground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout mapPanelLayout = new javax.swing.GroupLayout(mapPanel);
+        mapPanel.setLayout(mapPanelLayout);
+        mapPanelLayout.setHorizontalGroup(
+            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        mapPanelLayout.setVerticalGroup(
+            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -149,60 +177,69 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
                                 .addComponent(priceLabel)
                                 .addGap(30, 30, 30)
                                 .addComponent(priceValueLabel)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(imageLabel)
-                                    .addComponent(descriptionLabel))
-                                .addGap(311, 311, 311))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(editButton)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(197, 197, 197)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(descriptionLabel)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                    .addComponent(imageLabel))
+                .addGap(6, 6, 6))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idLabel)
-                    .addComponent(idValueLabel)
-                    .addComponent(descriptionLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nameLabel)
-                            .addComponent(nameValueLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(placeLabel)
-                            .addComponent(placeValueLabel))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(categoryLabel)
-                            .addComponent(categoryValueLabel))
+                            .addComponent(idLabel)
+                            .addComponent(idValueLabel)
+                            .addComponent(descriptionLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(webSiteValueLabel)
-                            .addComponent(webSiteLabel))
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(contactsLabel)
-                            .addComponent(contactsValueLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(priceLabel)
-                            .addComponent(priceValueLabel))
-                        .addGap(34, 34, 34)
-                        .addComponent(tagLabel))
-                    .addComponent(jScrollPane2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(imageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
-                .addComponent(editButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(nameLabel)
+                                    .addComponent(nameValueLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(placeLabel)
+                                    .addComponent(placeValueLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(categoryLabel)
+                                    .addComponent(categoryValueLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(webSiteValueLabel)
+                                    .addComponent(webSiteLabel))
+                                .addGap(24, 24, 24)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(contactsLabel)
+                                    .addComponent(contactsValueLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(priceLabel)
+                                    .addComponent(priceValueLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tagLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                                .addComponent(editButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(imageLabel)
+                                .addContainerGap())))
+                    .addComponent(jSeparator1)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -223,6 +260,8 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
     private javax.swing.JLabel idValueLabel;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPanel mapPanel;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel nameValueLabel;
     private javax.swing.JLabel placeLabel;

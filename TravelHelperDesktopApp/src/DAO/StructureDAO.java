@@ -8,6 +8,7 @@ package DAO;
 import Model.Structure;
 import com.google.gson.JsonArray;
 import java.net.http.HttpResponse;
+import java.util.HashMap;
 
 /**
  *
@@ -32,4 +33,6 @@ public interface StructureDAO {
     public HttpResponse<String> editStructure(Long structureID, String body);
     
     public HttpResponse<String> deleteStructure(Long id);
+    
+    public HashMap<String,Double> getCoordinates(String place);
 }

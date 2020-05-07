@@ -9,9 +9,16 @@ import Controller.NewStructurePanelController;
 import Helper.JTextFieldRegularPopupMenu;
 import javax.swing.JOptionPane;
 import Model.Structure;
+import java.awt.BorderLayout;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- *
  * @author ernestodecrecchio
  */
 public class NewStructurePanelView extends javax.swing.JPanel {
@@ -28,13 +35,15 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         controller = new NewStructurePanelController();
         this.parent = parent;
 
+        mapPanel.setLayout(new BorderLayout());
+        
         JTextFieldRegularPopupMenu.addTo(nameTextField);
         JTextFieldRegularPopupMenu.addTo(contactsTextField);
         JTextFieldRegularPopupMenu.addTo(placeTextField);
         JTextFieldRegularPopupMenu.addTo(webSiteTextField);
-        //JTextAreaRegularPopupMenu.addTo(descriptionTextPane);
+        //JTextAreaRegularPopupMenu.addTo(descriptionTextPane);       
     }
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,6 +53,7 @@ public class NewStructurePanelView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSeparator2 = new javax.swing.JSeparator();
         nameLabel = new javax.swing.JLabel();
         placeLabel = new javax.swing.JLabel();
         webSiteLabel = new javax.swing.JLabel();
@@ -63,10 +73,24 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         categoryLabel = new javax.swing.JLabel();
         categoryComboBox = new javax.swing.JComboBox<>();
         tagLabel = new javax.swing.JLabel();
-        tagPanel = new javax.swing.JPanel();
         enablePriceCheckBox = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         descriptionTextPane = new javax.swing.JEditorPane();
+        visualizeMapButton = new javax.swing.JButton();
+        tagCheckBox1 = new javax.swing.JCheckBox();
+        tagCheckBox4 = new javax.swing.JCheckBox();
+        tagCheckBox10 = new javax.swing.JCheckBox();
+        tagCheckBox7 = new javax.swing.JCheckBox();
+        tagCheckBox8 = new javax.swing.JCheckBox();
+        tagCheckBox11 = new javax.swing.JCheckBox();
+        tagCheckBox2 = new javax.swing.JCheckBox();
+        tagCheckBox5 = new javax.swing.JCheckBox();
+        tagCheckBox9 = new javax.swing.JCheckBox();
+        tagCheckBox3 = new javax.swing.JCheckBox();
+        tagCheckBox6 = new javax.swing.JCheckBox();
+        photoLabel = new javax.swing.JLabel();
+        imageLabel = new javax.swing.JLabel();
+        searchImageButton = new javax.swing.JButton();
 
         nameLabel.setText("Nome*");
 
@@ -124,7 +148,7 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         );
         mapPanelLayout.setVerticalGroup(
             mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 162, Short.MAX_VALUE)
+            .addGap(0, 67, Short.MAX_VALUE)
         );
 
         categoryLabel.setText("Categoria");
@@ -132,19 +156,6 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "Hotel", "Resort", "Attività", "Cibo" }));
 
         tagLabel.setText("Tag");
-
-        tagPanel.setBackground(new java.awt.Color(204, 204, 204));
-
-        javax.swing.GroupLayout tagPanelLayout = new javax.swing.GroupLayout(tagPanel);
-        tagPanel.setLayout(tagPanelLayout);
-        tagPanelLayout.setHorizontalGroup(
-            tagPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        tagPanelLayout.setVerticalGroup(
-            tagPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
 
         enablePriceCheckBox.setText("Abilita Prezzo");
         enablePriceCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -154,6 +165,46 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         });
 
         jScrollPane1.setViewportView(descriptionTextPane);
+
+        visualizeMapButton.setText("Visualizza");
+        visualizeMapButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visualizeMapButtonActionPerformed(evt);
+            }
+        });
+
+        tagCheckBox1.setText("Accetta animali");
+
+        tagCheckBox4.setText("Aria condizionata");
+
+        tagCheckBox10.setText("Ristorante");
+
+        tagCheckBox7.setText("Colazione inclusa");
+
+        tagCheckBox8.setText("Internet gratis");
+
+        tagCheckBox11.setText("Servizio in camera");
+
+        tagCheckBox2.setText("Attività di gruppo");
+
+        tagCheckBox5.setText("Bar/Launge");
+
+        tagCheckBox9.setText("Piscina");
+
+        tagCheckBox3.setText("All'aperto");
+
+        tagCheckBox6.setText("Centro fitness");
+
+        photoLabel.setText("Foto");
+
+        imageLabel.setBackground(new java.awt.Color(153, 153, 153));
+
+        searchImageButton.setText("Cerca Immagine");
+        searchImageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchImageButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -167,17 +218,16 @@ public class NewStructurePanelView extends javax.swing.JPanel {
                     .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(categoryComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(nameTextField)
-                    .addComponent(placeTextField)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(priceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(priceSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(priceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(tagPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(placeTextField)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(visualizeMapButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(placeLabel))
                             .addComponent(contactsLabel)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(priceLabel)
@@ -186,22 +236,51 @@ public class NewStructurePanelView extends javax.swing.JPanel {
                             .addComponent(webSiteLabel)
                             .addComponent(categoryLabel)
                             .addComponent(tagLabel)
-                            .addComponent(nameLabel))
+                            .addComponent(nameLabel)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(placeLabel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tagCheckBox1)
+                                    .addComponent(tagCheckBox4)
+                                    .addComponent(tagCheckBox7)
+                                    .addComponent(tagCheckBox10))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tagCheckBox2)
+                                    .addComponent(tagCheckBox5)
+                                    .addComponent(tagCheckBox8)
+                                    .addComponent(tagCheckBox11))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tagCheckBox3)
+                                    .addComponent(tagCheckBox6)
+                                    .addComponent(tagCheckBox9))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(descriptionLabel)
-                            .addGap(256, 256, 256))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(cancelButton)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(confirmButton)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(descriptionLabel)
+                        .addGap(373, 385, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 250, Short.MAX_VALUE)
+                                .addComponent(cancelButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(confirmButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(photoLabel)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(searchImageButton))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,52 +289,78 @@ public class NewStructurePanelView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(nameLabel)
-                                .addGap(3, 3, 3)
-                                .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(placeLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(placeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(mapPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(categoryLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(webSiteLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(webSiteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(priceLabel)
-                                    .addComponent(enablePriceCheckBox))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(priceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(priceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(contactsLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(contactsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tagLabel))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(descriptionLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(nameLabel)
+                        .addGap(3, 3, 3)
+                        .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(placeLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(placeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(visualizeMapButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(categoryLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(webSiteLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(webSiteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(priceLabel)
+                            .addComponent(enablePriceCheckBox))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(priceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(priceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(contactsLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(contactsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tagLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(confirmButton)
-                                    .addComponent(cancelButton)))
-                            .addComponent(tagPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                                .addComponent(tagCheckBox1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tagCheckBox4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tagCheckBox7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tagCheckBox10))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(tagCheckBox2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tagCheckBox5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tagCheckBox8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tagCheckBox11))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(tagCheckBox3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tagCheckBox6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tagCheckBox9))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(descriptionLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(photoLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchImageButton)
+                        .addGap(184, 184, 184)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(confirmButton)
+                            .addComponent(cancelButton))))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -296,6 +401,43 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         priceSlider.setValue(Integer.parseInt(priceTextField.getText()));
     }//GEN-LAST:event_priceTextFieldFocusLost
 
+    private void visualizeMapButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizeMapButtonActionPerformed
+        mapPanel.removeAll();
+        mapPanel.add(controller.getMapOfPlace(placeTextField.getText()), BorderLayout.CENTER);
+        mapPanel.updateUI();
+    }//GEN-LAST:event_visualizeMapButtonActionPerformed
+
+    private void searchImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchImageButtonActionPerformed
+        JFileChooser file = new JFileChooser();
+        
+        file.setCurrentDirectory(new File(System.getProperty("user.home")));
+          //filter the files
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg","gif","png");
+        file.addChoosableFileFilter(filter);
+        int result = file.showSaveDialog(null);
+        //if the user click on save in Jfilechooser
+        if(result == JFileChooser.APPROVE_OPTION){
+              File selectedFile = file.getSelectedFile();
+              String path = selectedFile.getAbsolutePath();
+              imageLabel.setIcon(ResizeImage(path));
+          }
+           //if the user click on save in Jfilechooser
+        
+          else if(result == JFileChooser.CANCEL_OPTION){
+              System.out.println("No File Select");
+          }
+   
+    }//GEN-LAST:event_searchImageButtonActionPerformed
+
+    // Methode to resize imageIcon with the same size of a Jlabel
+    public ImageIcon ResizeImage(String ImagePath) {
+        ImageIcon MyImage = new ImageIcon(ImagePath);
+        Image img = MyImage.getImage();
+        Image newImg = img.getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImg);
+        return image;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JComboBox<String> categoryComboBox;
@@ -306,18 +448,33 @@ public class NewStructurePanelView extends javax.swing.JPanel {
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JEditorPane descriptionTextPane;
     private javax.swing.JCheckBox enablePriceCheckBox;
+    private javax.swing.JLabel imageLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPanel mapPanel;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
+    private javax.swing.JLabel photoLabel;
     private javax.swing.JLabel placeLabel;
     private javax.swing.JTextField placeTextField;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JSlider priceSlider;
     private javax.swing.JTextField priceTextField;
+    private javax.swing.JButton searchImageButton;
+    private javax.swing.JCheckBox tagCheckBox1;
+    private javax.swing.JCheckBox tagCheckBox10;
+    private javax.swing.JCheckBox tagCheckBox11;
+    private javax.swing.JCheckBox tagCheckBox2;
+    private javax.swing.JCheckBox tagCheckBox3;
+    private javax.swing.JCheckBox tagCheckBox4;
+    private javax.swing.JCheckBox tagCheckBox5;
+    private javax.swing.JCheckBox tagCheckBox6;
+    private javax.swing.JCheckBox tagCheckBox7;
+    private javax.swing.JCheckBox tagCheckBox8;
+    private javax.swing.JCheckBox tagCheckBox9;
     private javax.swing.JLabel tagLabel;
-    private javax.swing.JPanel tagPanel;
+    private javax.swing.JButton visualizeMapButton;
     private javax.swing.JLabel webSiteLabel;
     private javax.swing.JTextField webSiteTextField;
     // End of variables declaration//GEN-END:variables
