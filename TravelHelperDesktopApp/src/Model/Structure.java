@@ -50,5 +50,5 @@ public class Structure {
     public void setDescription(String description) { this.description = description; }
 
     public Byte[] getImage() { return image;}
-    public void setImage(Byte[] image) {this.image = image; }
+    public void setImage(Byte[] image) { this.image = image; }
 }

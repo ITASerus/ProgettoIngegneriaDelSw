@@ -23,7 +23,7 @@ import java.util.HashMap;
 public class StructureDAOAWSElasticBeanstalkImpl implements StructureDAO {
     private static final String GET_NUM_STRUCTURES = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/getNum";
     private static final String CREATE_STRUCTURE = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/create";
-    private static final String DELETE_STRUCTURE = "http://localhost:5000/structures/id=";
+    private static final String DELETE_STRUCTURE = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/id=";
     private static final String UPDATE_STRUCTURE = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/id=";
     private static final String GET_ALL_STRUCTURES = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/getAll";
     private static final String GET_BY_STRID = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/id=";
@@ -68,10 +68,7 @@ public class StructureDAOAWSElasticBeanstalkImpl implements StructureDAO {
             HttpResponse<String> responseStructure = client.send(requestStructure, HttpResponse.BodyHandlers.ofString());
            
             Gson gson = new Gson();
-            structure = gson.fromJson(responseStructure.body(), Structure.class); // Convert json text to Structure class     
-            
-            System.out.println(structure.getName());
-             
+            structure = gson.fromJson(responseStructure.body(), Structure.class); // Convert json text to Structure class        
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException i) {
@@ -125,9 +122,9 @@ public class StructureDAOAWSElasticBeanstalkImpl implements StructureDAO {
         try{
             HttpResponse<String> responseStructuresDetail = client.send(requestStructuresDetail, HttpResponse.BodyHandlers.ofString());
             
-            Gson gson = new Gson();
+            Gson gson = new Gson();         
+            results = gson.fromJson(responseStructuresDetail.body(), JsonArray.class); // Convert json text to JsonArray  
             
-            results = gson.fromJson(responseStructuresDetail.body(), JsonArray.class); // Convert json text to JsonArray      
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException i) {

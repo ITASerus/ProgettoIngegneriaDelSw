@@ -41,7 +41,7 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         JTextFieldRegularPopupMenu.addTo(contactsTextField);
         JTextFieldRegularPopupMenu.addTo(placeTextField);
         JTextFieldRegularPopupMenu.addTo(webSiteTextField);
-        //JTextAreaRegularPopupMenu.addTo(descriptionTextPane);       
+        //JTextAreaRegularPopupMenu.addTo(descriptionTextPane);  
     }
    
     /**
@@ -53,7 +53,6 @@ public class NewStructurePanelView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSeparator2 = new javax.swing.JSeparator();
         nameLabel = new javax.swing.JLabel();
         placeLabel = new javax.swing.JLabel();
         webSiteLabel = new javax.swing.JLabel();
@@ -91,6 +90,9 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         photoLabel = new javax.swing.JLabel();
         imageLabel = new javax.swing.JLabel();
         searchImageButton = new javax.swing.JButton();
+        imagePathTextField = new javax.swing.JTextField();
+
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         nameLabel.setText("Nome*");
 
@@ -148,7 +150,7 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         );
         mapPanelLayout.setVerticalGroup(
             mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 67, Short.MAX_VALUE)
+            .addGap(0, 63, Short.MAX_VALUE)
         );
 
         categoryLabel.setText("Categoria");
@@ -257,30 +259,29 @@ public class NewStructurePanelView extends javax.swing.JPanel {
                                     .addComponent(tagCheckBox3)
                                     .addComponent(tagCheckBox6)
                                     .addComponent(tagCheckBox9))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 46, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(descriptionLabel)
-                        .addGap(373, 385, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(searchImageButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 250, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(cancelButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(confirmButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(photoLabel)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(searchImageButton))))
+                            .addComponent(imagePathTextField)
+                            .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+                            .addComponent(photoLabel))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,10 +354,12 @@ public class NewStructurePanelView extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(photoLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchImageButton)
-                        .addGap(184, 184, 184)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(imagePathTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(152, 152, 152)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(confirmButton)
                             .addComponent(cancelButton))))
@@ -383,10 +386,11 @@ public class NewStructurePanelView extends javax.swing.JPanel {
                                                                priceTextField.getText(), 
                                                                webSiteTextField.getText(), 
                                                                contactsTextField.getText(), 
-                                                               descriptionTextPane.getText());
+                                                               descriptionTextPane.getText(),
+                                                               imagePathTextField.getText());
         
         if(newStructure != null) {
-             JOptionPane.showMessageDialog(this, "Struttura aggiunta con successo!", "OK!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Struttura aggiunta con successo!", "OK!", JOptionPane.INFORMATION_MESSAGE);
             controller.setInfoStructurePanel(parent, newStructure); //Change the panel shown
         } else {
             JOptionPane.showMessageDialog(this, "Struttura non aggiunta. Controllare i campi inseriti!", "ERRORE!", JOptionPane.ERROR_MESSAGE);
@@ -420,6 +424,8 @@ public class NewStructurePanelView extends javax.swing.JPanel {
               File selectedFile = file.getSelectedFile();
               String path = selectedFile.getAbsolutePath();
               imageLabel.setIcon(ResizeImage(path));
+              
+              imagePathTextField.setText(path);
           }
            //if the user click on save in Jfilechooser
         
@@ -427,6 +433,7 @@ public class NewStructurePanelView extends javax.swing.JPanel {
               System.out.println("No File Select");
           }
    
+        
     }//GEN-LAST:event_searchImageButtonActionPerformed
 
     // Methode to resize imageIcon with the same size of a Jlabel
@@ -449,9 +456,9 @@ public class NewStructurePanelView extends javax.swing.JPanel {
     private javax.swing.JEditorPane descriptionTextPane;
     private javax.swing.JCheckBox enablePriceCheckBox;
     private javax.swing.JLabel imageLabel;
+    private javax.swing.JTextField imagePathTextField;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPanel mapPanel;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
