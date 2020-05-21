@@ -13,13 +13,13 @@ class ResultsViewController: UIViewController {
     @IBOutlet weak var resultsCollectionView: UICollectionView!
 
     var indexCellSelected: Int?
-    var structureList = [Structure]()
+    var structureList = [StructureClass]()
     
-    var struttura1 = Structure(id: 23, name: "Hotel Val D'Argento", place: "Via dei tulipani piangenti n47 Napoli", category: "Hotel", price: 350, webSite: "www.ilsitodellhotel.com", contacts: "+39 3312543463", tag: "Piscina", description: "Bell'hotel. Pieno zeppo di sedie.... effettivamente forse ci sono troppe sedie. Dovrebbero venderne qualcuna... sìsì, dovrebbero venderne un bel po'!", image: "")
+    var struttura1 = StructureClass(id: 23, name: "Hotel Val D'Argento", place: "Via dei tulipani piangenti n47 Napoli", category: "Hotel", price: 350, webSite: "www.ilsitodellhotel.com", contacts: "+39 3312543463", tag: "Piscina", description: "Bell'hotel. Pieno zeppo di sedie.... effettivamente forse ci sono troppe sedie. Dovrebbero venderne qualcuna... sìsì, dovrebbero venderne un bel po'!", image: "")
        
-       var struttura2 = Structure(id: 5, name: "Resort La Fiorita", place: "Piazza San Carlo XII Milano, 32", category: "Resort", price: 350, webSite: "www.resortdelleparlem.com", contacts: "+39 3440968543", tag: "Piscina, Accetta Cani", description: "Un residence molto lussuoso, con pomelli in avorio e lampadari fatti con lacrime di scimpanzé giovani. Le mattonelle sono state prese direttamente dal pavimento della casa di Trump e su ogni sedia è possibile notare la forma delle chiappe delle personalità illustri che hanno alloggiato qui.", image: "")
+       var struttura2 = StructureClass(id: 5, name: "Resort La Fiorita", place: "Piazza San Carlo XII Milano, 32", category: "Resort", price: 350, webSite: "www.resortdelleparlem.com", contacts: "+39 3440968543", tag: "Piscina, Accetta Cani", description: "Un residence molto lussuoso, con pomelli in avorio e lampadari fatti con lacrime di scimpanzé giovani. Le mattonelle sono state prese direttamente dal pavimento della casa di Trump e su ogni sedia è possibile notare la forma delle chiappe delle personalità illustri che hanno alloggiato qui.", image: "")
        
-       var struttura3 = Structure(id: 12, name: "Rafting tra i Baobab", place: "Foresta Amazzonica", category: "Sport Estremo", price: 120, webSite: "www.aruba.com", contacts: "+39 0891123453", tag: "Non adatto ai bambini", description: "Hai sempre sognato di morire affogato in un tornante di un fiume in piena? Morire ammazzato da un coccodrillo o da un ippopotamo che ti scambia per la sua cena? Beh, questo è iol posto giusto! e il bello è che morirai tra il fresco scroscio dell'acqua pulitissima della foresta amazzonica. P.S Fate attenzione agli indigeni, potreste essergli indi-gesti ha ha ha", image: "")
+       var struttura3 = StructureClass(id: 12, name: "Rafting tra i Baobab", place: "Foresta Amazzonica", category: "Sport Estremo", price: 120, webSite: "www.aruba.com", contacts: "+39 0891123453", tag: "Non adatto ai bambini", description: "Hai sempre sognato di morire affogato in un tornante di un fiume in piena? Morire ammazzato da un coccodrillo o da un ippopotamo che ti scambia per la sua cena? Beh, questo è iol posto giusto! e il bello è che morirai tra il fresco scroscio dell'acqua pulitissima della foresta amazzonica. P.S Fate attenzione agli indigeni, potreste essergli indi-gesti ha ha ha", image: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()

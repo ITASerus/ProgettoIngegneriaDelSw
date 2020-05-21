@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+public class HomeController {
+    private static let structureDAO = DAOFactory.getStructureDAO(type: "AWSElasticBeanstalk")
+
+    func getStructureByID(id: Int) -> Structure {
+        return HomeController.structureDAO.getByID(id: id)!
+    }
+    
+    func getAllStructures() -> [Structure] {
+        return HomeController.structureDAO.getAllStructures()!
+    }
+}

@@ -14,7 +14,7 @@ public class DAOFactory {
     public static StructureDAO getStructureDAO(String type) {
         if(type.equalsIgnoreCase("AWSElasticBeanstalk")) {
             return new StructureDAOAWSElasticBeanstalkImpl();
-        } else {
+        } else { // Altre implementazioni possibili diverse da AWS Elastic Beanstalk
             return new StructureDAOAWSElasticBeanstalkImpl();
         }
     }
@@ -22,7 +22,7 @@ public class DAOFactory {
     public static ReviewDAO getReviewDAO(String type) {
         if(type.equalsIgnoreCase("AWSElasticBeanstalk")) {
             return new ReviewDAOAWSElasticBeanstalkImpl();
-        } else {
+        } else { // Altre implementazioni possibili diverse da AWS Elastic Beanstalk
             return new ReviewDAOAWSElasticBeanstalkImpl();
         }
     }
@@ -30,7 +30,7 @@ public class DAOFactory {
     public static UserDAO getUserDAO(String type) {
         if(type.equalsIgnoreCase("AWSElasticBeanstalk")) {
             return new UserDAOAWSElasticBeanstalkImpl();
-        } else {
+        } else { // Altre implementazioni possibili diverse da AWS Elastic Beanstalk
             return new UserDAOAWSElasticBeanstalkImpl();
         }
     }

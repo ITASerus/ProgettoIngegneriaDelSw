@@ -146,6 +146,22 @@
             </objects>
             <point key="canvasLocation" x="-1844" y="645"/>
         </scene>
+        <!--Profilo-->
+        <scene sceneID="sG0-Qf-Klo">
+            <objects>
+                <viewController id="Jlj-GU-at5" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="i23-4n-gz3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Gk2-Jv-85t"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Profilo" id="6g6-y4-BNo"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wcV-AZ-GsM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-906" y="645"/>
+        </scene>
         <!--Risultati-->
         <scene sceneID="h43-aK-671">
             <objects>
@@ -290,7 +306,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t9C-DY-ftE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1844" y="1318"/>
+            <point key="canvasLocation" x="-1844" y="1364"/>
         </scene>
         <!--Structure Detail View Controller-->
         <scene sceneID="1Ca-8s-WOQ">
@@ -1250,6 +1266,7 @@
                     <connections>
                         <segue destination="AEk-e6-jgS" kind="relationship" relationship="viewControllers" id="BF1-se-6aG"/>
                         <segue destination="OBE-Gd-KVx" kind="relationship" relationship="viewControllers" id="16Q-XC-WPx"/>
+                        <segue destination="MCk-mo-Zsv" kind="relationship" relationship="viewControllers" id="C5k-lk-mSk"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ff0-1p-DQ4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1275,6 +1292,23 @@
             </objects>
             <point key="canvasLocation" x="-1844" y="-106"/>
         </scene>
+        <!--Profilo-->
+        <scene sceneID="ju5-sj-Omj">
+            <objects>
+                <navigationController id="MCk-mo-Zsv" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profilo" image="person.fill" catalog="system" id="WgY-AW-n6O"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="j4m-tV-nXO">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Jlj-GU-at5" kind="relationship" relationship="rootViewController" id="szW-TQ-Kn4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CuF-9K-8L7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-905" y="-106"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="16X-Yt-QPH"/>
@@ -1283,6 +1317,7 @@
         <image name="0stars" width="95" height="18"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="tumblr_1846e893c3db9c8178f24f492bc79ebc_ed240c92_1280" width="1280" height="1707"/>
     </resources>
 </document>

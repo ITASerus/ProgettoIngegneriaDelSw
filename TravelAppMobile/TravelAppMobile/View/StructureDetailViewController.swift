@@ -25,7 +25,7 @@ class StructureDetailViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var reviewsTableView: UITableView!
     
-    var structure: Structure!
+    var structure: StructureClass!
     
     override func viewDidLoad() {
         super.viewDidLoad()
