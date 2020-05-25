@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+public class ResultsController {
+    private static let structureDAO = DAOFactory.getStructureDAO(type: "AWSElasticBeanstalk")
+
+    //Metodi che richiamano i metodi del DAO e altre cose esterne che non fanno parte degli elementi visuali (quelli vanno in ResultsViewController
+    
+}

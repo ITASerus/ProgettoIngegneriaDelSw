@@ -32,7 +32,7 @@ public class Structure implements Serializable {
 
     @Lob
     @Column(length=100000)
-    private Byte[] image;
+    private String image;
 
     //Foreign Keys
     @OneToMany(mappedBy = "structure", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER) //or lazy?
@@ -106,8 +106,8 @@ public class Structure implements Serializable {
         this.description = description;
     }
 
-    public Byte[] getImage() { return image;}
-    public void setImage(Byte[] image) {this.image = image; }
+    public String getImage() { return image;}
+    public void setImage(String image) {this.image = image; }
 
     public Set<Review> getReviews() { return this.reviews; }
 }

@@ -25,7 +25,7 @@ class StructureDetailViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var reviewsTableView: UITableView!
     
-    var structure: StructureClass!
+    var structure: Structure!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,7 @@ class StructureDetailViewController: UIViewController {
 
         categoryLabel.text = structure.category
         nameLabel.text = structure.name
-        priceLabel.text = structure.price.description
+        priceLabel.text = structure.price?.description
         placeLabel.text = structure.place
         descriptionTextView.text = structure.description
         contactsLabel.text = structure.contacts

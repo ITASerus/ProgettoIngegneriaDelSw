@@ -15,7 +15,7 @@ public class HomeController {
         return HomeController.structureDAO.getByID(id: id)!
     }
     
-    func getAllStructures() -> [Structure] {
-        return HomeController.structureDAO.getAllStructures()!
+    func getAllStructuresWithAvgPoints() -> [Structure] {
+        return HomeController.structureDAO.getAllStructuresWithAvgPoints()!
     }
 }

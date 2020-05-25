@@ -8,13 +8,16 @@
 
 import Foundation
 
+
+// DA CONVERTIRE IN STRUCT. AL MOMENTO E' UNA CLASS PERCHE' MI SERVIVANO LE CAPACITA' DI UNA CLASS PER FINGERE I DATI. PRENDERE SPUNTO DALLA STRUCT 'STRUCTURE'
+
 class Review: Codable {
     var  id : Int
     var  title: String
     var  description:  String
     var  points : Int
     var  date : String
-    var  author : String //DA AGGIUSTARE
+    var  author : String
     
     init(id: Int, title: String, description: String, points: Int, date: String, author: String) {
         self.id = id

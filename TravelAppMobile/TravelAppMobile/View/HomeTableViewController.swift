@@ -9,15 +9,13 @@
 import UIKit
 
 class HomeTableViewController: UITableViewController {
-
-    var struttura1 = StructureClass(id: 23, name: "Hotel Val D'Argento", place: "Via dei tulipani piangenti n47 Napoli", category: "Hotel", price: 350, webSite: "www.ilsitodellhotel.com", contacts: "+39 3312543463", tag: "Piscina", description: "Bell'hotel. Pieno zeppo di sedie.... effettivamente forse ci sono troppe sedie. Dovrebbero venderne qualcuna... sìsì, dovrebbero venderne un bel po'!", image: "")
-    
-    var struttura2 = StructureClass(id: 5, name: "Resort La Fiorita", place: "Piazza San Carlo XII Milano, 32", category: "Resort", price: 350, webSite: "www.resortdelleparlem.com", contacts: "+39 3440968543", tag: "Piscina, Accetta Cani", description: "Un residence molto lussuoso, con pomelli in avorio e lampadari fatti con lacrime di scimpanzé giovani. Le mattonelle sono state prese direttamente dal pavimento della casa di Trump e su ogni sedia è possibile notare la forma delle chiappe delle personalità illustri che hanno alloggiato qui.", image: "")
-    
-    var struttura3 = StructureClass(id: 12, name: "Rafting tra i Baobab", place: "Foresta Amazzonica", category: "Sport Estremo", price: 120, webSite: "www.aruba.com", contacts: "+39 0891123453", tag: "Non adatto ai bambini", description: "Hai sempre sognato di morire affogato in un tornante di un fiume in piena? Morire ammazzato da un coccodrillo o da un ippopotamo che ti scambia per la sua cena? Beh, questo è iol posto giusto! e il bello è che morirai tra il fresco scroscio dell'acqua pulitissima della foresta amazzonica. P.S Fate attenzione agli indigeni, potreste essergli indi-gesti ha ha ha", image: "")
-    
+    var sectionSelected: Int?
     var indexCellSelected: Int?
-    var structureList = [StructureClass]()
+   
+    var structuresSection1 = [Structure]()
+    var structuresSection2 = [Structure]()
+    var structuresSection3 = [Structure]()
+    var structuresSection4 = [Structure]()
     
     @IBOutlet weak var section1CollectionView: UICollectionView!
     @IBOutlet weak var section2CollectionView: UICollectionView!
@@ -40,25 +38,29 @@ class HomeTableViewController: UITableViewController {
         
         section4CollectionView.delegate = self
         section4CollectionView.dataSource = self
-        
-        structureList.append(struttura1)
-        structureList.append(struttura2)
-        structureList.append(struttura3)
 
         // Uncomment the following line to preserve selection between presentations
-        //self.clearsSelectionOnViewWillAppear = false
+        // self.clearsSelectionOnViewWillAppear = false
     
-        //print(controller.getStructureByID(id: 1))
-        
-        print("LISTA STRUTTURE")
-        print(controller.getAllStructures())
+        structuresSection1 = controller.getAllStructuresWithAvgPoints()
+        structuresSection2 = controller.getAllStructuresWithAvgPoints()
+        structuresSection3 = controller.getAllStructuresWithAvgPoints()
+        structuresSection4 = controller.getAllStructuresWithAvgPoints()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "StructureDetailHomeSegue" {
             let destinationViewController = segue.destination as! StructureDetailViewController
             
-            destinationViewController.structure = structureList[indexCellSelected!]
+            if sectionSelected == 1 {
+                destinationViewController.structure = structuresSection1[indexCellSelected!]
+            } else if sectionSelected == 2 {
+                destinationViewController.structure = structuresSection2[indexCellSelected!]
+            } else if sectionSelected == 3 {
+                destinationViewController.structure = structuresSection3[indexCellSelected!]
+            } else {
+                destinationViewController.structure = structuresSection4[indexCellSelected!]
+            }
         }
     }
 
@@ -77,156 +79,284 @@ class HomeTableViewController: UITableViewController {
 
 extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return structureList.count
+        if collectionView == self.section1CollectionView {
+            return structuresSection1.count
+        } else if collectionView == self.section2CollectionView {
+            return structuresSection2.count
+        } else if collectionView == self.section3CollectionView {
+            return structuresSection3.count
+        } else {
+            return structuresSection4.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.section1CollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BigStructureCell", for: indexPath) as! BigStructureCell
                 
-            cell.nameLabel.text = structureList[indexPath.row].name
-            cell.categoryLabel.text = structureList[indexPath.row].category
-            cell.priceLabel.text = structureList[indexPath.row].price.description
-            cell.nReviewsLabel.text = arc4random_uniform(9000).description
-                
-            let points = arc4random_uniform(5);
-                
-            switch points {
-            case 0:
+            cell.nameLabel.text = structuresSection1[indexPath.row].name
+            cell.categoryLabel.text = structuresSection1[indexPath.row].category
+            cell.priceLabel.text = structuresSection1[indexPath.row].price?.description
+            cell.nReviewsLabel.text = structuresSection1[indexPath.row].nReviews?.description
+            
+            let points = structuresSection1[indexPath.row].avgPoints ?? 0.0
+
+            if (points < 0.5) {
                 cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
-                break
-            case 1:
+            } else if (points < 1) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0,5stars.pdf")
+            } else if ( points < 1.5) {
                 cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1stars.pdf")
-                break
-            case 2:
+            } else if (points < 2) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1,5stars.pdf")
+            } else if (points < 2.5) {
                 cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2stars.pdf")
-                break
-            case 3:
+            } else if ( points < 3) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2,5stars.pdf")
+            } else if (points < 3.5) {
                 cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3stars.pdf")
-                break
-            case 4:
+            }else if (points < 4) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3,5stars.pdf")
+            } else if (points < 4.5) {
                 cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4stars.pdf")
-                break
-            case 5:
+            } else if (points < 5) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4,5stars.pdf")
+            } else {
                 cell.pointsImageView.image = UIImage (imageLiteralResourceName: "5stars.pdf")
-                break
-            default:
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
-                break
             }
-        
+            
+            // Manage image
+            if (structuresSection1[indexPath.row].image != nil) {
+                if(structuresSection1[indexPath.row].imageDonwloaded == nil) {
+                    cell.imageview.image = UIImage.init(named: "DownloadingImageWBlackShade.pdf")
+                    
+                    let imageURL = URL(string: structuresSection1[indexPath.row].image!)!
+
+                    // just not to cause a deadlock in UI!
+                    DispatchQueue.global().async {
+                        let imageData = try? Data(contentsOf: imageURL)
+
+                        let image = UIImage(data: imageData!)
+                        DispatchQueue.main.async {
+                            self.structuresSection1[indexPath.row].imageDonwloaded = UIImageCodable.init(withImage: image!)
+                            
+                           // print(self.structuresSection1[indexPath.row].name + " image scaricata")
+                            cell.imageview.image = self.structuresSection1[indexPath.row].imageDonwloaded?.getImage()
+                        }
+                    }
+                } else {
+                    cell.imageview.image = self.structuresSection1[indexPath.row].imageDonwloaded?.getImage()
+                }
+            } else {
+                //print(structuresSection1[indexPath.row].name + " image nil")
+                cell.imageview.image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
+            }
+            
             return cell
+            
         } else if collectionView == self.section2CollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LittleStructureCell1", for: indexPath) as! LittleStructureCell
                     
-                cell.nameLabel.text = structureList[indexPath.row].name
-                cell.categoryLabel.text = structureList[indexPath.row].category
-                cell.priceLabel.text = structureList[indexPath.row].price.description
-                cell.nReviewsLabel.text = arc4random_uniform(9000).description
-                    
-                let points = arc4random_uniform(5);
-                    
-                switch points {
-                case 0:
-                    cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
-                    break
-                case 1:
-                    cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1stars.pdf")
-                    break
-                case 2:
-                    cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2stars.pdf")
-                    break
-                case 3:
-                    cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3stars.pdf")
-                    break
-                case 4:
-                    cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4stars.pdf")
-                    break
-                case 5:
-                    cell.pointsImageView.image = UIImage (imageLiteralResourceName: "5stars.pdf")
-                    break
-                default:
-                    cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
-                    break
-                }
+            cell.nameLabel.text = structuresSection2[indexPath.row].name
+            cell.categoryLabel.text = structuresSection2[indexPath.row].category
+            cell.priceLabel.text = structuresSection2[indexPath.row].price?.description
+            cell.nReviewsLabel.text = structuresSection2[indexPath.row].nReviews?.description
             
-                return cell
+            let points = structuresSection2[indexPath.row].avgPoints ?? 0.0
+            
+            if (points < 0.5) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
+            } else if (points < 1) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0,5stars.pdf")
+            } else if ( points < 1.5) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1stars.pdf")
+            } else if (points < 2) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1,5stars.pdf")
+            } else if (points < 2.5) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2stars.pdf")
+            } else if ( points < 3) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2,5stars.pdf")
+            } else if (points < 3.5) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3stars.pdf")
+            }else if (points < 4) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3,5stars.pdf")
+            } else if (points < 4.5) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4stars.pdf")
+            } else if (points < 5) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4,5stars.pdf")
+            } else {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "5stars.pdf")
+            }
+            
+            // Manage image
+            if (structuresSection1[indexPath.row].image != nil) {
+                if(structuresSection1[indexPath.row].imageDonwloaded == nil) {
+                    cell.imageView.image = UIImage.init(named: "DownloadingImageWBlackShadeV2.pdf")
+                    
+                    let imageURL = URL(string: structuresSection1[indexPath.row].image!)!
+
+                    // just not to cause a deadlock in UI!
+                    DispatchQueue.global().async {
+                        let imageData = try? Data(contentsOf: imageURL)
+
+                        let image = UIImage(data: imageData!)
+                        DispatchQueue.main.async {
+                            self.structuresSection1[indexPath.row].imageDonwloaded = UIImageCodable.init(withImage: image!)
+                            
+                           // print(self.structuresSection1[indexPath.row].name + " image scaricata")
+                            cell.imageView.image = self.structuresSection1[indexPath.row].imageDonwloaded?.getImage()
+                        }
+                    }
+                } else {
+                    cell.imageView.image = self.structuresSection1[indexPath.row].imageDonwloaded?.getImage()
+                }
+            } else {
+                //print(structuresSection1[indexPath.row].name + " image nil")
+                cell.imageView.image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
+            }
+            
+            return cell
+            
         } else if collectionView == self.section3CollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LittleStructureCell2", for: indexPath) as! LittleStructureCell
                     
-                cell.nameLabel.text = structureList[indexPath.row].name
-                cell.categoryLabel.text = structureList[indexPath.row].category
-                cell.priceLabel.text = structureList[indexPath.row].price.description
-                cell.nReviewsLabel.text = arc4random_uniform(9000).description
-                    
-                let points = arc4random_uniform(5);
-                    
-                switch points {
-                case 0:
-                    cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
-                    break
-                case 1:
-                    cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1stars.pdf")
-                    break
-                case 2:
-                    cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2stars.pdf")
-                    break
-                case 3:
-                    cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3stars.pdf")
-                    break
-                case 4:
-                    cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4stars.pdf")
-                    break
-                case 5:
-                    cell.pointsImageView.image = UIImage (imageLiteralResourceName: "5stars.pdf")
-                    break
-                default:
-                    cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
-                    break
-                }
+            cell.nameLabel.text = structuresSection3[indexPath.row].name
+            cell.categoryLabel.text = structuresSection3[indexPath.row].category
+            cell.priceLabel.text = structuresSection3[indexPath.row].price?.description
+            cell.nReviewsLabel.text = structuresSection3[indexPath.row].nReviews?.description
             
-                return cell
+            let points = structuresSection3[indexPath.row].avgPoints ?? 0.0
+            
+            if (points < 0.5) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
+            } else if (points < 1) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0,5stars.pdf")
+            } else if ( points < 1.5) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1stars.pdf")
+            } else if (points < 2) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1,5stars.pdf")
+            } else if (points < 2.5) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2stars.pdf")
+            } else if ( points < 3) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2,5stars.pdf")
+            } else if (points < 3.5) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3stars.pdf")
+            }else if (points < 4) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3,5stars.pdf")
+            } else if (points < 4.5) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4stars.pdf")
+            } else if (points < 5) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4,5stars.pdf")
+            } else {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "5stars.pdf")
+            }
+            
+            // Manage image
+            if (structuresSection1[indexPath.row].image != nil) {
+                if(structuresSection1[indexPath.row].imageDonwloaded == nil) {
+                    cell.imageView.image = UIImage.init(named: "DownloadingImageWBlackShadeV2.pdf")
+                    
+                    let imageURL = URL(string: structuresSection1[indexPath.row].image!)!
+
+                    // just not to cause a deadlock in UI!
+                    DispatchQueue.global().async {
+                        let imageData = try? Data(contentsOf: imageURL)
+
+                        let image = UIImage(data: imageData!)
+                        DispatchQueue.main.async {
+                            self.structuresSection1[indexPath.row].imageDonwloaded = UIImageCodable.init(withImage: image!)
+                            
+                           // print(self.structuresSection1[indexPath.row].name + " image scaricata")
+                            cell.imageView.image = self.structuresSection1[indexPath.row].imageDonwloaded?.getImage()
+                        }
+                    }
+                } else {
+                    cell.imageView.image = self.structuresSection1[indexPath.row].imageDonwloaded?.getImage()
+                }
+            } else {
+                //print(structuresSection1[indexPath.row].name + " image nil")
+                cell.imageView.image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
+            }
+            
+            return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LittleStructureCell3", for: indexPath) as! LittleStructureCell
                     
-                cell.nameLabel.text = structureList[indexPath.row].name
-                cell.categoryLabel.text = structureList[indexPath.row].category
-                cell.priceLabel.text = structureList[indexPath.row].price.description
-                cell.nReviewsLabel.text = arc4random_uniform(9000).description
-                    
-                let points = arc4random_uniform(5);
-                    
-                switch points {
-                case 0:
-                    cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
-                    break
-                case 1:
-                    cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1stars.pdf")
-                    break
-                case 2:
-                    cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2stars.pdf")
-                    break
-                case 3:
-                    cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3stars.pdf")
-                    break
-                case 4:
-                    cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4stars.pdf")
-                    break
-                case 5:
-                    cell.pointsImageView.image = UIImage (imageLiteralResourceName: "5stars.pdf")
-                    break
-                default:
-                    cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
-                    break
-                }
+            cell.nameLabel.text = structuresSection4[indexPath.row].name
+            cell.categoryLabel.text = structuresSection4[indexPath.row].category
+            cell.priceLabel.text = structuresSection4[indexPath.row].price?.description
+            cell.nReviewsLabel.text = structuresSection4[indexPath.row].nReviews?.description
+                
+            let points = structuresSection4[indexPath.row].avgPoints ?? 0.0
+
+            if (points < 0.5) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
+            } else if (points < 1) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0,5stars.pdf")
+            } else if ( points < 1.5) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1stars.pdf")
+            } else if (points < 2) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1,5stars.pdf")
+            } else if (points < 2.5) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2stars.pdf")
+            } else if ( points < 3) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2,5stars.pdf")
+            } else if (points < 3.5) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3stars.pdf")
+            }else if (points < 4) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3,5stars.pdf")
+            } else if (points < 4.5) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4stars.pdf")
+            } else if (points < 5) {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4,5stars.pdf")
+            } else {
+                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "5stars.pdf")
+            }
             
-                return cell
+            // Manage image
+            if (structuresSection1[indexPath.row].image != nil) {
+                if(structuresSection1[indexPath.row].imageDonwloaded == nil) {
+                    cell.imageView.image = UIImage.init(named: "DownloadingImageWBlackShadeV2.pdf")
+                    
+                    let imageURL = URL(string: structuresSection1[indexPath.row].image!)!
+
+                    // just not to cause a deadlock in UI!
+                    DispatchQueue.global().async {
+                        let imageData = try? Data(contentsOf: imageURL)
+
+                        let image = UIImage(data: imageData!)
+                        DispatchQueue.main.async {
+                            self.structuresSection1[indexPath.row].imageDonwloaded = UIImageCodable.init(withImage: image!)
+                            
+                           // print(self.structuresSection1[indexPath.row].name + " image scaricata")
+                            cell.imageView.image = self.structuresSection1[indexPath.row].imageDonwloaded?.getImage()
+                        }
+                    }
+                } else {
+                    cell.imageView.image = self.structuresSection1[indexPath.row].imageDonwloaded?.getImage()
+                }
+            } else {
+                //print(structuresSection1[indexPath.row].name + " image nil")
+                cell.imageView.image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
+            }
+            
+            return cell
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-           indexCellSelected = indexPath.row
+        if collectionView == section1CollectionView {
+            sectionSelected = 1
+        } else if collectionView == section2CollectionView {
+            sectionSelected = 2
+        } else if collectionView == section3CollectionView {
+            sectionSelected = 3
+        } else {
+            sectionSelected = 4
+        }
+        
+        indexCellSelected = indexPath.row
            
-           performSegue(withIdentifier: "StructureDetailHomeSegue", sender: self)
+        performSegue(withIdentifier: "StructureDetailHomeSegue", sender: self)
     }
 }

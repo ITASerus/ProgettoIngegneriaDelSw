@@ -14,4 +14,6 @@ protocol StructureDAOProtocol {
     
     func getAllStructures() -> [Structure]?
     
+    func getAllStructuresWithAvgPoints() -> [Structure]?
+    
 }

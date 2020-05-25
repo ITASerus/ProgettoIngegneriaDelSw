@@ -86,13 +86,41 @@ public class StructureController {
         return ResponseEntity.ok().build();
     }
 
-    //---- ENDPOINT FOR FOREIGN KEYS
+    //---- ENDPOINT WITH FOREIGN KEYS
 
     // Get Reviews by StructureID
     @GetMapping("/id={id}/getReviews")
     public Set<Review> getReviewsByStructureId(@PathVariable(value = "id") Long structureId) {
         Structure structure = structureRepository.findById(structureId).orElseThrow(() -> new ResourceNotFoundException("Structure", "id", structureId));
         return structure.getReviews();
+    }
+
+    // Get Structures with Average Points
+    @GetMapping("/getAllWithAvgPoints")
+    public List<Map<String, Object>> getAllWithAvgPoints() {
+        List<Map<String, Object>> list = new ArrayList<>();
+
+        List<Structure> structureList = structureRepository.findAll();
+
+        for (Structure structure : structureList) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("id", structure.getId());
+            map.put("name", structure.getName());
+            map.put("place", structure.getPlace());
+            map.put("category", structure.getCategory());
+            map.put("price", structure.getPrice());
+            map.put("webSite", structure.getWebSite());
+            map.put("contacts", structure.getContacts());
+            map.put("tag", structure.getTag());
+            map.put("description", structure.getDescription());
+            map.put("image", structure.getImage());
+            map.put("nReviews", structure.getReviews().size());
+            map.put("avgPoints", structureRepository.getAveragePoints(structure.getId()));
+
+            list.add(map);
+        }
+
+        return list;
     }
 
     // Get Name, Num Rev and Average Points
