@@ -19,4 +19,6 @@ public class HomeController {
         return HomeController.structureDAO.getAllStructuresWithAvgPoints()!
     }
     
+    //ALTRO
+    
 }
