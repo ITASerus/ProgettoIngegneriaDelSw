@@ -25,7 +25,7 @@ struct Structure: Decodable, Hashable {
     let nReviews : Int?
     let avgPoints : Float?
     
-    var imageDonwloaded: UIImageCodable?
+    var imageDownloaded: UIImageCodable?
     
 }
 
