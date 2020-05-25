@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct User: Decodable, Hashable {
+struct User: Codable {
     
 }
 

@@ -42,6 +42,10 @@ class HomeTableViewController: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
     
+        // Ottieni posizione utente
+        //Richiami endpoint del filtro che contiene la posizione dell utente e assegni l'attay ottenuto a 'structureSection1' ad e
+        //structuresSection1 = controller.getByFilter(nil, nil, nil, nil, nil, "Napoli")
+        
         structuresSection1 = controller.getAllStructuresWithAvgPoints()
         structuresSection2 = controller.getAllStructuresWithAvgPoints()
         structuresSection3 = controller.getAllStructuresWithAvgPoints()
@@ -127,7 +131,7 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
             
             // Manage image
             if (structuresSection1[indexPath.row].image != nil) {
-                if(structuresSection1[indexPath.row].imageDonwloaded == nil) {
+                if(structuresSection1[indexPath.row].imageDownloaded == nil) {
                     cell.imageview.image = UIImage.init(named: "DownloadingImageWBlackShade.pdf")
                     
                     let imageURL = URL(string: structuresSection1[indexPath.row].image!)!
@@ -138,14 +142,14 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
 
                         let image = UIImage(data: imageData!)
                         DispatchQueue.main.async {
-                            self.structuresSection1[indexPath.row].imageDonwloaded = UIImageCodable.init(withImage: image!)
+                            self.structuresSection1[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
                             
                            // print(self.structuresSection1[indexPath.row].name + " image scaricata")
-                            cell.imageview.image = self.structuresSection1[indexPath.row].imageDonwloaded?.getImage()
+                            cell.imageview.image = self.structuresSection1[indexPath.row].imageDownloaded?.getImage()
                         }
                     }
                 } else {
-                    cell.imageview.image = self.structuresSection1[indexPath.row].imageDonwloaded?.getImage()
+                    cell.imageview.image = self.structuresSection1[indexPath.row].imageDownloaded?.getImage()
                 }
             } else {
                 //print(structuresSection1[indexPath.row].name + " image nil")
@@ -190,7 +194,7 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
             
             // Manage image
             if (structuresSection1[indexPath.row].image != nil) {
-                if(structuresSection1[indexPath.row].imageDonwloaded == nil) {
+                if(structuresSection1[indexPath.row].imageDownloaded == nil) {
                     cell.imageView.image = UIImage.init(named: "DownloadingImageWBlackShadeV2.pdf")
                     
                     let imageURL = URL(string: structuresSection1[indexPath.row].image!)!
@@ -201,14 +205,14 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
 
                         let image = UIImage(data: imageData!)
                         DispatchQueue.main.async {
-                            self.structuresSection1[indexPath.row].imageDonwloaded = UIImageCodable.init(withImage: image!)
+                            self.structuresSection1[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
                             
                            // print(self.structuresSection1[indexPath.row].name + " image scaricata")
-                            cell.imageView.image = self.structuresSection1[indexPath.row].imageDonwloaded?.getImage()
+                            cell.imageView.image = self.structuresSection1[indexPath.row].imageDownloaded?.getImage()
                         }
                     }
                 } else {
-                    cell.imageView.image = self.structuresSection1[indexPath.row].imageDonwloaded?.getImage()
+                    cell.imageView.image = self.structuresSection1[indexPath.row].imageDownloaded?.getImage()
                 }
             } else {
                 //print(structuresSection1[indexPath.row].name + " image nil")
@@ -253,7 +257,7 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
             
             // Manage image
             if (structuresSection1[indexPath.row].image != nil) {
-                if(structuresSection1[indexPath.row].imageDonwloaded == nil) {
+                if(structuresSection1[indexPath.row].imageDownloaded == nil) {
                     cell.imageView.image = UIImage.init(named: "DownloadingImageWBlackShadeV2.pdf")
                     
                     let imageURL = URL(string: structuresSection1[indexPath.row].image!)!
@@ -264,14 +268,14 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
 
                         let image = UIImage(data: imageData!)
                         DispatchQueue.main.async {
-                            self.structuresSection1[indexPath.row].imageDonwloaded = UIImageCodable.init(withImage: image!)
+                            self.structuresSection1[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
                             
                            // print(self.structuresSection1[indexPath.row].name + " image scaricata")
-                            cell.imageView.image = self.structuresSection1[indexPath.row].imageDonwloaded?.getImage()
+                            cell.imageView.image = self.structuresSection1[indexPath.row].imageDownloaded?.getImage()
                         }
                     }
                 } else {
-                    cell.imageView.image = self.structuresSection1[indexPath.row].imageDonwloaded?.getImage()
+                    cell.imageView.image = self.structuresSection1[indexPath.row].imageDownloaded?.getImage()
                 }
             } else {
                 //print(structuresSection1[indexPath.row].name + " image nil")
@@ -315,7 +319,7 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
             
             // Manage image
             if (structuresSection1[indexPath.row].image != nil) {
-                if(structuresSection1[indexPath.row].imageDonwloaded == nil) {
+                if(structuresSection1[indexPath.row].imageDownloaded == nil) {
                     cell.imageView.image = UIImage.init(named: "DownloadingImageWBlackShadeV2.pdf")
                     
                     let imageURL = URL(string: structuresSection1[indexPath.row].image!)!
@@ -326,14 +330,14 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
 
                         let image = UIImage(data: imageData!)
                         DispatchQueue.main.async {
-                            self.structuresSection1[indexPath.row].imageDonwloaded = UIImageCodable.init(withImage: image!)
+                            self.structuresSection1[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
                             
                            // print(self.structuresSection1[indexPath.row].name + " image scaricata")
-                            cell.imageView.image = self.structuresSection1[indexPath.row].imageDonwloaded?.getImage()
+                            cell.imageView.image = self.structuresSection1[indexPath.row].imageDownloaded?.getImage()
                         }
                     }
                 } else {
-                    cell.imageView.image = self.structuresSection1[indexPath.row].imageDonwloaded?.getImage()
+                    cell.imageView.image = self.structuresSection1[indexPath.row].imageDownloaded?.getImage()
                 }
             } else {
                 //print(structuresSection1[indexPath.row].name + " image nil")
