@@ -90,14 +90,29 @@ public class UserController {
         User user = userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "email", userEmail));
 
-        user.setEmail(userDetails.getEmail());
-        user.setUsername(userDetails.getUsername());
-        user.setPassword(userDetails.getPassword());
-        user.setRealName(userDetails.getRealName());
-        user.setRealSurname(userDetails.getRealSurname());
-        user.setViewRealName(userDetails.getViewRealName());
-        user.setRole(userDetails.getRole());
-        user.setImage(userDetails.getImage());
+        if (userDetails.getEmail() != null)
+            user.setEmail(userDetails.getEmail());
+
+        if (userDetails.getUsername() != null)
+            user.setUsername(userDetails.getUsername());
+
+        if (userDetails.getPassword() != null)
+            user.setPassword(userDetails.getPassword());
+
+        if (userDetails.getRealName() != null)
+            user.setRealName(userDetails.getRealName());
+
+        if (userDetails.getRealSurname() != null)
+            user.setRealSurname(userDetails.getRealSurname());
+
+        if (userDetails.getViewRealName() != null)
+            user.setViewRealName(userDetails.getViewRealName());
+
+        if (userDetails.getRole() != null)
+            user.setRole(userDetails.getRole());
+
+        if (userDetails.getImage() != null)
+            user.setImage(userDetails.getImage());
 
         User updatedStructure = userRepository.save(user);
         return updatedStructure;

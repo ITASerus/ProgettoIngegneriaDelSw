@@ -3,6 +3,7 @@ package it.travelapp.travelapp.model;
 import java.util.Date;
 import java.io.Serializable;
 import java.util.Set;
+import java.util.HashSet;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -42,7 +43,7 @@ public class User implements Serializable{
     private String realSurname;
     private Boolean viewRealName;
     private String role;
-    private Byte[] image;
+    private String image;
 
     //Foreign Keys
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER) //or lazy?
@@ -107,8 +108,8 @@ public class User implements Serializable{
         this.role = role;
     }
 
-    public Byte[] getImage() { return image;}
-    public void setImage(Byte[] image) {this.image = image; }
+    public String getImage() { return image;}
+    public void setImage(String image) {this.image = image; }
 
     public Set<Review> getReviews() { return this.reviews; }
 }

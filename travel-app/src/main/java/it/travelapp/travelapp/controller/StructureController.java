@@ -62,14 +62,32 @@ public class StructureController {
         Structure structure = structureRepository.findById(structureId)
                 .orElseThrow(() -> new ResourceNotFoundException("Structure", "id", structureId));
 
-        structure.setName(structureDetails.getName());
-        structure.setPlace(structureDetails.getPlace());
-        structure.setCategory(structureDetails.getCategory());
-        structure.setPrice(structureDetails.getPrice());
-        structure.setWebSite(structureDetails.getWebSite());
-        structure.setContacts(structureDetails.getContacts());
-        structure.setTag(structureDetails.getTag());
-        structure.setDescription(structureDetails.getDescription());
+        if(structureDetails.getName() != null)
+            structure.setName(structureDetails.getName());
+
+        if(structureDetails.getPlace() != null)
+            structure.setPlace(structureDetails.getPlace());
+
+        if(structureDetails.getCategory() != null)
+            structure.setCategory(structureDetails.getCategory());
+
+        if(structureDetails.getPlace() != null)
+            structure.setPrice(structureDetails.getPrice());
+
+        if(structureDetails.getWebSite() != null)
+            structure.setWebSite(structureDetails.getWebSite());
+
+        if(structureDetails.getContacts() != null)
+            structure.setContacts(structureDetails.getContacts());
+
+        if(structureDetails.getTag() != null)
+            structure.setTag(structureDetails.getTag());
+
+        if(structureDetails.getDescription() != null)
+            structure.setDescription(structureDetails.getDescription());
+
+        if(structureDetails.getImage() != null)
+            structure.setImage(structureDetails.getImage());
 
         Structure updatedStructure = structureRepository.save(structure);
         return updatedStructure;

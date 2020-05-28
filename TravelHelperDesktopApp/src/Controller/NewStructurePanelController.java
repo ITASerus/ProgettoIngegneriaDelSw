@@ -98,68 +98,64 @@ public class NewStructurePanelController {
                 .append(contacts.isBlank() ? "null" : "\"" + contacts + "\"")
                 
                 .append(",\"description\":")
-                .append(description.isBlank() ? "null" : "\"" + description + "\"")
+                .append(description.isBlank() ? "null" : "\"" + description + "\"")              
                                 
                 .append("}").toString();
                 
-        HttpResponse<String> response = structureDAO.newStructure(json);   
-                
-        Gson gson = new Gson();
-        Structure structure = gson.fromJson(response.body(), Structure.class); // Convert json text to Structure
+        HttpResponse<String> response = structureDAO.newStructure(json);  
+           
+        if (response.statusCode() == 200) {
+            
+            // Image management
+            Gson gson = new Gson();
+            Structure structure = gson.fromJson(response.body(), Structure.class); // Convert json text to Structure
         
-        //---- S3 Management ----
+            if(!imagePath.isBlank()) {
+                final AWSCredentials credentials = new BasicAWSCredentials("AKIA573JGNGLCBRFBHGV", "547iI8dzMOR/wnCLUh36BFjWAqj+nCJVdujELqN+");
         
-        if(!imagePath.isBlank()) {
-            final AWSCredentials credentials = new BasicAWSCredentials(
-              "AKIA573JGNGLCBRFBHGV", 
-              "547iI8dzMOR/wnCLUh36BFjWAqj+nCJVdujELqN+"
-            );
+                //set-up the client
+                AmazonS3 s3client = AmazonS3ClientBuilder
+                .standard()
+                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .withRegion(Regions.EU_CENTRAL_1)
+                .build();
         
-            //set-up the client
-            AmazonS3 s3client = AmazonS3ClientBuilder
-              .standard()
-              .withCredentials(new AWSStaticCredentialsProvider(credentials))
-              .withRegion(Regions.EU_CENTRAL_1)
-              .build();
-        
-            AWSS3Service awsService = new AWSS3Service(s3client);
+                AWSS3Service awsService = new AWSS3Service(s3client);
  
-            //setting bucket of the app
-            String bucketName = "travelappimages";
+                //setting bucket of the app
+                String bucketName = "travelappimages";
  
-            //uploading object
-            awsService.putObject(
-              bucketName, 
-              structure.getId() + "/nuovo.jpg",
-              new File(imagePath)
-            );
+                //uploading object
+                awsService.putObject(
+                    bucketName, 
+                    "StructuresImage/" + structure.getId() + "/" + structure.getId() + ".jpg",
+                    new File(imagePath)
+                );
             
-            ListObjectsV2Request req = new ListObjectsV2Request().withBucketName(bucketName).withPrefix("prova/").withDelimiter("/");
-            ListObjectsV2Result listing = s3client.listObjectsV2(req);
+                json = new StringBuilder()
+                    .append("{")
+                    
+                    .append("\"name\":")
+                    .append("\"" + name + "\"") 
+                    
+                    .append(",\"image\":")
+                    .append("\"" + "https://travelappimages.s3.eu-central-1.amazonaws.com/StructuresImage/" + structure.getId() + "/" + structure.getId() + ".jpg" + "\"") 
+                    
+                    .append("}").toString();
+                    
+                structureDAO.editStructure(structure.getId(), json);
             
-            /*System.out.println("\ncartelle:");
-            for (String commonPrefix : listing.getCommonPrefixes()) {
-                System.out.println(commonPrefix);
-            }*/
-            
-            
-            System.out.println("Chiavi:");
-            for (S3ObjectSummary summary: listing.getObjectSummaries()) {
-                System.out.println(summary.getKey());
-            }
-            System.out.println("Links:");
-            for (S3ObjectSummary summary: listing.getObjectSummaries()) {
-                System.out.println("https://travelappimages.s3.eu-central-1.amazonaws.com/" + summary.getKey());
+                System.out.println(json);
             }
             
-            /*//listing objects     
-            ObjectListing objectListing = awsService.listObjects(bucketName);
-            for(S3ObjectSummary os : objectListing.getObjectSummaries()) {
-                System.out.println(os.getKey());
-            }*/
+            return structure;
         }
-        
-        return structure;
+        else {
+             System.out.println("ERRORE");
+            System.out.print(response.body());
+           
+            return null; 
+        }
     }
     
     public JXMapViewer getMapOfPlace(String place) {

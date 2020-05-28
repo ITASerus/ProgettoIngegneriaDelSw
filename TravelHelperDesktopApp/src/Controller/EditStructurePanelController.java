@@ -69,7 +69,7 @@ public class EditStructurePanelController {
                 
         .append(",\"description\":")
         .append(description.isBlank() ? "null" : "\"" + description + "\"")
-                               
+                                                  
         .append("}").toString();
                 
         HttpResponse<String> response = structureDAO.editStructure(structureID, json);   
