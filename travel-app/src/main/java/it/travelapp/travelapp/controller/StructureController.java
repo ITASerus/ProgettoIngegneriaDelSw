@@ -2,14 +2,11 @@ package it.travelapp.travelapp.controller;
 
 import java.util.*;
 
-import java.util.regex.Pattern;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.jpa.repository.Query;
 
 import it.travelapp.travelapp.exception.ResourceNotFoundException;
 import it.travelapp.travelapp.model.Review;

@@ -3,7 +3,6 @@ package it.travelapp.travelapp.model;
 import java.util.Date;
 import java.io.Serializable;
 import java.util.Set;
-import java.util.HashSet;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
