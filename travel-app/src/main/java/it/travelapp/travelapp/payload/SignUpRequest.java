@@ -5,7 +5,18 @@ import javax.validation.constraints.*;
 public class SignUpRequest {
     @NotBlank
     @Size(min = 4, max = 40)
-    private String name;
+    private String firstName;
+
+    @NotBlank
+    @Size(min = 4, max = 40)
+    private String lastName;
+
+    @NotBlank
+    @Size(max = 40)
+    private String gender;
+
+    @Size(max = 200)
+    private String image;
 
     @NotBlank
     @Size(min = 3, max = 15)
@@ -23,9 +34,25 @@ public class SignUpRequest {
     @NotBlank
     private String role;
 
-    public String getName() { return name; }
+    public String getFirstName() { return firstName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
 
-    public void setName(String name) { this.name = name; }
+    public String getLastName() { return lastName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
+
+    public String getGender() {
+        return gender;
+    }
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getImage() {
+        return image;
+    }
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }

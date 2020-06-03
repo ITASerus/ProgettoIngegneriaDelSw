@@ -25,7 +25,18 @@ public class UserNEW extends DateAudit {
 
     @NotBlank
     @Size(max = 40)
-    private String name;
+    private String firstName;
+
+    @NotBlank
+    @Size(max = 40)
+    private String lastName;
+
+    @NotBlank
+    @Size(max = 1)
+    private String gender;
+
+    @Size(max = 200)
+    private String image;
 
     @NotBlank
     @Size(max = 15)
@@ -51,8 +62,11 @@ public class UserNEW extends DateAudit {
 
     }
 
-    public UserNEW(String name, String username, String email, String password) {
-        this.name = name;
+    public UserNEW(String firstName, String lastName, String gender, String image, String username, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.image = image;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -61,7 +75,6 @@ public class UserNEW extends DateAudit {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -69,23 +82,41 @@ public class UserNEW extends DateAudit {
     public String getUsername() {
         return username;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
+    }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String LastName) {
+        this.lastName = lastName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getImage() {
+        return image;
+    }
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -93,7 +124,6 @@ public class UserNEW extends DateAudit {
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -101,7 +131,6 @@ public class UserNEW extends DateAudit {
     public Set<Role> getRoles() {
         return roles;
     }
-
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
