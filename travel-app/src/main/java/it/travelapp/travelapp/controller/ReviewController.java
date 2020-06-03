@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import it.travelapp.travelapp.exception.ResourceNotFoundException;
@@ -42,6 +43,7 @@ public class ReviewController {
     }
 
     // Create a new Review
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/create")
     public Review createReview(@Valid @RequestBody Review review) {
         return reviewRepository.save(review);
@@ -66,6 +68,7 @@ public class ReviewController {
         Review review = reviewRepository.findById(reviewId)
                 .orElseThrow(() -> new ResourceNotFoundException("Review", "id", reviewId));
 
+        review.setTitle(reviewDetails.getTitle());
         review.setDescription(reviewDetails.getDescription());
         review.setPoints(reviewDetails.getPoints());
 

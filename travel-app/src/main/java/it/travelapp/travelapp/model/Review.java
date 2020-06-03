@@ -4,9 +4,7 @@ import java.util.Date;
 import java.io.Serializable;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
-import it.travelapp.travelapp.repository.ReviewRepository;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -22,10 +20,10 @@ public class Review implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    private String title;
+
     private String description;
 
-    @NotBlank
     private Integer points;
 
     @Column(nullable = false, updatable = false)
@@ -35,46 +33,48 @@ public class Review implements Serializable{
 
     //Foreign Keys
     @ManyToOne(fetch = FetchType.EAGER) //or lazy?
-    @JoinColumn(name = "structureID", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "structureID", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     @JsonIgnoreProperties("reviews")
     @JsonIgnore
     private Structure structure;
 
     @ManyToOne(fetch = FetchType.EAGER) //or lazy?
-    @JoinColumn(name = "userID", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "userID", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     @JsonIgnoreProperties("reviews")
     @JsonIgnore
     private User user;
 
-    // Getter and Setters Methods
+    @Column(name = "structureID", nullable=false)
+    private Long structureID;
 
+    @Column(name = "userID", nullable=false)
+    private Long userID;
+
+    // Getter and Setters Methods
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public String getDescription() {
-        return description;
-    }
-    public void setDescription(String email) {
-        this.description = description;
-    }
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
 
-    public Integer getPoints() {
-        return points;
-    }
-    public void setPoints(Integer points) {
-        this.points = points;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-    public Date getDate() {
-        return date;
-    }
+    public Integer getPoints() { return points; }
+    public void setPoints(Integer points) { this.points = points; }
+
+    public Date getDate() { return date; }
     public void setDate(Date date) { this.date = date; }
 
-    public Structure getStructure() {
-        return this.structure;
-    }
+    public Long getStructureID() { return this.structureID; }
+    public void setStructure(Long structureID) { this.structureID = structureID; }
 
-    public User getUser() {
-        return this.user;
-    }
+    public Long getUseID() { return this.userID; }
+    public void setUserID(Long userID) { this.userID = userID; }
+
+    public Structure getStructure() { return this.structure; }
+    public void setStructure(Structure structure) { this.structure = structure; }
+
+    public User getUser() { return this.user; }
+    public void setUser(User user) { this.user = user; }
 }

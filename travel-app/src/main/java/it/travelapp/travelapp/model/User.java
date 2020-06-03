@@ -79,9 +79,7 @@ public class User implements Serializable{
     public Date getRegistrationDate() {
         return registrationDate;
     }
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
-    }
+    public void setRegistrationDate(Date registrationDate) { this.registrationDate = registrationDate; }
 
     public String getRealName() {
         return realName;
