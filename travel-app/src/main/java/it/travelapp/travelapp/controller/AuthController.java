@@ -3,13 +3,13 @@ package it.travelapp.travelapp.controller;
 import it.travelapp.travelapp.exception.AppException;
 import it.travelapp.travelapp.model.Role;
 import it.travelapp.travelapp.model.RoleName;
-import it.travelapp.travelapp.model.UserNEW;
+import it.travelapp.travelapp.model.User;
 import it.travelapp.travelapp.payload.ApiResponse;
 import it.travelapp.travelapp.payload.JwtAuthenticationResponse;
 import it.travelapp.travelapp.payload.LoginRequest;
 import it.travelapp.travelapp.payload.SignUpRequest;
 import it.travelapp.travelapp.repository.RoleRepository;
-import it.travelapp.travelapp.repository.UserNEWRepository;
+import it.travelapp.travelapp.repository.UserRepository;
 import it.travelapp.travelapp.security.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,7 +37,7 @@ public class AuthController {
     AuthenticationManager authenticationManager;
 
     @Autowired
-    UserNEWRepository userRepository;
+    UserRepository userRepository;
 
     @Autowired
     RoleRepository roleRepository;
@@ -77,7 +77,7 @@ public class AuthController {
         }
 
         // Creating user's account
-        UserNEW user = new UserNEW(signUpRequest.getFirstName(), signUpRequest.getLastName(), signUpRequest.getGender(), signUpRequest.getImage(), signUpRequest.getUsername(),
+        User user = new User(signUpRequest.getFirstName(), signUpRequest.getLastName(), signUpRequest.getGender(), signUpRequest.getImage(), signUpRequest.getUsername(),
                 signUpRequest.getEmail(), signUpRequest.getPassword());
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -93,7 +93,7 @@ public class AuthController {
 
         user.setRoles(Collections.singleton(userRole));
 
-        UserNEW result = userRepository.save(user);
+        User result = userRepository.save(user);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/api/users/{username}")

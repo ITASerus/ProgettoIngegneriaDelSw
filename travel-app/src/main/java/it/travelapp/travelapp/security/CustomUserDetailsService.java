@@ -1,7 +1,7 @@
 package it.travelapp.travelapp.security;
 
-import it.travelapp.travelapp.model.UserNEW;
-import it.travelapp.travelapp.repository.UserNEWRepository;
+import it.travelapp.travelapp.model.User;
+import it.travelapp.travelapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,16 +13,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-    UserNEWRepository userRepository;
+    UserRepository userRepository;
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String usernameOrEmail)
             throws UsernameNotFoundException {
         // Let people login with either username or email
-        UserNEW user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
+        User user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
                 .orElseThrow(() ->
-                        new UsernameNotFoundException("User not found with username or email : " + usernameOrEmail)
+                        new UsernameNotFoundException("UserOLD not found with username or email : " + usernameOrEmail)
                 );
 
         return UserPrincipal.create(user);
@@ -31,8 +31,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     // This method is used by JWTAuthenticationFilter
     @Transactional
     public UserDetails loadUserById(Long id) {
-        UserNEW user = userRepository.findById(id).orElseThrow(
-                () -> new UsernameNotFoundException("User not found with id : " + id)
+        User user = userRepository.findById(id).orElseThrow(
+                () -> new UsernameNotFoundException("UserOLD not found with id : " + id)
         );
 
         return UserPrincipal.create(user);

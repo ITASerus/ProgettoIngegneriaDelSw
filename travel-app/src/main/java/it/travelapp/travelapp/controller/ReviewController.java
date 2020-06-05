@@ -10,10 +10,14 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import it.travelapp.travelapp.exception.ResourceNotFoundException;
+
 import it.travelapp.travelapp.model.Review;
-import it.travelapp.travelapp.model.Structure;
-import it.travelapp.travelapp.model.User;
 import it.travelapp.travelapp.repository.ReviewRepository;
+
+import it.travelapp.travelapp.model.Structure;
+
+import it.travelapp.travelapp.model.User;
+
 
 @RestController
 @RequestMapping("/reviews")
@@ -78,7 +82,7 @@ public class ReviewController {
 
     //---- ENDPOINT FOR FOREIGN KEYS
 
-    // Get User by ReviewID
+    // Get UserOLD by ReviewID
     @GetMapping("/id={id}/getUser")
     public User getUserByReviewId(@PathVariable(value = "id") Long reviewID) {
         Review review = reviewRepository.findById(reviewID).orElseThrow(() -> new ResourceNotFoundException("Review", "id", reviewID));
