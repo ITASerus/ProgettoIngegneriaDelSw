@@ -1,65 +1,90 @@
 package it.travelapp.travelapp.model;
 
-import java.util.Date;
-import java.io.Serializable;
-import java.util.Set;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.data.annotation.CreatedDate;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import it.travelapp.travelapp.model.audit.DateAudit;
+import org.hibernate.annotations.NaturalId;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "user")
-@EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = {"registrationDate"}, allowGetters = true)
-public class User implements Serializable{
+@Table(name = "user", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {
+                "username"
+        }),
+        @UniqueConstraint(columnNames = {
+                "email"
+        })
+})
+public class User extends DateAudit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
-    @Column(unique=true)
+    @Size(max = 40)
+    private String firstName;
+
+    @NotBlank
+    @Size(max = 40)
+    private String lastName;
+
+    @NotBlank
+    @Size(max = 1)
+    private String gender;
+
+    @Size(max = 200)
+    private String image;
+
+    @NotBlank
+    @Size(max = 15)
+    private String username;
+
+    @NaturalId
+    @NotBlank
+    @Size(max = 40)
+    @Email
     private String email;
 
     @NotBlank
-    @Column(unique=true)
-    private String username;
-
-    @NotBlank
+    @Size(max = 100)
     private String password;
 
-    @Column(nullable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
-    private Date registrationDate;
-
-    private String realName;
-    private String realSurname;
-    private Boolean viewRealName;
-    private String role;
-    private Byte[] image;
-
     //Foreign Keys
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER) //or lazy?
     @JsonIgnoreProperties("user")
     @JsonIgnore
     private Set<Review> reviews;
 
-    // Getter and Setters Methods
+    public User() {
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getEmail() {
-        return email;
     }
-    public void setEmail(String email) {
+
+    public User(String firstName, String lastName, String gender, String image, String username, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.image = image;
+        this.username = username;
         this.email = email;
+        this.password = password;
+    }
+
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -69,6 +94,41 @@ public class User implements Serializable{
         this.username = username;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String LastName) {
+        this.lastName = lastName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getImage() {
+        return image;
+    }
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -76,39 +136,13 @@ public class User implements Serializable{
         this.password = password;
     }
 
-    public Date getRegistrationDate() {
-        return registrationDate;
+    public Set<Role> getRoles() {
+        return roles;
     }
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
-
-    public String getRealName() {
-        return realName;
-    }
-    public void setRealName(String realName) { this.realName = realName; }
-
-    public String getRealSurname() {
-        return realSurname;
-    }
-    public void setRealSurname(String realSurname) {
-        this.realSurname = realSurname;
-    }
-
-    public Boolean getViewRealName() {
-        return viewRealName;
-    }
-    public void setViewRealName(Boolean viewRealName) {
-        this.viewRealName = viewRealName;
-    }
-
-    public String getRole() { return role; }
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public Byte[] getImage() { return image;}
-    public void setImage(Byte[] image) {this.image = image; }
 
     public Set<Review> getReviews() { return this.reviews; }
+
 }

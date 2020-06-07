@@ -6,13 +6,18 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import it.travelapp.travelapp.exception.ResourceNotFoundException;
+
 import it.travelapp.travelapp.model.Review;
-import it.travelapp.travelapp.model.Structure;
-import it.travelapp.travelapp.model.User;
 import it.travelapp.travelapp.repository.ReviewRepository;
+
+import it.travelapp.travelapp.model.Structure;
+
+import it.travelapp.travelapp.model.User;
+
 
 @RestController
 @RequestMapping("/reviews")
@@ -42,6 +47,7 @@ public class ReviewController {
     }
 
     // Create a new Review
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/create")
     public Review createReview(@Valid @RequestBody Review review) {
         return reviewRepository.save(review);
@@ -66,6 +72,7 @@ public class ReviewController {
         Review review = reviewRepository.findById(reviewId)
                 .orElseThrow(() -> new ResourceNotFoundException("Review", "id", reviewId));
 
+        review.setTitle(reviewDetails.getTitle());
         review.setDescription(reviewDetails.getDescription());
         review.setPoints(reviewDetails.getPoints());
 
@@ -75,7 +82,7 @@ public class ReviewController {
 
     //---- ENDPOINT FOR FOREIGN KEYS
 
-    // Get User by ReviewID
+    // Get UserOLD by ReviewID
     @GetMapping("/id={id}/getUser")
     public User getUserByReviewId(@PathVariable(value = "id") Long reviewID) {
         Review review = reviewRepository.findById(reviewID).orElseThrow(() -> new ResourceNotFoundException("Review", "id", reviewID));

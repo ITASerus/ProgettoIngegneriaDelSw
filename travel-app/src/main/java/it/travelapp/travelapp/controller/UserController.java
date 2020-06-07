@@ -5,13 +5,13 @@ import java.util.Set;
 
 import javax.validation.Valid;
 
+import it.travelapp.travelapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import it.travelapp.travelapp.exception.ResourceNotFoundException;
 import it.travelapp.travelapp.model.Review;
-import it.travelapp.travelapp.model.User;
 import it.travelapp.travelapp.repository.UserRepository;
 
 @RestController
@@ -54,19 +54,13 @@ public class UserController {
                 .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
     }
 
-    // Create a new User by email
-    @PostMapping("/create")
-    public User createUser(@Valid @RequestBody User user) {
-        return userRepository.save(user);
-    }
-
     // Delete a User by email
     @DeleteMapping("/email={email}")
     public ResponseEntity<?> deleteUser(@PathVariable(value = "email") String userEmail) {
-        User user = userRepository.findByEmail(userEmail)
+        User userOLD = userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "email", userEmail));
 
-        userRepository.delete(user);
+        userRepository.delete(userOLD);
 
         return ResponseEntity.ok().build();
     }
@@ -85,19 +79,31 @@ public class UserController {
     // Update a User
     @PutMapping("/email={email}")
     public User updateStructure(@PathVariable(value = "email") String userEmail,
-                                     @Valid @RequestBody User userDetails) {
+                                   @Valid @RequestBody User userDetails) {
 
         User user = userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "email", userEmail));
 
-        user.setEmail(userDetails.getEmail());
-        user.setUsername(userDetails.getUsername());
-        user.setPassword(userDetails.getPassword());
-        user.setRealName(userDetails.getRealName());
-        user.setRealSurname(userDetails.getRealSurname());
-        user.setViewRealName(userDetails.getViewRealName());
-        user.setRole(userDetails.getRole());
-        user.setImage(userDetails.getImage());
+        if (userDetails.getEmail() != null)
+            user.setEmail(userDetails.getEmail());
+
+        if (userDetails.getUsername() != null)
+            user.setUsername(userDetails.getUsername());
+
+        if (userDetails.getPassword() != null)
+            user.setPassword(userDetails.getPassword());
+
+        if (userDetails.getFirstName() != null)
+            user.setFirstName(userDetails.getFirstName());
+
+        if (userDetails.getLastName() != null)
+            user.setLastName(userDetails.getLastName());
+
+        if (userDetails.getGender() != null)
+            user.setGender(userDetails.getGender());
+
+        if (userDetails.getImage() != null)
+            user.setImage(userDetails.getImage());
 
         User updatedStructure = userRepository.save(user);
         return updatedStructure;

@@ -2,14 +2,11 @@ package it.travelapp.travelapp.controller;
 
 import java.util.*;
 
-import java.util.regex.Pattern;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.jpa.repository.Query;
 
 import it.travelapp.travelapp.exception.ResourceNotFoundException;
 import it.travelapp.travelapp.model.Review;
@@ -62,14 +59,32 @@ public class StructureController {
         Structure structure = structureRepository.findById(structureId)
                 .orElseThrow(() -> new ResourceNotFoundException("Structure", "id", structureId));
 
-        structure.setName(structureDetails.getName());
-        structure.setPlace(structureDetails.getPlace());
-        structure.setCategory(structureDetails.getCategory());
-        structure.setPrice(structureDetails.getPrice());
-        structure.setWebSite(structureDetails.getWebSite());
-        structure.setContacts(structureDetails.getContacts());
-        structure.setTag(structureDetails.getTag());
-        structure.setDescription(structureDetails.getDescription());
+        if(structureDetails.getName() != null)
+            structure.setName(structureDetails.getName());
+
+        if(structureDetails.getPlace() != null)
+            structure.setPlace(structureDetails.getPlace());
+
+        if(structureDetails.getCategory() != null)
+            structure.setCategory(structureDetails.getCategory());
+
+        if(structureDetails.getPlace() != null)
+            structure.setPrice(structureDetails.getPrice());
+
+        if(structureDetails.getWebSite() != null)
+            structure.setWebSite(structureDetails.getWebSite());
+
+        if(structureDetails.getContacts() != null)
+            structure.setContacts(structureDetails.getContacts());
+
+        if(structureDetails.getTag() != null)
+            structure.setTag(structureDetails.getTag());
+
+        if(structureDetails.getDescription() != null)
+            structure.setDescription(structureDetails.getDescription());
+
+        if(structureDetails.getImage() != null)
+            structure.setImage(structureDetails.getImage());
 
         Structure updatedStructure = structureRepository.save(structure);
         return updatedStructure;
