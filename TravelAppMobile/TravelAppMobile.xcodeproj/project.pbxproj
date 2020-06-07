@@ -36,6 +36,10 @@
 		25ED3A57246F0DAF00A1FBA8 /* StructureDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ED3A56246F0DAF00A1FBA8 /* StructureDetailController.swift */; };
 		25ED3A5B246F0F9700A1FBA8 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ED3A5A246F0F9700A1FBA8 /* Review.swift */; };
 		25ED3A5D246F0FA000A1FBA8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ED3A5C246F0FA000A1FBA8 /* User.swift */; };
+		D53A5F652482B7F800B67C8C /* SearchFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A5F642482B7F800B67C8C /* SearchFilterViewController.swift */; };
+		D53A5F672482BC0800B67C8C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A5F662482BC0800B67C8C /* WebViewController.swift */; };
+		D53A5F692482BDEA00B67C8C /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A5F682482BDEA00B67C8C /* Singleton.swift */; };
+		D5F68470247D721C00FA5F58 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F6846F247D721C00FA5F58 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +74,10 @@
 		25ED3A56246F0DAF00A1FBA8 /* StructureDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructureDetailController.swift; sourceTree = "<group>"; };
 		25ED3A5A246F0F9700A1FBA8 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		25ED3A5C246F0FA000A1FBA8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D53A5F642482B7F800B67C8C /* SearchFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterViewController.swift; sourceTree = "<group>"; };
+		D53A5F662482BC0800B67C8C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		D53A5F682482BDEA00B67C8C /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
+		D5F6846F247D721C00FA5F58 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +119,10 @@
 				25094137246AEC5A0045F135 /* ResultsViewController.swift */,
 				25167372247456C70096FC5D /* StructureDetailViewController.swift */,
 				250C253C24754392000F834D /* ReviewDetailViewController.swift */,
+				D5F6846F247D721C00FA5F58 /* ProfileViewController.swift */,
+				D53A5F642482B7F800B67C8C /* SearchFilterViewController.swift */,
+				D53A5F662482BC0800B67C8C /* WebViewController.swift */,
+				D53A5F682482BDEA00B67C8C /* Singleton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -258,6 +270,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2584B6B6247BB5B900F2B007 /* ReviewDAOAWSElasticBeanstalkImpl.swift in Sources */,
+				D53A5F692482BDEA00B67C8C /* Singleton.swift in Sources */,
+				D53A5F672482BC0800B67C8C /* WebViewController.swift in Sources */,
 				2597F0A02476700D00A7E2D5 /* StructureDAOAWSElasticBeanstalkImpl.swift in Sources */,
 				25094136246AB37C0045F135 /* BigStructureCell.swift in Sources */,
 				250C253B247529CD000F834D /* ReviewCell.swift in Sources */,
@@ -269,6 +283,7 @@
 				25094138246AEC5A0045F135 /* ResultsViewController.swift in Sources */,
 				2597F0A42476821A00A7E2D5 /* Structure.swift in Sources */,
 				25ED3A5D246F0FA000A1FBA8 /* User.swift in Sources */,
+				D53A5F652482B7F800B67C8C /* SearchFilterViewController.swift in Sources */,
 				2517B4A82473E8E90067B3DB /* HomeTableViewController.swift in Sources */,
 				25ED3A53246F0D9500A1FBA8 /* HomeController.swift in Sources */,
 				2584B6B4247BB59200F2B007 /* ReviewDAOProtocol.swift in Sources */,
@@ -279,6 +294,7 @@
 				25ED3A5B246F0F9700A1FBA8 /* Review.swift in Sources */,
 				253B8E522473C5B700C346F2 /* LittleStructureCell.swift in Sources */,
 				2560E17F246BFD36001669A3 /* ShadowRoundedImageView.swift in Sources */,
+				D5F68470247D721C00FA5F58 /* ProfileViewController.swift in Sources */,
 				25167373247456C70096FC5D /* StructureDetailViewController.swift in Sources */,
 				250C253D24754392000F834D /* ReviewDetailViewController.swift in Sources */,
 			);

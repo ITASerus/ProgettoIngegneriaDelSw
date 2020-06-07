@@ -363,4 +363,7 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
            
         performSegue(withIdentifier: "StructureDetailHomeSegue", sender: self)
     }
+    
+    
+    
 }
