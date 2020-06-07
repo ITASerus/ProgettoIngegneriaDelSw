@@ -21,6 +21,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Mk-pq-WBA">
+                                <rect key="frame" x="15" y="106" width="345" height="591"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Luogo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="05H-P1-qFM">
                                 <rect key="frame" x="16" y="115" width="49" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -192,13 +197,14 @@
                         <outlet property="star4" destination="Ew0-gI-jcv" id="qMX-t6-uWT"/>
                         <outlet property="star5" destination="TKh-fy-jz4" id="XC1-8J-xgz"/>
                         <outlet property="upperPriceTextFieldOutlet" destination="zYx-Ck-VqO" id="DJZ-XB-4gZ"/>
+                        <outlet property="viewBackground" destination="6Mk-pq-WBA" id="DJd-GH-6rj"/>
                         <outlet property="webSiteTextFieldOutlet" destination="Lui-Wb-fgA" id="tKM-MD-9FA"/>
                         <segue destination="jx3-Oe-H8n" kind="show" identifier="WebViewSegue" id="KTc-Ng-Vrw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zdW-gf-MGW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1844" y="645"/>
+            <point key="canvasLocation" x="-1844" y="643.5960591133005"/>
         </scene>
         <!--Profilo-->
         <scene sceneID="sG0-Qf-Klo">

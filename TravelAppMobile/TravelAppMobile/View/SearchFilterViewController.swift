@@ -10,7 +10,10 @@ import UIKit
 
 class SearchFilterViewController: UIViewController {
 
- private let categoryArray = ["Hotel", "Resort","Experience"]
+    @IBOutlet weak var viewBackground: UIView!
+    
+
+    private let categoryArray = ["Hotel", "Resort","Experience"]
     
     //Outlet of stars
     @IBOutlet weak var star1: UIButton!
@@ -57,8 +60,18 @@ class SearchFilterViewController: UIViewController {
          self.hideKeyboardWhenTappedAround()
         
        
-       
+        viewBackground.layer.cornerRadius = 20
+        viewBackground.layer.shadowRadius = 5
+        viewBackground.layer.shadowOpacity = 1
         
+         let gradient = CAGradientLayer()
+        gradient.cornerRadius = 20
+         gradient.frame = viewBackground.bounds
+         gradient.colors = [UIColor.gray.cgColor, UIColor.lightGray.cgColor]
+
+         viewBackground.layer.insertSublayer(gradient, at: 50)
+        
+        viewBackground.alpha = 0.25
         // Do any additional setup after loading the view.
     }
     
