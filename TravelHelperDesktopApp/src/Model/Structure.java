@@ -20,7 +20,7 @@ public class Structure {
     private String contacts;
     private String tag;
     private String description;
-    private Byte[] image;
+    private String image;
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -49,6 +49,6 @@ public class Structure {
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 
-    public Byte[] getImage() { return image;}
-    public void setImage(Byte[] image) { this.image = image; }
+    public String getImage() { return image;}
+    public void setImage(String image) { this.image = image; }
 }

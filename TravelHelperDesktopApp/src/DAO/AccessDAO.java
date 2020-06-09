@@ -5,14 +5,10 @@
  */
 package DAO;
 
-import Model.User;
 /**
  *
  * @author ernestodecrecchio
  */
-public interface UserDAO {
-    
-    public Integer getNum();
-    
-    public User getByUsernameOrEmail(String usernameOrEmail);
+public interface AccessDAO {
+    public String logIn(String usernameOrEmail, String password);
 }

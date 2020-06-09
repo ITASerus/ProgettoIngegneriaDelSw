@@ -103,6 +103,7 @@ public class MainFrameView extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         summaryMenuItem = new javax.swing.JMenuItem();
+        accessMenuItem = new javax.swing.JCheckBoxMenuItem();
         addStructureMenuItem = new javax.swing.JMenu();
         newStructureMenuItem = new javax.swing.JMenuItem();
         searchStructureMenuItem = new javax.swing.JMenuItem();
@@ -123,6 +124,14 @@ public class MainFrameView extends javax.swing.JFrame {
             }
         });
         jMenu1.add(summaryMenuItem);
+
+        accessMenuItem.setText("Accesso");
+        accessMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accessMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(accessMenuItem);
 
         jMenuBar1.add(jMenu1);
 
@@ -197,6 +206,14 @@ public class MainFrameView extends javax.swing.JFrame {
         validate();
         changePanel(s);
     }//GEN-LAST:event_searchStructureMenuItemActionPerformed
+
+    private void accessMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accessMenuItemActionPerformed
+        AccessPanelView a = new AccessPanelView();
+        a.setVisible(true);
+        a.validate();
+        validate();
+        changePanel(a);
+    }//GEN-LAST:event_accessMenuItemActionPerformed
     
     /**
      * @param args the command line arguments
@@ -241,6 +258,7 @@ public class MainFrameView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBoxMenuItem accessMenuItem;
     private javax.swing.JMenu addStructureMenuItem;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;

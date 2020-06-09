@@ -34,4 +34,12 @@ public class DAOFactory {
             return new UserDAOAWSElasticBeanstalkImpl();
         }
     }
+    
+    public static AccessDAO getAccessDAO(String type) {
+        if(type.equalsIgnoreCase("AWSElasticBeanstalk")) {
+            return new AccessDAOAWSElasticBeanstalkImpl();
+        } else { // Altre implementazioni possibili diverse da AWS Elastic Beanstalk
+            return new AccessDAOAWSElasticBeanstalkImpl();
+        }
+    }
 }
