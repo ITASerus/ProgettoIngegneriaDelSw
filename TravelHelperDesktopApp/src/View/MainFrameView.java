@@ -5,34 +5,12 @@
  */
 package View;
 
-import java.io.IOException;
-import java.io.FileReader;
-import java.io.Reader;
-import java.util.Iterator;
-import java.util.Set;
-
 //Model
 import Model.Structure;
-
-//Swing
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JFrame;
 
 //AWT
 import java.awt.BorderLayout;
 
-//HTTP Java
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-
-//Google GSON
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import javax.swing.JPanel;
 
 /**
@@ -48,9 +26,17 @@ public class MainFrameView extends javax.swing.JFrame {
         initComponents();
         this.setLayout(new BorderLayout());
         
-        setSummaryPanel();
+        LogInDialogView login = new LogInDialogView(this, true);
+        login.setVisible(true);
+        login.setResizable(false); //Rende la finestra di login non ridimensionabile.
+        if(!login.isLogged) { //se l'accesso non è stato eseguito
+            dispose(); //non mostra il frame principale
+        } else {
+            setVisible(true);
+            setSummaryPanel();
+        }
     }
-    
+        
     public void setSummaryPanel() {
         SummaryPanelView a = new SummaryPanelView();
         a.setVisible(true);
@@ -103,7 +89,7 @@ public class MainFrameView extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         summaryMenuItem = new javax.swing.JMenuItem();
-        accessMenuItem = new javax.swing.JCheckBoxMenuItem();
+        accessMenuItem = new javax.swing.JMenuItem();
         addStructureMenuItem = new javax.swing.JMenu();
         newStructureMenuItem = new javax.swing.JMenuItem();
         searchStructureMenuItem = new javax.swing.JMenuItem();
@@ -252,13 +238,14 @@ public class MainFrameView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrameView().setVisible(true);
+                //new MainFrameView().setVisible(true);
+                MainFrameView frame = new MainFrameView();
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBoxMenuItem accessMenuItem;
+    private javax.swing.JMenuItem accessMenuItem;
     private javax.swing.JMenu addStructureMenuItem;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;

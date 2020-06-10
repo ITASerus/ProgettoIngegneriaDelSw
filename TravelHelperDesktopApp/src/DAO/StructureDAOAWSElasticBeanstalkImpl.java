@@ -15,6 +15,8 @@ import java.net.http.HttpResponse;
 import Model.Structure;
 import com.google.gson.JsonObject;
 import java.util.HashMap;
+import org.apache.http.HttpHeaders;
+import Singleton.LoggedUserSingleton;
 
 /**
  *
@@ -22,7 +24,7 @@ import java.util.HashMap;
  */
 public class StructureDAOAWSElasticBeanstalkImpl implements StructureDAO {
     private static final String GET_NUM_STRUCTURES = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/getNum";
-    private static final String CREATE_STRUCTURE = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/create";
+    private static final String CREATE_STRUCTURE = "http://localhost:5000/structures/create";
     private static final String DELETE_STRUCTURE = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/id=";
     private static final String UPDATE_STRUCTURE = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/id=";
     private static final String GET_ALL_STRUCTURES = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/getAll";
@@ -138,13 +140,19 @@ public class StructureDAOAWSElasticBeanstalkImpl implements StructureDAO {
     public HttpResponse<String> newStructure(String body) {
         final HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build(); //Per la connessione del client al server
 
+        //System.out.print(LoggedUserSingleton.getIstance().getLoggedUser().getToken());
+        
         HttpRequest request = HttpRequest.newBuilder()
                 .POST(HttpRequest.BodyPublishers.ofString(body))
                 .uri(URI.create(CREATE_STRUCTURE))
-                .setHeader("User-Agent", "Java 11 HttpClient Bot") // add request header
-                .header("Content-Type", "application/json")
+                .setHeader("User-Agent", "Java 11 HttpClient Bot") // add request header 
+                .setHeader(HttpHeaders.CONTENT_TYPE, "application/json")
+                .setHeader(HttpHeaders.AUTHORIZATION, "Bearer " + LoggedUserSingleton.getIstance().getLoggedUser().getToken())
                 .build();
+        
         HttpResponse<String> response = null;
+        
+        System.out.print(request);
         
         try {
         response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());

@@ -9,20 +9,18 @@ import DAO.AccessDAO;
 import DAO.DAOFactory;
 import DAO.UserDAO;
 import Model.User;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import java.util.Map;
 import Singleton.LoggedUserSingleton;
+import java.util.Map;
 
 /**
  *
  * @author ernestodecrecchio
  */
-public class AccessPanelController {
+public class LogInDialogController {
     private static AccessDAO accessDAO;
     private static UserDAO userDAO;
     
-    public AccessPanelController() {
+    public LogInDialogController() {
         accessDAO = DAOFactory.getAccessDAO("AWSElasticBeanstalk");
         userDAO = DAOFactory.getUserDAO("AWSElasticBeanstalk");
     }

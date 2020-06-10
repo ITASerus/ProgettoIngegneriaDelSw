@@ -150,10 +150,8 @@ public class NewStructurePanelController {
             
             return structure;
         }
-        else {
-             System.out.println("ERRORE");
-            System.out.print(response.body());
-           
+        else {    
+            System.out.print(response.body());           
             return null; 
         }
     }
