@@ -25,6 +25,8 @@ public class LogInDialogView extends javax.swing.JDialog {
         initComponents();
         
         controller = new LogInDialogController();
+        
+        passwordTextField.setEchoChar('\u25cf');
     }
 
     /**
@@ -43,18 +45,20 @@ public class LogInDialogView extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         logInButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton2 = new javax.swing.JButton();
+        newUserButton = new javax.swing.JButton();
+        hidePasswordToggleButton = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Log In");
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Log In");
 
-        usernameOrEmailTextField.setToolTipText("Inserisci l'username o la e-mail dell'utente");
+        usernameOrEmailTextField.setToolTipText("Inserire l'username o la e-mail dell'utente");
 
-        passwordTextField.setToolTipText("Inserisci la password dell'utente");
+        passwordTextField.setToolTipText("Inserire la password dell'utente");
 
         jLabel2.setText("Username o E-Mail:");
 
@@ -67,57 +71,71 @@ public class LogInDialogView extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setText("Nuovo Admin");
+        newUserButton.setText("Nuovo Admin");
+        newUserButton.setActionCommand("Registratione Admin");
+        newUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newUserButtonActionPerformed(evt);
+            }
+        });
+
+        hidePasswordToggleButton.setIcon(new javax.swing.ImageIcon("/Users/ernestodecrecchio/Documents/GitHub/ProgettoIngegneriaDelSw/TravelHelperDesktopApp/src/Resources/secret.png")); // NOI18N
+        hidePasswordToggleButton.setSelected(true);
+        hidePasswordToggleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hidePasswordToggleButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(logInButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(passwordTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                            .addComponent(usernameOrEmailTextField)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSeparator1))))
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(usernameOrEmailTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                            .addComponent(passwordTextField))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(hidePasswordToggleButton))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(logInButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(newUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE))
+                        .addGap(77, 77, 77))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usernameOrEmailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3))
+                    .addComponent(hidePasswordToggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(logInButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(newUserButton)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -130,20 +148,36 @@ public class LogInDialogView extends javax.swing.JDialog {
         
         switch (result) {
             case 1:
-                JOptionPane.showMessageDialog(this, "Credenziali Valide", "Accesso effettuato" , JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Credenziali valide.", "Accesso eseguito" , JOptionPane.INFORMATION_MESSAGE);
                 isLogged = true;
                 dispose();
                 break;
             case 0:
-                JOptionPane.showMessageDialog(this, "L'utente non ha i permessi da amministratore", "Accesso negato", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "L'utente non ha i permessi di amministratore.", "Accesso negato", JOptionPane.ERROR_MESSAGE);
                 isLogged = false;
                 break;
             default:
-                JOptionPane.showMessageDialog(this, "Ricontrollare i dati inseriti", "Credenziali errate", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Credenziali errate.\nRicontrollare i dati inseriti.", "Accesso negato", JOptionPane.ERROR_MESSAGE);
                 isLogged = false;
                 break;
         }
     }//GEN-LAST:event_logInButtonActionPerformed
+
+    private void hidePasswordToggleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hidePasswordToggleButtonActionPerformed
+        if (hidePasswordToggleButton.isSelected()) {
+           passwordTextField.setEchoChar('\u25cf');
+        } else {
+           passwordTextField.setEchoChar((char)0);
+        }
+    }//GEN-LAST:event_hidePasswordToggleButtonActionPerformed
+
+    private void newUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserButtonActionPerformed
+        NewUserDialogView n = new NewUserDialogView(null, true);
+        n.setLocationRelativeTo(null);  // *** this will center your app ***
+        n.setVisible(true);
+        n.validate();
+        validate();
+    }//GEN-LAST:event_newUserButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,12 +222,13 @@ public class LogInDialogView extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JToggleButton hidePasswordToggleButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton logInButton;
+    private javax.swing.JButton newUserButton;
     private javax.swing.JPasswordField passwordTextField;
     private javax.swing.JTextField usernameOrEmailTextField;
     // End of variables declaration//GEN-END:variables

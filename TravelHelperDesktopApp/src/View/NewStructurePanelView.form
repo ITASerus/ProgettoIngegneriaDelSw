@@ -26,90 +26,55 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="contactsTextField" alignment="0" max="32767" attributes="0"/>
                   <Component id="webSiteTextField" alignment="0" max="32767" attributes="0"/>
-                  <Component id="mapPanel" alignment="0" max="32767" attributes="0"/>
                   <Component id="categoryComboBox" alignment="0" max="32767" attributes="0"/>
-                  <Component id="nameTextField" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="priceSlider" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="placeTextField" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="visualizeMapButton" min="-2" pref="107" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="contactsTextField" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="priceSlider" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="priceTextField" min="-2" pref="54" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="placeTextField" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="visualizeMapButton" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="priceLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="enablePriceCheckBox" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="contactsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="priceLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="enablePriceCheckBox" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="webSiteLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="categoryLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="tagLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                              <Component id="placeLabel" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="tagCheckBox1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tagCheckBox4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tagCheckBox7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tagCheckBox10" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="tagCheckBox2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tagCheckBox5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tagCheckBox8" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tagCheckBox11" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="tagCheckBox3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tagCheckBox6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tagCheckBox9" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="0" pref="46" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="contactsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="webSiteLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="categoryLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="placeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="mapPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="nameTextField" alignment="0" min="-2" pref="340" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="descriptionLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="373" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="jScrollPane1" pref="420" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
+                          <Component id="descriptionLabel" min="-2" max="-2" attributes="0"/>
                           <Component id="photoLabel" min="-2" max="-2" attributes="0"/>
-                          <Component id="imagePathTextField" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="131" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="cancelButton" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="confirmButton" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="searchImageButton" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
                       </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="imagePathTextField" pref="293" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="searchImageButton" max="32767" attributes="0"/>
+                          <Component id="cancelButton" alignment="1" max="32767" attributes="0"/>
+                          <Component id="confirmButton" alignment="1" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -121,14 +86,14 @@
                   <Component id="jSeparator1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="nameLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                      <Component id="nameTextField" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="nameTextField" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                       <Component id="placeLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="placeTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="visualizeMapButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="placeTextField" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="visualizeMapButton" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="mapPanel" max="32767" attributes="0"/>
@@ -154,52 +119,22 @@
                       <Component id="contactsLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="contactsTextField" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="tagLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="tagCheckBox1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="tagCheckBox4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="tagCheckBox7" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="tagCheckBox10" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="tagCheckBox2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="tagCheckBox5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="tagCheckBox8" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="tagCheckBox11" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="tagCheckBox3" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="tagCheckBox6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="tagCheckBox9" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="descriptionLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="108" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="241" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="photoLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="imagePathTextField" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="searchImageButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="317" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="confirmButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cancelButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="imagePathTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="searchImageButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
+                      <Component id="confirmButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="cancelButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -210,38 +145,70 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="nameLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="13" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Nome*"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="placeLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="13" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Luogo"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="webSiteLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="13" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Sito Web"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="descriptionLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="13" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Descrizione"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="priceLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="13" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Prezzo Medio (in &#x20ac;)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="nameTextField">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Inserire il nome della nuova struttura."/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="placeTextField">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Inserire il luogo in cui si trova la struttura o in cui si svolge l&apos;attivit&#xe0;."/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="webSiteTextField">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Inserire il sito web della struttura."/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="confirmButton">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="99" red="0" type="rgb"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Resources/confirm.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Conferma"/>
+        <Property name="horizontalTextPosition" type="int" value="10"/>
+        <Property name="iconTextGap" type="int" value="7"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmButtonActionPerformed"/>
@@ -249,11 +216,17 @@
     </Component>
     <Component class="javax.swing.JButton" name="cancelButton">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Resources/close.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Annulla"/>
+        <Property name="horizontalTextPosition" type="int" value="10"/>
+        <Property name="iconTextGap" type="int" value="18"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="priceTextField">
       <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Inserire il prezzo medio della struttura (selezionabile anche tramite lo slider)."/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
@@ -262,10 +235,16 @@
     </Component>
     <Component class="javax.swing.JLabel" name="contactsLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="13" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Contatti"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="contactsTextField">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Inserire i contatti di riferimento della struttura."/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JSlider" name="priceSlider">
       <Properties>
@@ -275,7 +254,6 @@
         <Property name="paintLabels" type="boolean" value="true"/>
         <Property name="paintTicks" type="boolean" value="true"/>
         <Property name="snapToTicks" type="boolean" value="true"/>
-        <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="value" type="int" value="0"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Default Cursor"/>
@@ -306,13 +284,16 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="63" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
     </Container>
     <Component class="javax.swing.JLabel" name="categoryLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="13" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Categoria"/>
       </Properties>
     </Component>
@@ -327,19 +308,16 @@
             <StringItem index="4" value="Cibo"/>
           </StringArray>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Selezionare la categoria che rappresenta la struttura."/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JLabel" name="tagLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Tag"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JCheckBox" name="enablePriceCheckBox">
       <Properties>
         <Property name="text" type="java.lang.String" value="Abilita Prezzo"/>
+        <Property name="toolTipText" type="java.lang.String" value="Selezionare se si vuole indicare un prezzo medio della struttura."/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enablePriceCheckBoxActionPerformed"/>
@@ -353,79 +331,37 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
         <Component class="javax.swing.JEditorPane" name="descriptionTextPane">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Inserire una descrizione della struttura."/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JButton" name="visualizeMapButton">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Resources/pin.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Visualizza"/>
+        <Property name="toolTipText" type="java.lang.String" value="Visualizza una mappa che indica il luogo in cui si trova la struttura o svolge l&apos;attivit&#xe0;."/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="visualizeMapButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="tagCheckBox1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Accetta animali"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="tagCheckBox4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Aria condizionata"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="tagCheckBox10">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ristorante"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="tagCheckBox7">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Colazione inclusa"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="tagCheckBox8">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Internet gratis"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="tagCheckBox11">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Servizio in camera"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="tagCheckBox2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Attivit&#xe0; di gruppo"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="tagCheckBox5">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Bar/Launge"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="tagCheckBox9">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Piscina"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="tagCheckBox3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="All&apos;aperto"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="tagCheckBox6">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Centro fitness"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="photoLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="13" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Foto"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="searchImageButton">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Resources/search.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Cerca Immagine"/>
       </Properties>
       <Events>
@@ -435,6 +371,8 @@
     <Component class="javax.swing.JTextField" name="imagePathTextField">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="toolTipText" type="java.lang.String" value="Percorso dell&apos;immagine selezionata"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
   </SubComponents>

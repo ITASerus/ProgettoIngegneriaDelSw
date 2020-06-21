@@ -8,6 +8,11 @@ package View;
 import Controller.InfoStructurePanelController;
 import Model.Structure;
 import java.awt.BorderLayout;
+import java.awt.Desktop;
+import java.net.URL;
+import java.net.URISyntaxException;
+import java.net.URI;
+import java.net.MalformedURLException;
 
 /**
  *
@@ -45,10 +50,14 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
         contactsValueLabel.setText(structure.getContacts());
         
         if(structure.getPrice() != null) {
-            priceValueLabel.setText(structure.getPrice().toString());
+            priceValueLabel.setText(structure.getPrice().toString() + "€");
         }
         
         descriptionValueTextPane.setText(structure.getDescription());
+        
+        if(structure.getImage() == null) {
+            visualizeImageButton.setEnabled(false);
+        }
     }
 
     /**
@@ -68,7 +77,6 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
         webSiteLabel = new javax.swing.JLabel();
         priceLabel = new javax.swing.JLabel();
         contactsLabel = new javax.swing.JLabel();
-        tagLabel = new javax.swing.JLabel();
         descriptionLabel = new javax.swing.JLabel();
         placeValueLabel = new javax.swing.JLabel();
         contactsValueLabel = new javax.swing.JLabel();
@@ -82,27 +90,33 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
         descriptionValueTextPane = new javax.swing.JTextPane();
         mapPanel = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
+        visualizeImageButton = new javax.swing.JButton();
 
-        idLabel.setText("ID:");
+        idLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        idLabel.setText("ID");
 
         idValueLabel.setText("---");
 
-        nameLabel.setText("Nome:");
+        nameLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        nameLabel.setText("Nome");
 
-        placeLabel.setText("Luogo:");
+        placeLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        placeLabel.setText("Luogo");
 
-        categoryLabel.setText("Categoria:");
+        categoryLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        categoryLabel.setText("Categoria");
 
-        webSiteLabel.setText("Sito Web:");
+        webSiteLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        webSiteLabel.setText("Sito Web");
 
-        priceLabel.setText("Prezzo Medio:");
+        priceLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        priceLabel.setText("Prezzo Medio");
 
-        contactsLabel.setText("Contatti:");
+        contactsLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        contactsLabel.setText("Contatti");
 
-        tagLabel.setText("Tag:");
-
-        descriptionLabel.setText("Descrizione:");
+        descriptionLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        descriptionLabel.setText("Descrizione");
 
         placeValueLabel.setText("---");
 
@@ -116,6 +130,7 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
 
         nameValueLabel.setText("---");
 
+        editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/edit.png"))); // NOI18N
         editButton.setText("Modifica");
         editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,7 +138,8 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
             }
         });
 
-        imageLabel.setText("Foto:");
+        imageLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        imageLabel.setText("Foto");
 
         descriptionValueTextPane.setEditable(false);
         jScrollPane2.setViewportView(descriptionValueTextPane);
@@ -143,7 +159,13 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jLabel1.setText("jLabel1");
+        visualizeImageButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/photo.png"))); // NOI18N
+        visualizeImageButton.setText("Visualizza Immagine nel browser predefinito");
+        visualizeImageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visualizeImageButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -152,56 +174,43 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nameValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(placeValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(categoryValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(webSiteValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(priceValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(contactsValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(nameLabel)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(idValueLabel)
-                                    .addComponent(nameValueLabel)))
                             .addComponent(idLabel)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(placeLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(placeValueLabel))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(categoryLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(categoryValueLabel))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(webSiteLabel)
-                                    .addComponent(contactsLabel))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(contactsValueLabel)
-                                    .addComponent(webSiteValueLabel)))
-                            .addComponent(tagLabel)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(priceLabel)
-                                .addGap(30, 30, 30)
-                                .addComponent(priceValueLabel)))
-                        .addGap(0, 154, Short.MAX_VALUE))
+                            .addComponent(nameLabel)
+                            .addComponent(placeLabel)
+                            .addComponent(categoryLabel)
+                            .addComponent(webSiteLabel)
+                            .addComponent(priceLabel)
+                            .addComponent(contactsLabel))
+                        .addGap(0, 253, Short.MAX_VALUE))
+                    .addComponent(idValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(editButton)
-                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
+                        .addComponent(imageLabel)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(descriptionLabel)
-                                    .addComponent(imageLabel))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(6, 6, 6))))
+                                    .addComponent(visualizeImageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 82, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,51 +218,49 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(idLabel)
-                            .addComponent(idValueLabel)
-                            .addComponent(descriptionLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(nameLabel)
-                                    .addComponent(nameValueLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(placeLabel)
-                                    .addComponent(placeValueLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(idLabel)
+                            .addComponent(descriptionLabel, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(categoryLabel)
-                                    .addComponent(categoryValueLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(webSiteValueLabel)
-                                    .addComponent(webSiteLabel))
-                                .addGap(24, 24, 24)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(contactsLabel)
-                                    .addComponent(contactsValueLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(priceLabel)
-                                    .addComponent(priceValueLabel))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tagLabel)
-                                .addGap(0, 111, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(imageLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(visualizeImageButton)
+                                .addGap(242, 242, 242)
+                                .addComponent(editButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(idValueLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editButton)
-                                .addContainerGap())))
+                                .addComponent(nameLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nameValueLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(placeLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(placeValueLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(categoryLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(categoryValueLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(webSiteLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(webSiteValueLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(priceLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(priceValueLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(contactsLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(contactsValueLabel)
+                                .addGap(53, 53, 53)))
+                        .addContainerGap())
                     .addComponent(jSeparator1)))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -262,6 +269,36 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
         controller.setEditPanel(parent, structure);
     }//GEN-LAST:event_editButtonActionPerformed
 
+    private void visualizeImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizeImageButtonActionPerformed
+        try {
+            URL myUrl = new URL(structure.getImage());
+            openWebpage(myUrl);
+        } catch(MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_visualizeImageButtonActionPerformed
+
+    public static boolean openWebpage(URI uri) {
+        Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+        if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
+            try {
+                desktop.browse(uri);
+                return true;
+            } catch (Exception e) {
+               e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    public static boolean openWebpage(URL url) {
+        try {
+            return openWebpage(url.toURI());
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel categoryLabel;
@@ -274,7 +311,6 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
     private javax.swing.JLabel idLabel;
     private javax.swing.JLabel idValueLabel;
     private javax.swing.JLabel imageLabel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel mapPanel;
@@ -284,7 +320,7 @@ public class InfoStructurePanelView extends javax.swing.JPanel {
     private javax.swing.JLabel placeValueLabel;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JLabel priceValueLabel;
-    private javax.swing.JLabel tagLabel;
+    private javax.swing.JButton visualizeImageButton;
     private javax.swing.JLabel webSiteLabel;
     private javax.swing.JLabel webSiteValueLabel;
     // End of variables declaration//GEN-END:variables

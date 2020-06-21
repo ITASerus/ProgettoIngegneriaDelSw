@@ -5,10 +5,15 @@
  */
 package DAO;
 
+import com.google.gson.JsonObject;
+import java.net.http.HttpResponse;
+
 /**
  *
  * @author ernestodecrecchio
  */
 public interface AccessDAO {
+    public HttpResponse<String> signIn(String firstName, String lastName, String email, String username, String password);
+    
     public String logIn(String usernameOrEmail, String password);
 }

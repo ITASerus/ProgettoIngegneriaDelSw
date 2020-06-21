@@ -25,8 +25,8 @@ import Singleton.LoggedUserSingleton;
 public class StructureDAOAWSElasticBeanstalkImpl implements StructureDAO {
     private static final String GET_NUM_STRUCTURES = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/getNum";
     private static final String CREATE_STRUCTURE = "http://localhost:5000/structures/create";
-    private static final String DELETE_STRUCTURE = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/id=";
-    private static final String UPDATE_STRUCTURE = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/id=";
+    private static final String DELETE_STRUCTURE = "http://localhost:5000/structures/id=";
+    private static final String UPDATE_STRUCTURE = "http://localhost:5000/structures/id=";
     private static final String GET_ALL_STRUCTURES = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/getAll";
     private static final String GET_BY_STRID = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/id=";
     private static final String GET_BY_STR_NAME= "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/name=";
@@ -173,7 +173,8 @@ public class StructureDAOAWSElasticBeanstalkImpl implements StructureDAO {
 
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(ENDPOINT_URL))
                 .setHeader("User-Agent", "Java 11 HttpClient Bot") // add request header
-                .header("Content-Type", "application/json")
+                .setHeader(HttpHeaders.CONTENT_TYPE, "application/json")
+                .setHeader(HttpHeaders.AUTHORIZATION, "Bearer " + LoggedUserSingleton.getIstance().getLoggedUser().getToken())
                 .PUT(HttpRequest.BodyPublishers.ofString(body))
                 .build();
         HttpResponse<String> response = null;
@@ -196,7 +197,10 @@ public class StructureDAOAWSElasticBeanstalkImpl implements StructureDAO {
         System.out.println(ENDPOINT_URL);
         
         HttpClient client = HttpClient.newHttpClient(); // SHUTDOWN?
-        HttpRequest requestDeleteStructure = HttpRequest.newBuilder().uri(URI.create(ENDPOINT_URL)).DELETE().build();
+        HttpRequest requestDeleteStructure = HttpRequest.newBuilder().uri(URI.create(ENDPOINT_URL))
+                .setHeader(HttpHeaders.CONTENT_TYPE, "application/json")
+                .setHeader(HttpHeaders.AUTHORIZATION, "Bearer " + LoggedUserSingleton.getIstance().getLoggedUser().getToken())
+                .DELETE().build();
         HttpResponse<String> response = null;
         
         try{

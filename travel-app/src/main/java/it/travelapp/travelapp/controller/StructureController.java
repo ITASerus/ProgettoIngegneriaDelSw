@@ -54,6 +54,7 @@ public class StructureController {
     }
 
     // Update a Structure
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/id={id}")
     public Structure updateStructure(@PathVariable(value = "id") Long structureId,
                                      @Valid @RequestBody Structure structureDetails) {
@@ -93,6 +94,7 @@ public class StructureController {
     }
 
     // Delete a Note
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/id={id}")
     public ResponseEntity<?> deleteStructure(@PathVariable(value = "id") Long structureId) {
         Structure structure = structureRepository.findById(structureId)
