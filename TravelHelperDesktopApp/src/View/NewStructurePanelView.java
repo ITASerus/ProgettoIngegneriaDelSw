@@ -71,47 +71,54 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         mapPanel = new javax.swing.JPanel();
         categoryLabel = new javax.swing.JLabel();
         categoryComboBox = new javax.swing.JComboBox<>();
-        tagLabel = new javax.swing.JLabel();
         enablePriceCheckBox = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         descriptionTextPane = new javax.swing.JEditorPane();
         visualizeMapButton = new javax.swing.JButton();
-        tagCheckBox1 = new javax.swing.JCheckBox();
-        tagCheckBox4 = new javax.swing.JCheckBox();
-        tagCheckBox10 = new javax.swing.JCheckBox();
-        tagCheckBox7 = new javax.swing.JCheckBox();
-        tagCheckBox8 = new javax.swing.JCheckBox();
-        tagCheckBox11 = new javax.swing.JCheckBox();
-        tagCheckBox2 = new javax.swing.JCheckBox();
-        tagCheckBox5 = new javax.swing.JCheckBox();
-        tagCheckBox9 = new javax.swing.JCheckBox();
-        tagCheckBox3 = new javax.swing.JCheckBox();
-        tagCheckBox6 = new javax.swing.JCheckBox();
         photoLabel = new javax.swing.JLabel();
         searchImageButton = new javax.swing.JButton();
         imagePathTextField = new javax.swing.JTextField();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        nameLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         nameLabel.setText("Nome*");
 
+        placeLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         placeLabel.setText("Luogo");
 
+        webSiteLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         webSiteLabel.setText("Sito Web");
 
+        descriptionLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         descriptionLabel.setText("Descrizione");
 
+        priceLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         priceLabel.setText("Prezzo Medio (in €)");
 
+        nameTextField.setToolTipText("Inserire il nome della nuova struttura.");
+
+        placeTextField.setToolTipText("Inserire il luogo in cui si trova la struttura o in cui si svolge l'attività.");
+
+        webSiteTextField.setToolTipText("Inserire il sito web della struttura.");
+
+        confirmButton.setBackground(new java.awt.Color(0, 153, 0));
+        confirmButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/confirm.png"))); // NOI18N
         confirmButton.setText("Conferma");
+        confirmButton.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        confirmButton.setIconTextGap(7);
         confirmButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmButtonActionPerformed(evt);
             }
         });
 
+        cancelButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/close.png"))); // NOI18N
         cancelButton.setText("Annulla");
+        cancelButton.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        cancelButton.setIconTextGap(18);
 
+        priceTextField.setToolTipText("Inserire il prezzo medio della struttura (selezionabile anche tramite lo slider).");
         priceTextField.setEnabled(false);
         priceTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -119,7 +126,10 @@ public class NewStructurePanelView extends javax.swing.JPanel {
             }
         });
 
+        contactsLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         contactsLabel.setText("Contatti");
+
+        contactsTextField.setToolTipText("Inserire i contatti di riferimento della struttura.");
 
         priceSlider.setMajorTickSpacing(100);
         priceSlider.setMaximum(500);
@@ -127,7 +137,6 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         priceSlider.setPaintLabels(true);
         priceSlider.setPaintTicks(true);
         priceSlider.setSnapToTicks(true);
-        priceSlider.setToolTipText("");
         priceSlider.setValue(0);
         priceSlider.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         priceSlider.setEnabled(false);
@@ -149,55 +158,39 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         );
         mapPanelLayout.setVerticalGroup(
             mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 63, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        categoryLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         categoryLabel.setText("Categoria");
 
         categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "Hotel", "Resort", "Attività", "Cibo" }));
-
-        tagLabel.setText("Tag");
+        categoryComboBox.setToolTipText("Selezionare la categoria che rappresenta la struttura.");
 
         enablePriceCheckBox.setText("Abilita Prezzo");
+        enablePriceCheckBox.setToolTipText("Selezionare se si vuole indicare un prezzo medio della struttura.");
         enablePriceCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enablePriceCheckBoxActionPerformed(evt);
             }
         });
 
+        descriptionTextPane.setToolTipText("Inserire una descrizione della struttura.");
         jScrollPane1.setViewportView(descriptionTextPane);
 
+        visualizeMapButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/pin.png"))); // NOI18N
         visualizeMapButton.setText("Visualizza");
+        visualizeMapButton.setToolTipText("Visualizza una mappa che indica il luogo in cui si trova la struttura o svolge l'attività.");
         visualizeMapButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 visualizeMapButtonActionPerformed(evt);
             }
         });
 
-        tagCheckBox1.setText("Accetta animali");
-
-        tagCheckBox4.setText("Aria condizionata");
-
-        tagCheckBox10.setText("Ristorante");
-
-        tagCheckBox7.setText("Colazione inclusa");
-
-        tagCheckBox8.setText("Internet gratis");
-
-        tagCheckBox11.setText("Servizio in camera");
-
-        tagCheckBox2.setText("Attività di gruppo");
-
-        tagCheckBox5.setText("Bar/Launge");
-
-        tagCheckBox9.setText("Piscina");
-
-        tagCheckBox3.setText("All'aperto");
-
-        tagCheckBox6.setText("Centro fitness");
-
+        photoLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         photoLabel.setText("Foto");
 
+        searchImageButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/search.png"))); // NOI18N
         searchImageButton.setText("Cerca Immagine");
         searchImageButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,6 +199,8 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         });
 
         imagePathTextField.setEditable(false);
+        imagePathTextField.setToolTipText("Percorso dell'immagine selezionata");
+        imagePathTextField.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -214,72 +209,46 @@ public class NewStructurePanelView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(contactsTextField)
                     .addComponent(webSiteTextField)
-                    .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(categoryComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nameTextField)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(placeTextField)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(visualizeMapButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(contactsTextField)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(priceSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(priceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(placeTextField)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(visualizeMapButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(contactsLabel)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(priceLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(enablePriceCheckBox))
-                            .addComponent(webSiteLabel)
-                            .addComponent(categoryLabel)
-                            .addComponent(tagLabel)
-                            .addComponent(nameLabel)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(placeLabel))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tagCheckBox1)
-                                    .addComponent(tagCheckBox4)
-                                    .addComponent(tagCheckBox7)
-                                    .addComponent(tagCheckBox10))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tagCheckBox2)
-                                    .addComponent(tagCheckBox5)
-                                    .addComponent(tagCheckBox8)
-                                    .addComponent(tagCheckBox11))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tagCheckBox3)
-                                    .addComponent(tagCheckBox6)
-                                    .addComponent(tagCheckBox9))))
-                        .addGap(0, 46, Short.MAX_VALUE)))
+                        .addComponent(priceLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(enablePriceCheckBox))
+                    .addComponent(contactsLabel)
+                    .addComponent(webSiteLabel)
+                    .addComponent(categoryLabel)
+                    .addComponent(nameLabel)
+                    .addComponent(placeLabel)
+                    .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(descriptionLabel)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(photoLabel)
-                            .addComponent(imagePathTextField)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 131, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(cancelButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(confirmButton))
-                                    .addComponent(searchImageButton, javax.swing.GroupLayout.Alignment.TRAILING))))
-                        .addContainerGap())))
+                            .addComponent(descriptionLabel)
+                            .addComponent(photoLabel))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(imagePathTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(searchImageButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cancelButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(confirmButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,14 +258,14 @@ public class NewStructurePanelView extends javax.swing.JPanel {
                     .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(nameLabel)
-                        .addGap(3, 3, 3)
-                        .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
                         .addComponent(placeLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(placeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(visualizeMapButton))
+                            .addComponent(placeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(visualizeMapButton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -318,47 +287,21 @@ public class NewStructurePanelView extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(contactsLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(contactsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tagLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tagCheckBox1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tagCheckBox4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tagCheckBox7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tagCheckBox10))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tagCheckBox2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tagCheckBox5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tagCheckBox8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tagCheckBox11))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tagCheckBox3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tagCheckBox6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tagCheckBox9))))
+                        .addComponent(contactsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(descriptionLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(photoLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(imagePathTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchImageButton)
-                        .addGap(317, 317, 317)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(confirmButton)
-                            .addComponent(cancelButton))))
+                            .addComponent(imagePathTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchImageButton))
+                        .addGap(204, 204, 204)
+                        .addComponent(confirmButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cancelButton)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -389,7 +332,7 @@ public class NewStructurePanelView extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Struttura aggiunta con successo!", "OK!", JOptionPane.INFORMATION_MESSAGE);
             controller.setInfoStructurePanel(parent, newStructure); //Change the panel shown
         } else {
-            JOptionPane.showMessageDialog(this, "Struttura non aggiunta. Controllare i campi inseriti!", "ERRORE!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Struttura non aggiunta.\nInserire almeno il nome della struttura.", "Errore creazione!", JOptionPane.ERROR_MESSAGE);
         }   
     }//GEN-LAST:event_confirmButtonActionPerformed
 
@@ -402,9 +345,13 @@ public class NewStructurePanelView extends javax.swing.JPanel {
     }//GEN-LAST:event_priceTextFieldFocusLost
 
     private void visualizeMapButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizeMapButtonActionPerformed
-        mapPanel.removeAll();
-        mapPanel.add(controller.getMapOfPlace(placeTextField.getText()), BorderLayout.CENTER);
-        mapPanel.updateUI();
+        if(!placeTextField.getText().isBlank()) {
+            mapPanel.removeAll();
+            mapPanel.add(controller.getMapOfPlace(placeTextField.getText()), BorderLayout.CENTER);
+            mapPanel.updateUI();
+        } else {
+            JOptionPane.showMessageDialog(this, "Per visualizzare la mappa bisogna indicare \nun luogo (paese, regione, indirizzo ecc)\nnel campo apposito.", "Luogo non valido", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_visualizeMapButtonActionPerformed
 
     private void searchImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchImageButtonActionPerformed
@@ -454,18 +401,6 @@ public class NewStructurePanelView extends javax.swing.JPanel {
     private javax.swing.JSlider priceSlider;
     private javax.swing.JTextField priceTextField;
     private javax.swing.JButton searchImageButton;
-    private javax.swing.JCheckBox tagCheckBox1;
-    private javax.swing.JCheckBox tagCheckBox10;
-    private javax.swing.JCheckBox tagCheckBox11;
-    private javax.swing.JCheckBox tagCheckBox2;
-    private javax.swing.JCheckBox tagCheckBox3;
-    private javax.swing.JCheckBox tagCheckBox4;
-    private javax.swing.JCheckBox tagCheckBox5;
-    private javax.swing.JCheckBox tagCheckBox6;
-    private javax.swing.JCheckBox tagCheckBox7;
-    private javax.swing.JCheckBox tagCheckBox8;
-    private javax.swing.JCheckBox tagCheckBox9;
-    private javax.swing.JLabel tagLabel;
     private javax.swing.JButton visualizeMapButton;
     private javax.swing.JLabel webSiteLabel;
     private javax.swing.JTextField webSiteTextField;

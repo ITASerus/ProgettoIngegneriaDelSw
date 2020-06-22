@@ -74,7 +74,7 @@ public class InfoStructurePanelController {
        
         // Create waypoints from the geo-positions
         Set<MyWaypoint> waypoints = new HashSet<MyWaypoint>(Arrays.asList(
-        new MyWaypoint("Si trova quì!", Color.YELLOW, position)));
+        new MyWaypoint("", Color.YELLOW, position)));
                 
         // Create a waypoint painter that takes all the waypoints
         WaypointPainter<MyWaypoint> waypointPainter = new WaypointPainter<MyWaypoint>();

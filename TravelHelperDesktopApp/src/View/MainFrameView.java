@@ -5,34 +5,12 @@
  */
 package View;
 
-import java.io.IOException;
-import java.io.FileReader;
-import java.io.Reader;
-import java.util.Iterator;
-import java.util.Set;
-
 //Model
 import Model.Structure;
-
-//Swing
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JFrame;
 
 //AWT
 import java.awt.BorderLayout;
 
-//HTTP Java
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-
-//Google GSON
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import javax.swing.JPanel;
 
 /**
@@ -48,9 +26,20 @@ public class MainFrameView extends javax.swing.JFrame {
         initComponents();
         this.setLayout(new BorderLayout());
         
-        setSummaryPanel();
+        LogInDialogView login = new LogInDialogView(this, true);
+        login.setLocationRelativeTo(null);  // *** this will center your app ***
+        login.setVisible(true);
+        login.setResizable(false); //Rende la finestra di login non ridimensionabile.
+        if(!login.isLogged) { //se l'accesso non è stato eseguito
+            dispose(); //non mostra il frame principale
+        } else {
+            setLocationRelativeTo(null);
+            setVisible(true);
+            setSummaryPanel();
+            pack();
+        }
     }
-    
+        
     public void setSummaryPanel() {
         SummaryPanelView a = new SummaryPanelView();
         a.setVisible(true);
@@ -103,6 +92,7 @@ public class MainFrameView extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         summaryMenuItem = new javax.swing.JMenuItem();
+        logOutMenuItem = new javax.swing.JMenuItem();
         addStructureMenuItem = new javax.swing.JMenu();
         newStructureMenuItem = new javax.swing.JMenuItem();
         searchStructureMenuItem = new javax.swing.JMenuItem();
@@ -116,6 +106,7 @@ public class MainFrameView extends javax.swing.JFrame {
 
         jMenu1.setText("Generale");
 
+        summaryMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         summaryMenuItem.setText("Riepilogo");
         summaryMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,10 +115,20 @@ public class MainFrameView extends javax.swing.JFrame {
         });
         jMenu1.add(summaryMenuItem);
 
+        logOutMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        logOutMenuItem.setText("Log out");
+        logOutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(logOutMenuItem);
+
         jMenuBar1.add(jMenu1);
 
         addStructureMenuItem.setText("Strutture");
 
+        newStructureMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         newStructureMenuItem.setText("Nuova Struttura");
         newStructureMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,6 +137,7 @@ public class MainFrameView extends javax.swing.JFrame {
         });
         addStructureMenuItem.add(newStructureMenuItem);
 
+        searchStructureMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         searchStructureMenuItem.setText("Ricerca Struttura");
         searchStructureMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,7 +153,7 @@ public class MainFrameView extends javax.swing.JFrame {
         jMenuItem4.setText("Aggiungi Utente");
         jMenu3.add(jMenuItem4);
 
-        jMenuItem5.setText("Riicerca Utente");
+        jMenuItem5.setText("Ricerca Utente");
         jMenu3.add(jMenuItem5);
 
         jMenuBar1.add(jMenu3);
@@ -168,11 +170,11 @@ public class MainFrameView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 643, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 576, Short.MAX_VALUE)
+            .addGap(0, 578, Short.MAX_VALUE)
         );
 
         pack();
@@ -197,6 +199,23 @@ public class MainFrameView extends javax.swing.JFrame {
         validate();
         changePanel(s);
     }//GEN-LAST:event_searchStructureMenuItemActionPerformed
+
+    private void logOutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutMenuItemActionPerformed
+        this.dispose();
+        
+        LogInDialogView login = new LogInDialogView(this, true);
+        login.setLocationRelativeTo(null);  // *** this will center your app ***
+        login.setVisible(true);
+        login.setResizable(false); //Rende la finestra di login non ridimensionabile.
+        if(!login.isLogged) { //se l'accesso non è stato eseguito
+            dispose(); //non mostra il frame principale
+        } else {
+            setLocationRelativeTo(null);
+            setVisible(true);
+            setSummaryPanel();
+            pack();
+        }
+    }//GEN-LAST:event_logOutMenuItemActionPerformed
     
     /**
      * @param args the command line arguments
@@ -235,7 +254,8 @@ public class MainFrameView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrameView().setVisible(true);
+                //new MainFrameView().setVisible(true);
+                MainFrameView frame = new MainFrameView();
             }
         });
     }
@@ -249,6 +269,7 @@ public class MainFrameView extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem logOutMenuItem;
     private javax.swing.JMenuItem newStructureMenuItem;
     private javax.swing.JMenuItem searchStructureMenuItem;
     private javax.swing.JMenuItem summaryMenuItem;

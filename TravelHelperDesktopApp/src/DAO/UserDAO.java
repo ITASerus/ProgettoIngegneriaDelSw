@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Model.User;
 /**
  *
  * @author ernestodecrecchio
@@ -12,4 +13,6 @@ package DAO;
 public interface UserDAO {
     
     public Integer getNum();
+    
+    public User getByUsernameOrEmail(String usernameOrEmail);
 }

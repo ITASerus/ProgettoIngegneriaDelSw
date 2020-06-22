@@ -47,10 +47,17 @@ public class UserController {
                 .orElseThrow(() -> new ResourceNotFoundException("User", "email", userEmail));
     }
 
-    // Get User by email
+    // Get User by username
     @GetMapping("/username={username}")
     public User getUserByUsername(@PathVariable(value = "username") String username) {
         return userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
+    }
+
+    // Get User by username
+    @GetMapping("/usernameOrEmail/username={username}&email={email}")
+    public User getUserByUsername(@PathVariable(value = "username") String username, @PathVariable(value = "email") String email) {
+        return userRepository.findByUsernameOrEmail(username, email)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
     }
 

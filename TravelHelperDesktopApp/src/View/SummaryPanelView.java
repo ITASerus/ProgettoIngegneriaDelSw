@@ -68,11 +68,15 @@ public class SummaryPanelView extends javax.swing.JPanel {
         nOfReviewsLabel = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         structuresTable = new javax.swing.JTable();
+        jSeparator1 = new javax.swing.JSeparator();
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel1.setText("Numero di utenti:");
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel2.setText("Numero di strutture:");
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel3.setText("Numero di recensioni:");
 
         nOfUsersLabel.setText("---");
@@ -107,7 +111,19 @@ public class SummaryPanelView extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        structuresTable.setRowSelectionAllowed(false);
         jScrollPane2.setViewportView(structuresTable);
+        if (structuresTable.getColumnModel().getColumnCount() > 0) {
+            structuresTable.getColumnModel().getColumn(0).setMinWidth(35);
+            structuresTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+            structuresTable.getColumnModel().getColumn(0).setMaxWidth(150);
+            structuresTable.getColumnModel().getColumn(2).setMinWidth(80);
+            structuresTable.getColumnModel().getColumn(2).setPreferredWidth(130);
+            structuresTable.getColumnModel().getColumn(2).setMaxWidth(130);
+            structuresTable.getColumnModel().getColumn(3).setMinWidth(80);
+            structuresTable.getColumnModel().getColumn(3).setPreferredWidth(130);
+            structuresTable.getColumnModel().getColumn(3).setMaxWidth(130);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -126,7 +142,8 @@ public class SummaryPanelView extends javax.swing.JPanel {
                             .addComponent(nOfStructuresLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(nOfReviewsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(nOfUsersLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+                    .addComponent(jSeparator1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -145,7 +162,9 @@ public class SummaryPanelView extends javax.swing.JPanel {
                     .addComponent(nOfReviewsLabel)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -156,6 +175,7 @@ public class SummaryPanelView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel nOfReviewsLabel;
     private javax.swing.JLabel nOfStructuresLabel;
     private javax.swing.JLabel nOfUsersLabel;
