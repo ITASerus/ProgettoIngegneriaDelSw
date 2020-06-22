@@ -16,7 +16,7 @@ weak var mapViewPlaceOfStructure: MKMapView!
 
 class StructureDetailViewController: UIViewController {
 
- 
+    
     
     var recensione1 = Review(id: 9, title: "Tutto bello", description: "Camere confortevoli e pulite. Ci tornerò sicuramente!", points: 4, date: "10/01/1996", author: "Maria")
     var recensione2 = Review(id: 3, title: "Carino", description: "Nulla di eccezionale ma visto il rapporto qualità prezzo, non mi lamento.", points: 3, date: "02/10/2020", author: "Enrico")
