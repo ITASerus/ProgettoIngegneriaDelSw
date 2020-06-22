@@ -105,6 +105,7 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
             
             let points = structuresSection1[indexPath.row].avgPoints ?? 0.0
 
+            
             if (points < 0.5) {
                 cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
             } else if (points < 1) {
