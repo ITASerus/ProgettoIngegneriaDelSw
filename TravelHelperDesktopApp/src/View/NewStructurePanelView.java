@@ -82,7 +82,7 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         nameLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        nameLabel.setText("Nome*");
+        nameLabel.setText("*Nome");
 
         placeLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         placeLabel.setText("Luogo");
@@ -162,7 +162,7 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         );
 
         categoryLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        categoryLabel.setText("Categoria");
+        categoryLabel.setText("*Categoria");
 
         categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "Hotel", "Resort", "Attività", "Cibo" }));
         categoryComboBox.setToolTipText("Selezionare la categoria che rappresenta la struttura.");
@@ -319,21 +319,25 @@ public class NewStructurePanelView extends javax.swing.JPanel {
     }//GEN-LAST:event_enablePriceCheckBoxActionPerformed
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-        Structure newStructure = controller.createNewStructure(nameTextField.getText(), 
-                                                               placeTextField.getText(), 
-                                                               categoryComboBox.getSelectedItem().toString(),
-                                                               priceTextField.getText(), 
-                                                               webSiteTextField.getText(), 
-                                                               contactsTextField.getText(), 
-                                                               descriptionTextPane.getText(),
-                                                               imagePathTextField.getText());
+        if(!nameTextField.getText().isBlank() && (categoryComboBox.getSelectedIndex() != 0)) {
+            Structure newStructure = controller.createNewStructure(nameTextField.getText(), 
+                                                                   placeTextField.getText(), 
+                                                                   categoryComboBox.getSelectedItem().toString(),
+                                                                   priceTextField.getText(), 
+                                                                   webSiteTextField.getText(), 
+                                                                   contactsTextField.getText(), 
+                                                                   descriptionTextPane.getText(),
+                                                                   imagePathTextField.getText());
         
-        if(newStructure != null) {
-            JOptionPane.showMessageDialog(this, "Struttura aggiunta con successo!", "OK!", JOptionPane.INFORMATION_MESSAGE);
-            controller.setInfoStructurePanel(parent, newStructure); //Change the panel shown
+            if(newStructure != null) {
+                JOptionPane.showMessageDialog(this, "Struttura aggiunta con successo!", "OK!", JOptionPane.INFORMATION_MESSAGE);
+                controller.setInfoStructurePanel(parent, newStructure); //Change the panel shown
+            } else {
+                JOptionPane.showMessageDialog(this, "Struttura non aggiunta.\nControllare che i campi non contengano caratteri speciali", "Errore creazione!", JOptionPane.ERROR_MESSAGE);
+            }   
         } else {
-            JOptionPane.showMessageDialog(this, "Struttura non aggiunta.\nInserire almeno il nome della struttura.", "Errore creazione!", JOptionPane.ERROR_MESSAGE);
-        }   
+            JOptionPane.showMessageDialog(this, "Struttura non aggiunta.\nIl nome e la categoria sono campi obbligatori.", "Errore campi obbligatori!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_confirmButtonActionPerformed
 
     private void priceSliderMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_priceSliderMouseReleased

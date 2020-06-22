@@ -10,6 +10,7 @@ import Model.Structure;
 
 //AWT
 import java.awt.BorderLayout;
+import javax.swing.JOptionPane;
 
 import javax.swing.JPanel;
 
@@ -89,18 +90,23 @@ public class MainFrameView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         summaryMenuItem = new javax.swing.JMenuItem();
         logOutMenuItem = new javax.swing.JMenuItem();
-        addStructureMenuItem = new javax.swing.JMenu();
-        newStructureMenuItem = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        addStructureMenuItem = new javax.swing.JMenuItem();
         searchStructureMenuItem = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        addUserMenuItem = new javax.swing.JMenuItem();
+        searchUserMenuItem = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        addReviewMenuItem = new javax.swing.JMenuItem();
+        searchReviewMenuItem = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,16 +132,16 @@ public class MainFrameView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        addStructureMenuItem.setText("Strutture");
+        jMenu2.setText("Strutture");
 
-        newStructureMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        newStructureMenuItem.setText("Nuova Struttura");
-        newStructureMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        addStructureMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        addStructureMenuItem.setText("Aggiungi Struttura");
+        addStructureMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newStructureMenuItemActionPerformed(evt);
+                addStructureMenuItemActionPerformed(evt);
             }
         });
-        addStructureMenuItem.add(newStructureMenuItem);
+        jMenu2.add(addStructureMenuItem);
 
         searchStructureMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         searchStructureMenuItem.setText("Ricerca Struttura");
@@ -144,21 +150,48 @@ public class MainFrameView extends javax.swing.JFrame {
                 searchStructureMenuItemActionPerformed(evt);
             }
         });
-        addStructureMenuItem.add(searchStructureMenuItem);
+        jMenu2.add(searchStructureMenuItem);
 
-        jMenuBar1.add(addStructureMenuItem);
+        jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Utenti");
 
-        jMenuItem4.setText("Aggiungi Utente");
-        jMenu3.add(jMenuItem4);
+        addUserMenuItem.setText("Aggiungi Utente");
+        addUserMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addUserMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu3.add(addUserMenuItem);
 
-        jMenuItem5.setText("Ricerca Utente");
-        jMenu3.add(jMenuItem5);
+        searchUserMenuItem.setText("Ricerca Utente");
+        searchUserMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchUserMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu3.add(searchUserMenuItem);
 
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Recensioni");
+
+        addReviewMenuItem.setText("Aggiungi Recensione");
+        addReviewMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addReviewMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu4.add(addReviewMenuItem);
+
+        searchReviewMenuItem.setText("Ricerca Recensione");
+        searchReviewMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchReviewMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu4.add(searchReviewMenuItem);
+
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Aiuto");
@@ -180,13 +213,13 @@ public class MainFrameView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void newStructureMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newStructureMenuItemActionPerformed
+    private void addStructureMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStructureMenuItemActionPerformed
         NewStructurePanelView n = new NewStructurePanelView(this);
         n.setVisible(true);
         n.validate();
         validate();
         changePanel(n);
-    }//GEN-LAST:event_newStructureMenuItemActionPerformed
+    }//GEN-LAST:event_addStructureMenuItemActionPerformed
 
     private void summaryMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_summaryMenuItemActionPerformed
         setSummaryPanel();
@@ -216,6 +249,22 @@ public class MainFrameView extends javax.swing.JFrame {
             pack();
         }
     }//GEN-LAST:event_logOutMenuItemActionPerformed
+
+    private void addUserMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserMenuItemActionPerformed
+        JOptionPane.showMessageDialog(this, "Funzionalità non richiesta ma elemento inserito\nnel menù per possibili espansioni future", "Coming Soon" , JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_addUserMenuItemActionPerformed
+
+    private void searchUserMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserMenuItemActionPerformed
+        JOptionPane.showMessageDialog(this, "Funzionalità non richiesta ma elemento inserito\nnel menù per possibili espansioni future", "Coming Soon" , JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_searchUserMenuItemActionPerformed
+
+    private void addReviewMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addReviewMenuItemActionPerformed
+        JOptionPane.showMessageDialog(this, "Funzionalità non richiesta ma elemento inserito\nnel menù per possibili espansioni future", "Coming Soon" , JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_addReviewMenuItemActionPerformed
+
+    private void searchReviewMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchReviewMenuItemActionPerformed
+        JOptionPane.showMessageDialog(this, "Funzionalità non richiesta ma elemento inserito\nnel menù per possibili espansioni future", "Coming Soon" , JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_searchReviewMenuItemActionPerformed
     
     /**
      * @param args the command line arguments
@@ -261,17 +310,20 @@ public class MainFrameView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu addStructureMenuItem;
+    private javax.swing.JMenuItem addReviewMenuItem;
+    private javax.swing.JMenuItem addStructureMenuItem;
+    private javax.swing.JMenuItem addUserMenuItem;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem logOutMenuItem;
-    private javax.swing.JMenuItem newStructureMenuItem;
+    private javax.swing.JMenuItem searchReviewMenuItem;
     private javax.swing.JMenuItem searchStructureMenuItem;
+    private javax.swing.JMenuItem searchUserMenuItem;
     private javax.swing.JMenuItem summaryMenuItem;
     // End of variables declaration//GEN-END:variables
 }

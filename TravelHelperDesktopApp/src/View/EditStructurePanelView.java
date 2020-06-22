@@ -348,7 +348,7 @@ public class EditStructurePanelView extends javax.swing.JPanel {
                 
                 parent.setSummaryPanel();
             } else {
-                JOptionPane.showMessageDialog(null, "Modifiche non effettuate", "ERRORE!", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Modifiche non effettuate.\nControllare i valori inseriti.", "ERRORE!", JOptionPane.WARNING_MESSAGE);
             }
         }
     }//GEN-LAST:event_confirmButtonActionPerformed
