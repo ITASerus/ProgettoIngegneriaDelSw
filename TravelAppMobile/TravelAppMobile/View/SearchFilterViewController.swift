@@ -52,6 +52,11 @@ class SearchFilterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        lowerPriceTextFieldOutlet.keyboardType = .asciiCapableNumberPad
+        
+        upperPriceTextFieldOutlet.keyboardType = .asciiCapableNumberPad
+        
         starButtonsArray = [star1, star2, star3, star4, star5]
         
         categoryPickerView.dataSource = self
@@ -62,18 +67,23 @@ class SearchFilterViewController: UIViewController {
        
         viewBackground.layer.cornerRadius = 20
         viewBackground.layer.shadowRadius = 5
-        viewBackground.layer.shadowOpacity = 1
+        viewBackground.layer.shadowOpacity = 0.5
+        viewBackground.layer.shadowOffset = CGSize(width: 0, height: 3)
+        
         
          let gradient = CAGradientLayer()
         gradient.cornerRadius = 20
          gradient.frame = viewBackground.bounds
-         gradient.colors = [UIColor.gray.cgColor, UIColor.lightGray.cgColor]
+         gradient.colors = [UIColor(red: 0.88, green: 0.83, blue: 0.71, alpha: 1.00).cgColor, UIColor(red: 0.94, green: 0.93, blue: 0.87, alpha: 1.00).cgColor]
 
-         viewBackground.layer.insertSublayer(gradient, at: 50)
+         viewBackground.layer.insertSublayer(gradient, at: 70)
         
-        viewBackground.alpha = 0.25
+        viewBackground.alpha = 0.85
         // Do any additional setup after loading the view.
+        
     }
+    
+    
     
     //Set value of stars
     @IBAction func starButtonAction(_ sender: UIButton) {
@@ -85,6 +95,10 @@ class SearchFilterViewController: UIViewController {
             }
         }
         totalStars = sender.tag
+    }
+    
+    func setNothingTextfieldWhenClick(){
+        nameTextFieldOutlet.text! = ""
     }
 
   
@@ -98,22 +112,27 @@ class SearchFilterViewController: UIViewController {
         var stringLowerPrice : String = "&lowerPrice="
         var stringUpperPrice : String = "&upperPrice="
         var stringAvgPoints : String = "&avgPoints="
+        
+        
+               
+               
+              
 
-        if (nameTextFieldOutlet.text!.count != 0) {
+        if (nameTextFieldOutlet.text!.count != 0 ) {
         stringName = stringName + nameTextFieldOutlet.text!
             stringName.changeCharachtersOfSpaces()
         }else{
              stringName = stringName + "null"
         }
         
-        if (placesTextFieldOutlet.text!.count != 0) {
+        if (placesTextFieldOutlet.text!.count != 0 ) {
         stringPlace = stringPlace + placesTextFieldOutlet.text!
         stringPlace.changeCharachtersOfSpaces()
         }else{
              stringPlace = stringPlace + "null"
         }
 
-        if (webSiteTextFieldOutlet.text!.count != 0) {
+        if (webSiteTextFieldOutlet.text!.count != 0 ) {
             stringWebSite = stringWebSite +
                 webSiteTextFieldOutlet.text!
             stringWebSite.changeCharachtersOfSpaces()
@@ -123,7 +142,7 @@ class SearchFilterViewController: UIViewController {
         
         stringCategory = stringCategory + stringCategoryFromPicker
         
-        if (contactTextFieldOutlet.text!.count != 0) {
+        if (contactTextFieldOutlet.text!.count != 0 ) {
             stringContacts = stringContacts + contactTextFieldOutlet.text!
             }else{
                  stringContacts = stringContacts + "null"
@@ -138,13 +157,13 @@ class SearchFilterViewController: UIViewController {
             stringAvgPoints = stringAvgPoints + "null"
         }
         
-        if (lowerPriceTextFieldOutlet.text! != "0") {
+        if (lowerPriceTextFieldOutlet.text! != "Prezzo Min" && lowerPriceTextFieldOutlet.text!.count != 0) {
                  stringLowerPrice = stringLowerPrice + lowerPriceTextFieldOutlet.text!
                    }else{
                            stringLowerPrice = stringLowerPrice + "-1"
                    }
         
-        if (upperPriceTextFieldOutlet.text! != "0") {
+        if (upperPriceTextFieldOutlet.text! != "Prezzo Max" && upperPriceTextFieldOutlet.text!.count != 0) {
             stringUpperPrice = stringUpperPrice + upperPriceTextFieldOutlet.text!
             }else{
                     stringUpperPrice = stringUpperPrice + "-1"
