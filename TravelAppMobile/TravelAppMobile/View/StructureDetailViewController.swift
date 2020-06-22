@@ -12,7 +12,7 @@ import MapKit
 import AddressBookUI
 
 weak var mapViewPlaceOfStructure: MKMapView!
-//var phoneNum : String = "" Git
+//Git
 
 class StructureDetailViewController: UIViewController {
 
@@ -24,6 +24,9 @@ class StructureDetailViewController: UIViewController {
     
     var indexCellSelected: Int?
     var reviewsList = [Review]()
+    
+    
+    @IBOutlet weak var imageOfStructure: UIImageView!
     
        @IBOutlet weak var mapViewPlaceOfStructure: MKMapView!
     @IBOutlet weak var categoryLabel: UILabel!
@@ -38,10 +41,7 @@ class StructureDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-//        showMapOfPlace()
+
         
         reviewsTableView.delegate = self
         reviewsTableView.dataSource = self
@@ -81,6 +81,18 @@ class StructureDetailViewController: UIViewController {
         
     }
     
+    
+    @IBAction func actionButtonGoByMapToStructure(_ sender: UIButton) {
+         print("posto ->\(structure.place!)")
+//        goToMapOfStructure(addressPlace: structure.place!)
+    }
+    
+    @IBAction func actionButtoCallNumberoOfStructure(_ sender: UIButton) {
+        print("Numero da chiamare ->\(structure.contacts!)")
+        callNumberOfStructure(phoneNum: structure.contacts!)
+        
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ReviewDetailSegue" {
             let destinationViewController = segue.destination as! ReviewDetailViewController
@@ -113,36 +125,42 @@ extension StructureDetailViewController: UITableViewDelegate, UITableViewDataSou
     }
 }
 
-//func callNumberOfStructure(phoneNum : String ){
-//    if let url = URL(string: "tel://\(phoneNum)"), UIApplication.shared.canOpenURL(url) {
-//        if #available(iOS 10, *) {
-//            UIApplication.shared.open(url)
-//        } else {
-//            UIApplication.shared.openURL(url)
-//        }
-//    }
-//}
-/*
-func showMapOfPlace (){
-       
-            var placemark: CLPlacemark!
-            var postoCheCerco : String = "Via manzoni 75 napoli"
-            
-            CLGeocoder().geocodeAddressString(postoCheCerco, completionHandler: {(placemarks, error)->Void in
-                if error == nil {
-                    
-                    placemark = placemarks![0]
-                    
-                  mapViewPlaceOfStructure.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2DMake (placemark.location!.coordinate.latitude, placemark.location!.coordinate.longitude), span: MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)), animated: true)
-                    
-                    let puntoCercato = MKPointAnnotation()
-                    puntoCercato.coordinate = placemark.location!.coordinate
-                    puntoCercato.title = placemark.locality
-                    puntoCercato.subtitle = postoCheCerco
-                   mapViewPlaceOfStructure.addAnnotation(puntoCercato)
-                    
+
+
+private func callNumberOfStructure(phoneNum: String) {
+    var phoneNumToUse = phoneNum
+    phoneNumToUse.removeSpaces()
+    if let url = URL(string: "tel://+39\(phoneNumToUse)") {
+        let application = UIApplication.shared
+        guard application.canOpenURL(url) else {
+            return
         }
-            })
+        application.open(url, options: [:], completionHandler: nil)
     }
- */
+}
+
+/*
+private func goToMapOfStructure(addressPlace: String) {
+    
+    
+   
+    
+    let source = CLGeocoder()
+    geoCoder.geocodeAddressString("via manzoni 75, napoli, italy")
+
+    MKMapItem.openMaps(with: [source, addressPlace], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+    
+    var addressPlaceToUse = addressPlace
+     addressPlaceToUse.removeSpaces()
+    
+    if let url = URL(string: "map://\(addressPlaceToUse)") {
+        let application = UIApplication.shared
+        guard application.canOpenURL(url) else {
+            return
+        }
+        application.open(url, options: [:], completionHandler: nil)
+    }
+
+}
+*/
 

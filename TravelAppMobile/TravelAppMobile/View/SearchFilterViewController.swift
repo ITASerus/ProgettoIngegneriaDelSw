@@ -211,6 +211,18 @@ extension String {
         }
         return stringCopy
     }
+    
+    mutating func removeSpaces() {
+        var stringCopy = ""
+        for char in self {
+            if char == " " {
+                stringCopy.append("")
+            } else {
+                stringCopy.append(char)
+            }
+        }
+        self = stringCopy
+    }
 }
 
 extension SearchFilterViewController: UIPickerViewDelegate, UIPickerViewDataSource {

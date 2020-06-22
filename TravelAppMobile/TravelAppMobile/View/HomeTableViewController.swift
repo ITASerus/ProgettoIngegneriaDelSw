@@ -105,30 +105,31 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
             
             let points = structuresSection1[indexPath.row].avgPoints ?? 0.0
 
+            cell.pointsImageView.image = UIImage (imageLiteralResourceName: GeneralReusables.starsImageAssetName(avgPoints: points))
             
-            if (points < 0.5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
-            } else if (points < 1) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0,5stars.pdf")
-            } else if ( points < 1.5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1stars.pdf")
-            } else if (points < 2) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1,5stars.pdf")
-            } else if (points < 2.5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2stars.pdf")
-            } else if ( points < 3) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2,5stars.pdf")
-            } else if (points < 3.5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3stars.pdf")
-            }else if (points < 4) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3,5stars.pdf")
-            } else if (points < 4.5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4stars.pdf")
-            } else if (points < 5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4,5stars.pdf")
-            } else {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "5stars.pdf")
-            }
+//            if (points < 0.5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
+//            } else if (points < 1) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0,5stars.pdf")
+//            } else if ( points < 1.5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1stars.pdf")
+//            } else if (points < 2) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1,5stars.pdf")
+//            } else if (points < 2.5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2stars.pdf")
+//            } else if ( points < 3) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2,5stars.pdf")
+//            } else if (points < 3.5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3stars.pdf")
+//            }else if (points < 4) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3,5stars.pdf")
+//            } else if (points < 4.5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4stars.pdf")
+//            } else if (points < 5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4,5stars.pdf")
+//            } else {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "5stars.pdf")
+//            }
             
             // Manage image
             if (structuresSection1[indexPath.row].image != nil) {
@@ -169,29 +170,31 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
             
             let points = structuresSection2[indexPath.row].avgPoints ?? 0.0
             
-            if (points < 0.5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
-            } else if (points < 1) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0,5stars.pdf")
-            } else if ( points < 1.5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1stars.pdf")
-            } else if (points < 2) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1,5stars.pdf")
-            } else if (points < 2.5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2stars.pdf")
-            } else if ( points < 3) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2,5stars.pdf")
-            } else if (points < 3.5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3stars.pdf")
-            }else if (points < 4) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3,5stars.pdf")
-            } else if (points < 4.5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4stars.pdf")
-            } else if (points < 5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4,5stars.pdf")
-            } else {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "5stars.pdf")
-            }
+            cell.pointsImageView.image = UIImage (imageLiteralResourceName: GeneralReusables.starsImageAssetName(avgPoints: points))
+            
+//            if (points < 0.5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
+//            } else if (points < 1) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0,5stars.pdf")
+//            } else if ( points < 1.5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1stars.pdf")
+//            } else if (points < 2) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1,5stars.pdf")
+//            } else if (points < 2.5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2stars.pdf")
+//            } else if ( points < 3) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2,5stars.pdf")
+//            } else if (points < 3.5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3stars.pdf")
+//            }else if (points < 4) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3,5stars.pdf")
+//            } else if (points < 4.5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4stars.pdf")
+//            } else if (points < 5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4,5stars.pdf")
+//            } else {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "5stars.pdf")
+//            }
             
             // Manage image
             if (structuresSection1[indexPath.row].image != nil) {
@@ -232,29 +235,31 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
             
             let points = structuresSection3[indexPath.row].avgPoints ?? 0.0
             
-            if (points < 0.5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
-            } else if (points < 1) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0,5stars.pdf")
-            } else if ( points < 1.5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1stars.pdf")
-            } else if (points < 2) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1,5stars.pdf")
-            } else if (points < 2.5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2stars.pdf")
-            } else if ( points < 3) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2,5stars.pdf")
-            } else if (points < 3.5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3stars.pdf")
-            }else if (points < 4) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3,5stars.pdf")
-            } else if (points < 4.5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4stars.pdf")
-            } else if (points < 5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4,5stars.pdf")
-            } else {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "5stars.pdf")
-            }
+            cell.pointsImageView.image = UIImage (imageLiteralResourceName: GeneralReusables.starsImageAssetName(avgPoints: points))
+            
+//            if (points < 0.5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
+//            } else if (points < 1) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0,5stars.pdf")
+//            } else if ( points < 1.5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1stars.pdf")
+//            } else if (points < 2) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1,5stars.pdf")
+//            } else if (points < 2.5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2stars.pdf")
+//            } else if ( points < 3) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2,5stars.pdf")
+//            } else if (points < 3.5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3stars.pdf")
+//            }else if (points < 4) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3,5stars.pdf")
+//            } else if (points < 4.5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4stars.pdf")
+//            } else if (points < 5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4,5stars.pdf")
+//            } else {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "5stars.pdf")
+//            }
             
             // Manage image
             if (structuresSection1[indexPath.row].image != nil) {
@@ -294,29 +299,31 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
                 
             let points = structuresSection4[indexPath.row].avgPoints ?? 0.0
 
-            if (points < 0.5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
-            } else if (points < 1) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0,5stars.pdf")
-            } else if ( points < 1.5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1stars.pdf")
-            } else if (points < 2) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1,5stars.pdf")
-            } else if (points < 2.5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2stars.pdf")
-            } else if ( points < 3) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2,5stars.pdf")
-            } else if (points < 3.5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3stars.pdf")
-            }else if (points < 4) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3,5stars.pdf")
-            } else if (points < 4.5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4stars.pdf")
-            } else if (points < 5) {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4,5stars.pdf")
-            } else {
-                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "5stars.pdf")
-            }
+            cell.pointsImageView.image = UIImage (imageLiteralResourceName: GeneralReusables.starsImageAssetName(avgPoints: points))
+            
+//            if (points < 0.5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
+//            } else if (points < 1) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0,5stars.pdf")
+//            } else if ( points < 1.5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1stars.pdf")
+//            } else if (points < 2) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1,5stars.pdf")
+//            } else if (points < 2.5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2stars.pdf")
+//            } else if ( points < 3) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2,5stars.pdf")
+//            } else if (points < 3.5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3stars.pdf")
+//            }else if (points < 4) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3,5stars.pdf")
+//            } else if (points < 4.5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4stars.pdf")
+//            } else if (points < 5) {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4,5stars.pdf")
+//            } else {
+//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "5stars.pdf")
+//            }
             
             // Manage image
             if (structuresSection1[indexPath.row].image != nil) {

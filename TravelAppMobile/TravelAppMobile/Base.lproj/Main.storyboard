@@ -1441,6 +1441,22 @@
                                                 <rect key="frame" x="27" y="990" width="321" height="233"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </mapView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDC-Lc-jCv">
+                                                <rect key="frame" x="109" y="1250" width="157" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Mostrami le indicazioni"/>
+                                                <connections>
+                                                    <action selector="actionButtonGoByMapToStructure:" destination="Afh-LC-8ea" eventType="touchUpInside" id="yvK-gs-hnk"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d42-eP-1bp">
+                                                <rect key="frame" x="142" y="740" width="115" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Chiama struttura"/>
+                                                <connections>
+                                                    <action selector="actionButtoCallNumberoOfStructure:" destination="Afh-LC-8ea" eventType="touchUpInside" id="jhA-qu-Ixk"/>
+                                                </connections>
+                                            </button>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d6C-oA-GNz">
                                                 <rect key="frame" x="0.0" y="1328" width="375" height="505"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1542,6 +1558,7 @@
                         <outlet property="categoryLabel" destination="lf4-36-6vG" id="aTw-6l-pUi"/>
                         <outlet property="contactsLabel" destination="pJl-kr-unb" id="2et-Zr-3GK"/>
                         <outlet property="descriptionTextView" destination="wVz-Sx-fhd" id="c66-y4-gm4"/>
+                        <outlet property="imageOfStructure" destination="PmU-hZ-Uib" id="3Aw-AS-Ehk"/>
                         <outlet property="mapViewPlaceOfStructure" destination="MYh-Zf-Yxv" id="zxZ-PE-MbC"/>
                         <outlet property="nameLabel" destination="R43-Fe-2ag" id="sGa-dN-fZV"/>
                         <outlet property="placeLabel" destination="GUw-OJ-Xs1" id="sKs-oZ-6aq"/>
