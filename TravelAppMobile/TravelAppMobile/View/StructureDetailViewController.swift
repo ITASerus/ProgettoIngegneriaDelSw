@@ -12,7 +12,7 @@ import MapKit
 import AddressBookUI
 
 weak var mapViewPlaceOfStructure: MKMapView!
-//var phoneNum : String = ""
+//var phoneNum : String = "" Git
 
 class StructureDetailViewController: UIViewController {
 
@@ -25,8 +25,7 @@ class StructureDetailViewController: UIViewController {
     var indexCellSelected: Int?
     var reviewsList = [Review]()
     
-    @IBOutlet weak var callButton: UIButton!
-    @IBOutlet weak var mapViewPlaceOfStructure: MKMapView!
+       @IBOutlet weak var mapViewPlaceOfStructure: MKMapView!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var placeLabel: UILabel!
@@ -82,21 +81,6 @@ class StructureDetailViewController: UIViewController {
         
     }
     
-    func callNumberOfStructure(phoneNum : String){
-        if let url = URL(string: "tel://\(phoneNum)"), UIApplication.shared.canOpenURL(url) {
-            if #available(iOS 10, *) {
-                UIApplication.shared.open(url)
-            } else {
-                UIApplication.shared.openURL(url)
-            }
-        }
-    }
-    
-    
-    @IBAction func callNowPhoneNumber(_ sender: UIButton) {
-        callNumberOfStructure()
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ReviewDetailSegue" {
             let destinationViewController = segue.destination as! ReviewDetailViewController
@@ -129,9 +113,15 @@ extension StructureDetailViewController: UITableViewDelegate, UITableViewDataSou
     }
 }
 
-
-
-
+//func callNumberOfStructure(phoneNum : String ){
+//    if let url = URL(string: "tel://\(phoneNum)"), UIApplication.shared.canOpenURL(url) {
+//        if #available(iOS 10, *) {
+//            UIApplication.shared.open(url)
+//        } else {
+//            UIApplication.shared.openURL(url)
+//        }
+//    }
+//}
 /*
 func showMapOfPlace (){
        
