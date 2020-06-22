@@ -148,7 +148,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Grande" size="13" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Nome*"/>
+        <Property name="text" type="java.lang.String" value="*Nome"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="placeLabel">
@@ -294,7 +294,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Grande" size="13" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Categoria"/>
+        <Property name="text" type="java.lang.String" value="*Categoria"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="categoryComboBox">
