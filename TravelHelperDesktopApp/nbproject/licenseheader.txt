@@ -1,0 +1,9 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Progetto Ingegneria del Software A.A 2019-2020
+${licensePrefix}CdL Informatica - Università di Napoli Federico II
+${licensePrefix}Applicativo Desktop realizzato da Ernesto De Crecchio - Matricola N86001595
+<#if licenseLast??>
+${licenseLast}
+</#if>
