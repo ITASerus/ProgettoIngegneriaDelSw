@@ -65,7 +65,7 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="imagePathTextField" pref="293" max="32767" attributes="0"/>
+                      <Component id="imagePathTextField" pref="291" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="searchImageButton" max="32767" attributes="0"/>
@@ -123,7 +123,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="descriptionLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="241" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="243" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="photoLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -207,8 +207,6 @@
           <Image iconType="3" name="/Resources/confirm.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Conferma"/>
-        <Property name="horizontalTextPosition" type="int" value="10"/>
-        <Property name="iconTextGap" type="int" value="7"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmButtonActionPerformed"/>
@@ -220,8 +218,6 @@
           <Image iconType="3" name="/Resources/close.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Annulla"/>
-        <Property name="horizontalTextPosition" type="int" value="10"/>
-        <Property name="iconTextGap" type="int" value="18"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="priceTextField">
@@ -360,9 +356,9 @@
     <Component class="javax.swing.JButton" name="searchImageButton">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Resources/search.png"/>
+          <Image iconType="3" name="/Resources/upload.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Cerca Immagine"/>
+        <Property name="text" type="java.lang.String" value="Carica Immagine"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchImageButtonActionPerformed"/>

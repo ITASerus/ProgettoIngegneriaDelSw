@@ -134,8 +134,7 @@ public class NewStructurePanelController {
                     .append("}").toString();
                     
                 structureDAO.editStructure(structure.getId(), json);
-            
-                System.out.println(json);
+                structure.setImage("https://travelappimages.s3.eu-central-1.amazonaws.com/StructuresImage/" + structure.getId()  + "/" + structure.getId() + ".jpg" );
             }
             
             return structure;

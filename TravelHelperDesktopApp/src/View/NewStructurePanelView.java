@@ -109,8 +109,6 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         confirmButton.setBackground(new java.awt.Color(0, 153, 0));
         confirmButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/confirm.png"))); // NOI18N
         confirmButton.setText("Conferma");
-        confirmButton.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        confirmButton.setIconTextGap(7);
         confirmButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmButtonActionPerformed(evt);
@@ -119,8 +117,6 @@ public class NewStructurePanelView extends javax.swing.JPanel {
 
         cancelButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/close.png"))); // NOI18N
         cancelButton.setText("Annulla");
-        cancelButton.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        cancelButton.setIconTextGap(18);
 
         priceTextField.setToolTipText("Inserire il prezzo medio della struttura (selezionabile anche tramite lo slider).");
         priceTextField.setEnabled(false);
@@ -194,8 +190,8 @@ public class NewStructurePanelView extends javax.swing.JPanel {
         photoLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         photoLabel.setText("Foto");
 
-        searchImageButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/search.png"))); // NOI18N
-        searchImageButton.setText("Cerca Immagine");
+        searchImageButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/upload.png"))); // NOI18N
+        searchImageButton.setText("Carica Immagine");
         searchImageButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchImageButtonActionPerformed(evt);
@@ -246,7 +242,7 @@ public class NewStructurePanelView extends javax.swing.JPanel {
                             .addComponent(photoLabel))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(imagePathTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                        .addComponent(imagePathTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(searchImageButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -295,7 +291,7 @@ public class NewStructurePanelView extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(descriptionLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(photoLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
