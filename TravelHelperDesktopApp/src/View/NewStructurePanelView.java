@@ -1,22 +1,26 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Progetto di Ingegneria del Software A.A 2019-2020
+ * CdL Informatica - Università di Napoli Federico II
+ * Realizzato da Ernesto De Crecchio - N86001596
  */
+
 package View;
 
+// Controller
 import Controller.NewStructurePanelController;
+
+// Helper
 import Helper.JTextFieldRegularPopupMenu;
+
+// Java & Swing
 import javax.swing.JOptionPane;
-import Model.Structure;
 import java.awt.BorderLayout;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+// Model
+import Model.Structure;
 
 /**
  * @author ernestodecrecchio

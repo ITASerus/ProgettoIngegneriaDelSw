@@ -1,26 +1,26 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Progetto di Ingegneria del Software A.A 2019-2020
+ * CdL Informatica - Università di Napoli Federico II
+ * Realizzato da Ernesto De Crecchio - N86001596
  */
+
 package Controller;
 
+// Data Access Object
 import DAO.DAOFactory;
 import DAO.StructureDAO;
-import Model.Structure;
-import com.google.gson.Gson;
-import java.net.http.HttpResponse;
-import View.MainFrameView;
-import javax.swing.event.MouseInputListener;
-import java.util.HashMap;
-import java.util.Arrays;
-import java.util.Set;
-import java.util.HashSet;
-import java.io.File;
-import java.io.IOException;
 
+// Model
+import Model.Structure;
+
+// Goolge Gson
+import com.google.gson.Gson;
+
+// View
+import View.MainFrameView;
+
+// Map Management
 import org.jxmapviewer.JXMapViewer;
-import org.jxmapviewer.OSMTileFactoryInfo;
 import org.jxmapviewer.viewer.DefaultTileFactory;
 import org.jxmapviewer.VirtualEarthTileFactoryInfo;
 import org.jxmapviewer.viewer.GeoPosition;
@@ -32,34 +32,24 @@ import org.jxmapviewer.input.CenterMapListener;
 import org.jxmapviewer.viewer.WaypointPainter;
 import Helper.JXMapViewer.FancyWaypointRenderer;
 import Helper.JXMapViewer.MyWaypoint;
-import java.awt.Color;
 
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.Bucket;
-import com.amazonaws.services.s3.model.CopyObjectResult;
-import com.amazonaws.services.s3.model.DeleteObjectsRequest;
-import com.amazonaws.services.s3.model.DeleteObjectsResult;
-import com.amazonaws.services.s3.model.ObjectListing;
-import com.amazonaws.services.s3.model.PutObjectResult;
-import com.amazonaws.services.s3.model.S3Object;
+// Java & Swing
+import java.awt.Color;
+import java.net.http.HttpResponse;
+import javax.swing.event.MouseInputListener;
+import java.util.HashMap;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.HashSet;
+import java.io.File;
+
+// Amazon AWS S3
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.Bucket;
-import com.amazonaws.services.s3.model.DeleteObjectsRequest;
-import com.amazonaws.services.s3.model.ObjectListing;
-import com.amazonaws.services.s3.model.S3Object;
-import com.amazonaws.services.s3.model.S3ObjectInputStream;
-import com.amazonaws.services.s3.model.S3ObjectSummary;
-import com.amazonaws.services.s3.model.ListObjectsRequest;
-import com.amazonaws.services.s3.model.ListObjectsV2Request;
-import com.amazonaws.services.s3.model.ListObjectsV2Result;
-import com.amazonaws.services.s3.transfer.TransferManager;
-
 import Helper.AWS.AWSS3Service;
 
 /**

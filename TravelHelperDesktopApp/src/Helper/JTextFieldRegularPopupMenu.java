@@ -1,17 +1,20 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Progetto di Ingegneria del Software A.A 2019-2020
+ * CdL Informatica - Università di Napoli Federico II
+ * Realizzato da Ernesto De Crecchio - N86001596
  */
+
 package Helper;
+
+// Java & Swing
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import javax.swing.undo.*;
 
 /**
  *
  * @author ernestodecrecchio
  */
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import javax.swing.undo.*;
 
 public class JTextFieldRegularPopupMenu {
     public static void addTo(JTextField txtField) 

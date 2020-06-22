@@ -1,23 +1,18 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Progetto di Ingegneria del Software A.A 2019-2020
+ * CdL Informatica - Università di Napoli Federico II
+ * Realizzato da Ernesto De Crecchio - N86001596
  */
+
 package Controller;
 
+// Data Access Object
 import DAO.DAOFactory;
 import DAO.StructureDAO;
+
+// Map Management
 import Helper.JXMapViewer.FancyWaypointRenderer;
 import Helper.JXMapViewer.MyWaypoint;
-import Model.Structure;
-import View.MainFrameView;
-import java.awt.Color;
-import java.net.http.HttpResponse;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-import javax.swing.event.MouseInputListener;
 import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.VirtualEarthTileFactoryInfo;
 import org.jxmapviewer.input.CenterMapListener;
@@ -28,6 +23,21 @@ import org.jxmapviewer.viewer.DefaultTileFactory;
 import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.TileFactoryInfo;
 import org.jxmapviewer.viewer.WaypointPainter;
+
+// Model
+import Model.Structure;
+
+// View
+import View.MainFrameView;
+
+//Java & Swing
+import java.awt.Color;
+import java.net.http.HttpResponse;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+import javax.swing.event.MouseInputListener;
 
 /**
  *
