@@ -39,8 +39,21 @@
 		D53A5F652482B7F800B67C8C /* SearchFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A5F642482B7F800B67C8C /* SearchFilterViewController.swift */; };
 		D53A5F672482BC0800B67C8C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A5F662482BC0800B67C8C /* WebViewController.swift */; };
 		D53A5F692482BDEA00B67C8C /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A5F682482BDEA00B67C8C /* Singleton.swift */; };
+		D54EC28324A0C602005AB51A /* TravelAppMobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54EC28224A0C602005AB51A /* TravelAppMobileTests.swift */; };
+		D54EC28B24A0C630005AB51A /* GeneralReusables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54EC28A24A0C630005AB51A /* GeneralReusables.swift */; };
+		D54EC28E24A0C713005AB51A /* GeneralReusables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54EC28A24A0C630005AB51A /* GeneralReusables.swift */; };
 		D5F68470247D721C00FA5F58 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F6846F247D721C00FA5F58 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D54EC28524A0C602005AB51A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2592BAC0246AAD4200F220C3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2592BAC7246AAD4200F220C3;
+			remoteInfo = TravelAppMobile;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		25094135246AB37C0045F135 /* BigStructureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigStructureCell.swift; sourceTree = "<group>"; };
@@ -77,11 +90,22 @@
 		D53A5F642482B7F800B67C8C /* SearchFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterViewController.swift; sourceTree = "<group>"; };
 		D53A5F662482BC0800B67C8C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		D53A5F682482BDEA00B67C8C /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
+		D54EC28024A0C602005AB51A /* TravelAppMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TravelAppMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D54EC28224A0C602005AB51A /* TravelAppMobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelAppMobileTests.swift; sourceTree = "<group>"; };
+		D54EC28424A0C602005AB51A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D54EC28A24A0C630005AB51A /* GeneralReusables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralReusables.swift; sourceTree = "<group>"; };
 		D5F6846F247D721C00FA5F58 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2592BAC5246AAD4200F220C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D54EC27D24A0C602005AB51A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -143,6 +167,7 @@
 				25ED3A52246F0D9500A1FBA8 /* HomeController.swift */,
 				25ED3A54246F0DA100A1FBA8 /* ResultsController.swift */,
 				25ED3A56246F0DAF00A1FBA8 /* StructureDetailController.swift */,
+				D54EC28A24A0C630005AB51A /* GeneralReusables.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -151,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				2592BACA246AAD4200F220C3 /* TravelAppMobile */,
+				D54EC28124A0C602005AB51A /* TravelAppMobileTests */,
 				2592BAC9246AAD4200F220C3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -159,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				2592BAC8246AAD4200F220C3 /* TravelAppMobile.app */,
+				D54EC28024A0C602005AB51A /* TravelAppMobileTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -196,6 +223,15 @@
 			path = DAO;
 			sourceTree = "<group>";
 		};
+		D54EC28124A0C602005AB51A /* TravelAppMobileTests */ = {
+			isa = PBXGroup;
+			children = (
+				D54EC28224A0C602005AB51A /* TravelAppMobileTests.swift */,
+				D54EC28424A0C602005AB51A /* Info.plist */,
+			);
+			path = TravelAppMobileTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -216,18 +252,40 @@
 			productReference = 2592BAC8246AAD4200F220C3 /* TravelAppMobile.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D54EC27F24A0C602005AB51A /* TravelAppMobileTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D54EC28724A0C602005AB51A /* Build configuration list for PBXNativeTarget "TravelAppMobileTests" */;
+			buildPhases = (
+				D54EC27C24A0C602005AB51A /* Sources */,
+				D54EC27D24A0C602005AB51A /* Frameworks */,
+				D54EC27E24A0C602005AB51A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D54EC28624A0C602005AB51A /* PBXTargetDependency */,
+			);
+			name = TravelAppMobileTests;
+			productName = TravelAppMobileTests;
+			productReference = D54EC28024A0C602005AB51A /* TravelAppMobileTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		2592BAC0246AAD4200F220C3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1140;
+				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Ernesto De Crecchio";
 				TargetAttributes = {
 					2592BAC7246AAD4200F220C3 = {
 						CreatedOnToolsVersion = 11.4.1;
+					};
+					D54EC27F24A0C602005AB51A = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 2592BAC7246AAD4200F220C3;
 					};
 				};
 			};
@@ -245,6 +303,7 @@
 			projectRoot = "";
 			targets = (
 				2592BAC7246AAD4200F220C3 /* TravelAppMobile */,
+				D54EC27F24A0C602005AB51A /* TravelAppMobileTests */,
 			);
 		};
 /* End PBXProject section */
@@ -259,6 +318,13 @@
 				2592BAD8246AAD4300F220C3 /* LaunchScreen.storyboard in Resources */,
 				2592BAD5246AAD4300F220C3 /* Assets.xcassets in Resources */,
 				2592BAD3246AAD4200F220C3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D54EC27E24A0C602005AB51A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +348,7 @@
 				259029E324795B91008B0C40 /* UIImageCodable.swift in Sources */,
 				25094138246AEC5A0045F135 /* ResultsViewController.swift in Sources */,
 				2597F0A42476821A00A7E2D5 /* Structure.swift in Sources */,
+				D54EC28B24A0C630005AB51A /* GeneralReusables.swift in Sources */,
 				25ED3A5D246F0FA000A1FBA8 /* User.swift in Sources */,
 				D53A5F652482B7F800B67C8C /* SearchFilterViewController.swift in Sources */,
 				2517B4A82473E8E90067B3DB /* HomeTableViewController.swift in Sources */,
@@ -300,7 +367,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D54EC27C24A0C602005AB51A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D54EC28324A0C602005AB51A /* TravelAppMobileTests.swift in Sources */,
+				D54EC28E24A0C713005AB51A /* GeneralReusables.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D54EC28624A0C602005AB51A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2592BAC7246AAD4200F220C3 /* TravelAppMobile */;
+			targetProxy = D54EC28524A0C602005AB51A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2592BAD1246AAD4200F220C3 /* Main.storyboard */ = {
@@ -472,6 +556,48 @@
 			};
 			name = Release;
 		};
+		D54EC28824A0C602005AB51A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R5M755L7D9;
+				INFOPLIST_FILE = TravelAppMobileTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = PieroJuniorGaetani.TravelAppMobileTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TravelAppMobile.app/TravelAppMobile";
+			};
+			name = Debug;
+		};
+		D54EC28924A0C602005AB51A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R5M755L7D9;
+				INFOPLIST_FILE = TravelAppMobileTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = PieroJuniorGaetani.TravelAppMobileTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TravelAppMobile.app/TravelAppMobile";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -489,6 +615,15 @@
 			buildConfigurations = (
 				2592BADD246AAD4300F220C3 /* Debug */,
 				2592BADE246AAD4300F220C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D54EC28724A0C602005AB51A /* Build configuration list for PBXNativeTarget "TravelAppMobileTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D54EC28824A0C602005AB51A /* Debug */,
+				D54EC28924A0C602005AB51A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
