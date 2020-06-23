@@ -17,6 +17,7 @@
 		255719B0246E9F0C00F463C8 /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 255719AF246E9F0C00F463C8 /* SF-Pro-Display-Semibold.otf */; };
 		255719B2246E9F1600F463C8 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 255719B1246E9F1600F463C8 /* SF-Pro-Display-Bold.otf */; };
 		2560E17F246BFD36001669A3 /* ShadowRoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560E17E246BFD36001669A3 /* ShadowRoundedImageView.swift */; };
+		2560EDFD24A2098100464536 /* SearchFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560EDFC24A2098100464536 /* SearchFilterController.swift */; };
 		2584B6B4247BB59200F2B007 /* ReviewDAOProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2584B6B3247BB59200F2B007 /* ReviewDAOProtocol.swift */; };
 		2584B6B6247BB5B900F2B007 /* ReviewDAOAWSElasticBeanstalkImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2584B6B5247BB5B900F2B007 /* ReviewDAOAWSElasticBeanstalkImpl.swift */; };
 		2584B6B8247BB5E100F2B007 /* UserDAOProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2584B6B7247BB5E100F2B007 /* UserDAOProtocol.swift */; };
@@ -66,6 +67,7 @@
 		255719AF246E9F0C00F463C8 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
 		255719B1246E9F1600F463C8 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		2560E17E246BFD36001669A3 /* ShadowRoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowRoundedImageView.swift; sourceTree = "<group>"; };
+		2560EDFC24A2098100464536 /* SearchFilterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterController.swift; sourceTree = "<group>"; };
 		2584B6B3247BB59200F2B007 /* ReviewDAOProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDAOProtocol.swift; sourceTree = "<group>"; };
 		2584B6B5247BB5B900F2B007 /* ReviewDAOAWSElasticBeanstalkImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDAOAWSElasticBeanstalkImpl.swift; sourceTree = "<group>"; };
 		2584B6B7247BB5E100F2B007 /* UserDAOProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDAOProtocol.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				25ED3A54246F0DA100A1FBA8 /* ResultsController.swift */,
 				25ED3A56246F0DAF00A1FBA8 /* StructureDetailController.swift */,
 				D54EC28A24A0C630005AB51A /* GeneralReusables.swift */,
+				2560EDFC24A2098100464536 /* SearchFilterController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				25ED3A5D246F0FA000A1FBA8 /* User.swift in Sources */,
 				D53A5F652482B7F800B67C8C /* SearchFilterViewController.swift in Sources */,
 				2517B4A82473E8E90067B3DB /* HomeTableViewController.swift in Sources */,
+				2560EDFD24A2098100464536 /* SearchFilterController.swift in Sources */,
 				25ED3A53246F0D9500A1FBA8 /* HomeController.swift in Sources */,
 				2584B6B4247BB59200F2B007 /* ReviewDAOProtocol.swift in Sources */,
 				2597F09E24766F7800A7E2D5 /* DAOFactory.swift in Sources */,
@@ -525,13 +529,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R5M755L7D9;
+				DEVELOPMENT_TEAM = 6NHZGWQ43K;
 				INFOPLIST_FILE = TravelAppMobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ernestodecrecchio.TravelAppMobile13;
+				PRODUCT_BUNDLE_IDENTIFIER = ernestodecrecchio.TravelAppMobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -543,13 +547,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R5M755L7D9;
+				DEVELOPMENT_TEAM = 6NHZGWQ43K;
 				INFOPLIST_FILE = TravelAppMobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ernestodecrecchio.TravelAppMobile13;
+				PRODUCT_BUNDLE_IDENTIFIER = ernestodecrecchio.TravelAppMobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

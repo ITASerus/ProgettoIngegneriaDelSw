@@ -13,6 +13,7 @@ public class StructureDAOAWSElasticbeanstalkImpl: StructureDAOProtocol {
     private let GET_BY_ID = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/id="
     private let GET_ALL_STRUCTURES = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/getAll"
     private let GET_ALL_WITH_AVG_POINTS = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/getAllWithAvgPoints"
+    private let GET_BY_FILTER = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/search/"
     
     func getByID(id: Int) -> Structure? {
         let dataStructures = try! Data.init(contentsOf: URL.init(string: GET_BY_ID + String(id))!)
@@ -58,4 +59,34 @@ public class StructureDAOAWSElasticbeanstalkImpl: StructureDAOProtocol {
 
            return nil
        }
+
+    func getStructuresByFilter(name: String, place: String, category: String, contacts: String, webSite: String, lowerPrice: String, upperPrice: String, avgPoints: String) -> [Structure]? {
+        
+        let stringName : String = "name=" + (name.isEmpty ? "null" : name)
+        let stringPlace : String = "&place=" + (place.isEmpty ? "null" : place)
+        let stringCategory : String = "&category=" + (category.isEmpty ? "null" : category)
+        let stringContacts : String = "&contacts=" + (contacts.isEmpty ? "null" : contacts)
+        let stringWebSite : String = "&webSite=" + (webSite.isEmpty ? "null" : webSite)
+        let stringLowerPrice : String = "&lowerPrice=" + (lowerPrice.isEmpty ? "-1" : lowerPrice)
+        let stringUpperPrice : String = "&upperPrice=" + (upperPrice.isEmpty ? "-1" : upperPrice)
+        let stringAvgPoints : String = "&avgPoints=" + (avgPoints.isEmpty ? "null" : avgPoints)
+       
+        var FINAL_URL = GET_BY_FILTER + stringName + stringPlace + stringCategory + stringContacts + stringWebSite + stringLowerPrice + stringUpperPrice + stringAvgPoints
+        
+        FINAL_URL = FINAL_URL.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+        //print(FINAL_URL)
+        
+        let dataStructures = try! Data.init(contentsOf: URL.init(string: FINAL_URL)!)
+        
+        do {
+            let decoder: JSONDecoder = JSONDecoder.init()
+            let structure: [Structure] = try decoder.decode([Structure].self, from: dataStructures)
+            
+            return structure
+        } catch let e {
+            print(e)
+        }
+        
+        return nil
+    }
 }

@@ -10,22 +10,19 @@ import UIKit
 import MapKit
 import CoreLocation
 
-
-
 class HomeTableViewController: UITableViewController {
-    
-    var citta = ""
     let locationManager = CLLocationManager()
     let regionInMeters: Double = 10000
-    
+     
     var sectionSelected: Int?
     var indexCellSelected: Int?
-   
+
     var structuresSection1 = [Structure]()
     var structuresSection2 = [Structure]()
     var structuresSection3 = [Structure]()
     var structuresSection4 = [Structure]()
     
+    @IBOutlet weak var placeLabel: UILabel!
     @IBOutlet weak var section1CollectionView: UICollectionView!
     @IBOutlet weak var section2CollectionView: UICollectionView!
     @IBOutlet weak var section3CollectionView: UICollectionView!
@@ -36,7 +33,8 @@ class HomeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        checkLocationServices() deve essere sistemato a causa di un errore nel proseguimento 
+        locationManager.delegate = self
+        checkLocationServices()
         
         section1CollectionView.delegate = self
         section1CollectionView.dataSource = self
@@ -49,17 +47,9 @@ class HomeTableViewController: UITableViewController {
         
         section4CollectionView.delegate = self
         section4CollectionView.dataSource = self
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-    
-        // Ottieni posizione utente
-        //Richiami endpoint del filtro che contiene la posizione dell utente e assegni l'attay ottenuto a 'structureSection1' ad e
-        //structuresSection1 = controller.getByFilter(nil, nil, nil, nil, nil, "Napoli")
-        
-        structuresSection1 = controller.getAllStructuresWithAvgPoints()
-        structuresSection2 = controller.getAllStructuresWithAvgPoints()
-        structuresSection3 = controller.getAllStructuresWithAvgPoints()
+            
+        structuresSection2 = self.controller.getStructureByFilter(name: "", place: "", category: "", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: "4 e oltre")//controller.getAllStructuresWithAvgPoints()
+        structuresSection3 = self.controller.getStructureByFilter(name: "", place: "", category: "Cibo", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: "")//controller.getAllStructuresWithAvgPoints()
         structuresSection4 = controller.getAllStructuresWithAvgPoints()
     }
     
@@ -78,20 +68,77 @@ class HomeTableViewController: UITableViewController {
             }
         }
     }
+    
+    func checkLocationServices() {
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            checkLocationAuthorization()
+        } else {
+        }
+    }
+    
+    func checkLocationAuthorization() {
+        switch CLLocationManager.authorizationStatus() {
+        case .authorizedWhenInUse:
+            setUserPlaceInController()
+            locationManager.startUpdatingLocation()
+            break
+        case .denied:
+            // Show alert instructing them how to turn on permissions
+            break
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted:
+            // Show an alert letting them know what's up
+            break
+        case .authorizedAlways:
+            break
+        @unknown default:
+            fatalError()
+        }
+    }
+    
+    func setUserPlaceInController() {
+        if let location = locationManager.location?.coordinate {
+            let newLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+            let geocoder = CLGeocoder()
+            geocoder.reverseGeocodeLocation(newLocation) { (placemarks, error) in
+                if let placemarks = placemarks {
+                    for place in placemarks {
+                        self.placeLabel.text = place.administrativeArea?.description
+                        self.controller.setUserPlace(userPlace: place)
+                        
+                        print("cerco a " + self.controller.getUserPlace().locality!)
+                        self.structuresSection1 = self.controller.getStructureByFilter(name: "", place: self.controller.getUserPlace().locality!, category: "", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: "")
+                        
+                        if(self.structuresSection1.count < 7) {
+                            print("cerco a " + self.controller.getUserPlace().administrativeArea!)
+                            self.structuresSection1.append(contentsOf: self.controller.getStructureByFilter(name: "", place: self.controller.getUserPlace().administrativeArea!, category: "", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: ""))
+                            
+                            if(self.structuresSection1.count < 7) {
+                                print("cerco a " + self.controller.getUserPlace().country!)
+                                 self.structuresSection1.append(contentsOf: self.controller.getStructureByFilter(name: "", place: self.controller.getUserPlace().country!, category: "", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: ""))
+                            }
+                        }
+                        
+                        self.section1CollectionView.reloadData()
+                        self.locationManager.stopUpdatingLocation()
+                    }
+                }
+            }
+        }
+    }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
 }
 
 // MARK: - Collection view methods
-
 extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.section1CollectionView {
@@ -117,31 +164,7 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
             let points = structuresSection1[indexPath.row].avgPoints ?? 0.0
 
             cell.pointsImageView.image = UIImage (imageLiteralResourceName: GeneralReusables.starsImageAssetName(avgPoints: points))
-            
-//            if (points < 0.5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
-//            } else if (points < 1) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0,5stars.pdf")
-//            } else if ( points < 1.5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1stars.pdf")
-//            } else if (points < 2) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1,5stars.pdf")
-//            } else if (points < 2.5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2stars.pdf")
-//            } else if ( points < 3) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2,5stars.pdf")
-//            } else if (points < 3.5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3stars.pdf")
-//            }else if (points < 4) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3,5stars.pdf")
-//            } else if (points < 4.5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4stars.pdf")
-//            } else if (points < 5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4,5stars.pdf")
-//            } else {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "5stars.pdf")
-//            }
-            
+                        
             // Manage image
             if (structuresSection1[indexPath.row].image != nil) {
                 if(structuresSection1[indexPath.row].imageDownloaded == nil) {
@@ -157,7 +180,6 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
                         DispatchQueue.main.async {
                             self.structuresSection1[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
                             
-                           // print(self.structuresSection1[indexPath.row].name + " image scaricata")
                             cell.imageview.image = self.structuresSection1[indexPath.row].imageDownloaded?.getImage()
                         }
                     }
@@ -165,7 +187,6 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
                     cell.imageview.image = self.structuresSection1[indexPath.row].imageDownloaded?.getImage()
                 }
             } else {
-                //print(structuresSection1[indexPath.row].name + " image nil")
                 cell.imageview.image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
             }
             
@@ -183,36 +204,12 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
             
             cell.pointsImageView.image = UIImage (imageLiteralResourceName: GeneralReusables.starsImageAssetName(avgPoints: points))
             
-//            if (points < 0.5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
-//            } else if (points < 1) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0,5stars.pdf")
-//            } else if ( points < 1.5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1stars.pdf")
-//            } else if (points < 2) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1,5stars.pdf")
-//            } else if (points < 2.5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2stars.pdf")
-//            } else if ( points < 3) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2,5stars.pdf")
-//            } else if (points < 3.5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3stars.pdf")
-//            }else if (points < 4) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3,5stars.pdf")
-//            } else if (points < 4.5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4stars.pdf")
-//            } else if (points < 5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4,5stars.pdf")
-//            } else {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "5stars.pdf")
-//            }
-            
             // Manage image
-            if (structuresSection1[indexPath.row].image != nil) {
-                if(structuresSection1[indexPath.row].imageDownloaded == nil) {
+            if (structuresSection2[indexPath.row].image != nil) {
+                if(structuresSection2[indexPath.row].imageDownloaded == nil) {
                     cell.imageView.image = UIImage.init(named: "DownloadingImageWBlackShadeV2.pdf")
                     
-                    let imageURL = URL(string: structuresSection1[indexPath.row].image!)!
+                    let imageURL = URL(string: structuresSection2[indexPath.row].image!)!
 
                     // just not to cause a deadlock in UI!
                     DispatchQueue.global().async {
@@ -220,17 +217,15 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
 
                         let image = UIImage(data: imageData!)
                         DispatchQueue.main.async {
-                            self.structuresSection1[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
+                            self.structuresSection2[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
                             
-                           // print(self.structuresSection1[indexPath.row].name + " image scaricata")
-                            cell.imageView.image = self.structuresSection1[indexPath.row].imageDownloaded?.getImage()
+                            cell.imageView.image = self.structuresSection2[indexPath.row].imageDownloaded?.getImage()
                         }
                     }
                 } else {
-                    cell.imageView.image = self.structuresSection1[indexPath.row].imageDownloaded?.getImage()
+                    cell.imageView.image = self.structuresSection2[indexPath.row].imageDownloaded?.getImage()
                 }
             } else {
-                //print(structuresSection1[indexPath.row].name + " image nil")
                 cell.imageView.image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
             }
             
@@ -247,37 +242,13 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
             let points = structuresSection3[indexPath.row].avgPoints ?? 0.0
             
             cell.pointsImageView.image = UIImage (imageLiteralResourceName: GeneralReusables.starsImageAssetName(avgPoints: points))
-            
-//            if (points < 0.5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
-//            } else if (points < 1) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0,5stars.pdf")
-//            } else if ( points < 1.5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1stars.pdf")
-//            } else if (points < 2) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1,5stars.pdf")
-//            } else if (points < 2.5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2stars.pdf")
-//            } else if ( points < 3) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2,5stars.pdf")
-//            } else if (points < 3.5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3stars.pdf")
-//            }else if (points < 4) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3,5stars.pdf")
-//            } else if (points < 4.5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4stars.pdf")
-//            } else if (points < 5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4,5stars.pdf")
-//            } else {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "5stars.pdf")
-//            }
-            
+                        
             // Manage image
-            if (structuresSection1[indexPath.row].image != nil) {
-                if(structuresSection1[indexPath.row].imageDownloaded == nil) {
+            if (structuresSection3[indexPath.row].image != nil) {
+                if(structuresSection3[indexPath.row].imageDownloaded == nil) {
                     cell.imageView.image = UIImage.init(named: "DownloadingImageWBlackShadeV2.pdf")
                     
-                    let imageURL = URL(string: structuresSection1[indexPath.row].image!)!
+                    let imageURL = URL(string: structuresSection3[indexPath.row].image!)!
 
                     // just not to cause a deadlock in UI!
                     DispatchQueue.global().async {
@@ -285,17 +256,15 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
 
                         let image = UIImage(data: imageData!)
                         DispatchQueue.main.async {
-                            self.structuresSection1[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
+                            self.structuresSection3[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
                             
-                           // print(self.structuresSection1[indexPath.row].name + " image scaricata")
-                            cell.imageView.image = self.structuresSection1[indexPath.row].imageDownloaded?.getImage()
+                            cell.imageView.image = self.structuresSection3[indexPath.row].imageDownloaded?.getImage()
                         }
                     }
                 } else {
-                    cell.imageView.image = self.structuresSection1[indexPath.row].imageDownloaded?.getImage()
+                    cell.imageView.image = self.structuresSection3[indexPath.row].imageDownloaded?.getImage()
                 }
             } else {
-                //print(structuresSection1[indexPath.row].name + " image nil")
                 cell.imageView.image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
             }
             
@@ -312,36 +281,12 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
 
             cell.pointsImageView.image = UIImage (imageLiteralResourceName: GeneralReusables.starsImageAssetName(avgPoints: points))
             
-//            if (points < 0.5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
-//            } else if (points < 1) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0,5stars.pdf")
-//            } else if ( points < 1.5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1stars.pdf")
-//            } else if (points < 2) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1,5stars.pdf")
-//            } else if (points < 2.5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2stars.pdf")
-//            } else if ( points < 3) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2,5stars.pdf")
-//            } else if (points < 3.5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3stars.pdf")
-//            }else if (points < 4) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3,5stars.pdf")
-//            } else if (points < 4.5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4stars.pdf")
-//            } else if (points < 5) {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4,5stars.pdf")
-//            } else {
-//                cell.pointsImageView.image = UIImage (imageLiteralResourceName: "5stars.pdf")
-//            }
-            
             // Manage image
-            if (structuresSection1[indexPath.row].image != nil) {
-                if(structuresSection1[indexPath.row].imageDownloaded == nil) {
+            if (structuresSection4[indexPath.row].image != nil) {
+                if(structuresSection4[indexPath.row].imageDownloaded == nil) {
                     cell.imageView.image = UIImage.init(named: "DownloadingImageWBlackShadeV2.pdf")
                     
-                    let imageURL = URL(string: structuresSection1[indexPath.row].image!)!
+                    let imageURL = URL(string: structuresSection4[indexPath.row].image!)!
 
                     // just not to cause a deadlock in UI!
                     DispatchQueue.global().async {
@@ -349,17 +294,15 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
 
                         let image = UIImage(data: imageData!)
                         DispatchQueue.main.async {
-                            self.structuresSection1[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
+                            self.structuresSection4[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
                             
-                           // print(self.structuresSection1[indexPath.row].name + " image scaricata")
-                            cell.imageView.image = self.structuresSection1[indexPath.row].imageDownloaded?.getImage()
+                            cell.imageView.image = self.structuresSection4[indexPath.row].imageDownloaded?.getImage()
                         }
                     }
                 } else {
-                    cell.imageView.image = self.structuresSection1[indexPath.row].imageDownloaded?.getImage()
+                    cell.imageView.image = self.structuresSection4[indexPath.row].imageDownloaded?.getImage()
                 }
             } else {
-                //print(structuresSection1[indexPath.row].name + " image nil")
                 cell.imageView.image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
             }
             
@@ -382,78 +325,19 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
            
         performSegue(withIdentifier: "StructureDetailHomeSegue", sender: self)
     }
-    
-    func setupLocationManager() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        }
-        
-        
-        func centerViewOnUserLocation() {
-            if let location = locationManager.location?.coordinate {
-                let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-                var newLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
-                var geocoder = CLGeocoder()
-                geocoder.reverseGeocodeLocation(newLocation) { (placemarks, error) in
-                        if let placemarks = placemarks {
-                            for place in placemarks {
-                                self.citta = place.locality!
-                                print(place.locality)
-                                print(self.citta)
-                                self.locationManager.stopUpdatingLocation()
-                            }
-                        }
-                }
-       
-            }
-        }
-        
-        
-        func checkLocationServices() {
-            if CLLocationManager.locationServicesEnabled() {
-                setupLocationManager()
-                checkLocationAuthorization()
-            } else {
-                // Show alert letting the user know they have to turn this on.
-            }
-        }
-        
-        
-        func checkLocationAuthorization() {
-            switch CLLocationManager.authorizationStatus() {
-            case .authorizedWhenInUse:
-                
-                centerViewOnUserLocation()
-                locationManager.startUpdatingLocation()
-                break
-            case .denied:
-                // Show alert instructing them how to turn on permissions
-                break
-            case .notDetermined:
-                locationManager.requestWhenInUseAuthorization()
-            case .restricted:
-                // Show an alert letting them know what's up
-                break
-            case .authorizedAlways:
-                break
-            }
-        }
-    }
+}
 
-
-    extension HomeTableViewController: CLLocationManagerDelegate {
-        
-        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            guard let location = locations.last else { return }
-            let region = MKCoordinateRegion.init(center: location.coordinate, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-           
-        }
-        
-        
-        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-            checkLocationAuthorization()
-        }
+// MARK: - Location Manager Delegate
+extension HomeTableViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        let region = MKCoordinateRegion.init(center: location.coordinate, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
     }
+        
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        checkLocationAuthorization()
+    }
+}
 
     
     

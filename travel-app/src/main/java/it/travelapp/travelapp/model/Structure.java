@@ -29,6 +29,8 @@ public class Structure implements Serializable {
     private String contacts;
     private String tag;
     private String description;
+    private Integer nReviews;
+    private Double avgPoints;
 
     @Lob
     @Column(length=100000)
@@ -108,6 +110,14 @@ public class Structure implements Serializable {
 
     public String getImage() { return image;}
     public void setImage(String image) {this.image = image; }
+
+    public Integer getnReviews() { return nReviews; }
+    public void setnOfReviews(Integer nReviews) { this.nReviews = nReviews; }
+
+    public Double getAvgPoints() { return avgPoints; }
+    public void setAvgPoints(Double avgPoints) { this.avgPoints = avgPoints;}
+
+
 
     public Set<Review> getReviews() { return this.reviews; }
 }

@@ -252,6 +252,9 @@ public class StructureController {
                 }
             }
 
+            structure.setnOfReviews(structure.getReviews().size());
+            structure.setAvgPoints(structureRepository.getAveragePoints(structure.getId()));
+
             resultStructure.add(structure);
         }
 

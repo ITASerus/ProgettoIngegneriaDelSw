@@ -2,88 +2,64 @@
 //  SearchFilterViewController.swift
 //  TravelAppMobile
 //
-//  Created by Piero Junior Gaetani on 30/05/2020.
+//  Created by Ernesto De Crecchio, Piero Junior Gaetani on 30/05/2020.
 //  Copyright © 2020 Ernesto De Crecchio. All rights reserved.
 //
 
 import UIKit
 
 class SearchFilterViewController: UIViewController {
-
+    
+    let controller = SearchFilterController()
+    
     @IBOutlet weak var viewBackground: UIView!
     
-
-    private let categoryArray = ["Hotel", "Resort","Experience"]
+    private let categoryArray = ["---", "Hotel", "Resort","Attività", "Cibo"]
+    var starButtonsArray : [UIButton] = []
+    var totalStars : Int = 0
     
-    //Outlet of stars
+    //Star's Outlet
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
     @IBOutlet weak var star3: UIButton!
     @IBOutlet weak var star4: UIButton!
     @IBOutlet weak var star5: UIButton!
 
-    var starButtonsArray : [UIButton] = []
-    var totalStars : Int = 0
-    var stringCategoryFromPicker : String = "Hotel"
-
-
-    
-    //PickerOutlet
     @IBOutlet weak var categoryPickerView: UIPickerView!
     
-    
     //TextFieldOutlet
-    @IBOutlet weak var nameTextFieldOutlet: UITextField!
-    @IBOutlet weak var placesTextFieldOutlet: UITextField!
-    @IBOutlet weak var webSiteTextFieldOutlet: UITextField!
-    @IBOutlet weak var lowerPriceTextFieldOutlet: UITextField!
-    @IBOutlet weak var upperPriceTextFieldOutlet: UITextField!
-
-    @IBOutlet weak var contactTextFieldOutlet: UITextField!
-    
-    var stringBasicOfEndpoint : String = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/search/"
-
-   
-    
-
-
-    
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var placeTextField: UITextField!
+    @IBOutlet weak var webSiteTextField: UITextField!
+    @IBOutlet weak var lowerPriceTextField: UITextField!
+    @IBOutlet weak var upperPriceTextField: UITextField!
+    @IBOutlet weak var contactTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        categoryPickerView.dataSource = self
+        categoryPickerView.delegate = self
         
-        lowerPriceTextFieldOutlet.keyboardType = .asciiCapableNumberPad
-        
-        upperPriceTextFieldOutlet.keyboardType = .asciiCapableNumberPad
+        self.hideKeyboardWhenTappedAround()
         
         starButtonsArray = [star1, star2, star3, star4, star5]
         
-        categoryPickerView.dataSource = self
-        categoryPickerView.delegate = self
-
-         self.hideKeyboardWhenTappedAround()
+        lowerPriceTextField.keyboardType = .asciiCapableNumberPad
+        upperPriceTextField.keyboardType = .asciiCapableNumberPad
         
-       
+        let gradient = CAGradientLayer()
+        gradient.cornerRadius = 20
+        gradient.frame = viewBackground.bounds
+        gradient.colors = [UIColor(red: 0.88, green: 0.83, blue: 0.71, alpha: 1.00).cgColor, UIColor(red: 0.94, green: 0.93, blue: 0.87, alpha: 1.00).cgColor]
+
         viewBackground.layer.cornerRadius = 20
         viewBackground.layer.shadowRadius = 5
         viewBackground.layer.shadowOpacity = 0.5
         viewBackground.layer.shadowOffset = CGSize(width: 0, height: 3)
-        
-        
-         let gradient = CAGradientLayer()
-        gradient.cornerRadius = 20
-         gradient.frame = viewBackground.bounds
-         gradient.colors = [UIColor(red: 0.88, green: 0.83, blue: 0.71, alpha: 1.00).cgColor, UIColor(red: 0.94, green: 0.93, blue: 0.87, alpha: 1.00).cgColor]
-
-         viewBackground.layer.insertSublayer(gradient, at: 70)
-        
+        viewBackground.layer.insertSublayer(gradient, at: 70)
         viewBackground.alpha = 0.85
-        // Do any additional setup after loading the view.
-        
     }
-    
-    
     
     //Set value of stars
     @IBAction func starButtonAction(_ sender: UIButton) {
@@ -97,56 +73,8 @@ class SearchFilterViewController: UIViewController {
         totalStars = sender.tag
     }
     
-    func setNothingTextfieldWhenClick(){
-        nameTextFieldOutlet.text! = ""
-    }
-
-  
     @IBAction func printEndpointGetFinal(_ sender: UIButton) {
-        
-        var stringName : String = "name="
-        var stringPlace : String = "&place="
-        var stringCategory : String = "&category="
-        var stringContacts : String = "&contacts="
-        var stringWebSite : String = "&webSite="
-        var stringLowerPrice : String = "&lowerPrice="
-        var stringUpperPrice : String = "&upperPrice="
-        var stringAvgPoints : String = "&avgPoints="
-        
-        
-               
-               
-              
-
-        if (nameTextFieldOutlet.text!.count != 0 ) {
-        stringName = stringName + nameTextFieldOutlet.text!
-            stringName.changeCharachtersOfSpaces()
-        }else{
-             stringName = stringName + "null"
-        }
-        
-        if (placesTextFieldOutlet.text!.count != 0 ) {
-        stringPlace = stringPlace + placesTextFieldOutlet.text!
-        stringPlace.changeCharachtersOfSpaces()
-        }else{
-             stringPlace = stringPlace + "null"
-        }
-
-        if (webSiteTextFieldOutlet.text!.count != 0 ) {
-            stringWebSite = stringWebSite +
-                webSiteTextFieldOutlet.text!
-            stringWebSite.changeCharachtersOfSpaces()
-        }else{
-            stringWebSite = stringWebSite + "null"
-            }
-        
-        stringCategory = stringCategory + stringCategoryFromPicker
-        
-        if (contactTextFieldOutlet.text!.count != 0 ) {
-            stringContacts = stringContacts + contactTextFieldOutlet.text!
-            }else{
-                 stringContacts = stringContacts + "null"
-            }
+        var stringAvgPoints = String()
         if (totalStars > 0 && totalStars < 5){
             stringAvgPoints = stringAvgPoints + String(totalStars) + "%20e%20oltre"
         }
@@ -157,35 +85,16 @@ class SearchFilterViewController: UIViewController {
             stringAvgPoints = stringAvgPoints + "null"
         }
         
-        if (lowerPriceTextFieldOutlet.text! != "Prezzo Min" && lowerPriceTextFieldOutlet.text!.count != 0) {
-                 stringLowerPrice = stringLowerPrice + lowerPriceTextFieldOutlet.text!
-                   }else{
-                           stringLowerPrice = stringLowerPrice + "-1"
-                   }
-        
-        if (upperPriceTextFieldOutlet.text! != "Prezzo Max" && upperPriceTextFieldOutlet.text!.count != 0) {
-            stringUpperPrice = stringUpperPrice + upperPriceTextFieldOutlet.text!
-            }else{
-                    stringUpperPrice = stringUpperPrice + "-1"
-            }
-        
-        
-
-               var conclusion : String = stringBasicOfEndpoint + stringName + stringPlace + stringCategory + stringContacts + stringWebSite + stringLowerPrice + stringUpperPrice + stringAvgPoints
-               
-         print ("\n\n-> \n\(conclusion)\n<-\n\n")
-        
-        singleton.shared.endpointGetToSearch = conclusion
-        
-        performSegue(withIdentifier: "WebViewSegue", sender: nil)
-        
-        
+        controller.getStructureByFilter(name: nameTextField.text!,
+                                        place: placeTextField.text!,
+                                        category: categoryArray[categoryPickerView.selectedRow(inComponent: 0)],
+                                        contacts: contactTextField.text!,
+                                        webSite: webSiteTextField.text!,
+                                        lowerPrice: lowerPriceTextField.text!,
+                                        upperPrice: upperPriceTextField.text!,
+                                        avgPoints: stringAvgPoints)
     }
-    
-    
 }
-
-
 
 extension String {
     mutating func changeCharachtersOfSpaces() {
@@ -235,16 +144,10 @@ extension SearchFilterViewController: UIPickerViewDelegate, UIPickerViewDataSour
         return categoryArray.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-       print ("balbalbla -> [ \(categoryArray[row]) ]")
-        stringCategoryFromPicker = categoryArray[row]
-    }
-    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return categoryArray[row]
     }
 }
-
 
 // close keyboard
 extension UIViewController {

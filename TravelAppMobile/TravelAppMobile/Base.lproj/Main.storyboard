@@ -143,7 +143,7 @@
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ajr-yn-XEj">
-                                <rect key="frame" x="0.0" y="445" width="375" height="108"/>
+                                <rect key="frame" x="16" y="445" width="344" height="108"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
                         </subviews>
@@ -153,18 +153,18 @@
                     <navigationItem key="navigationItem" title="Cerca" id="rUr-He-Hl3"/>
                     <connections>
                         <outlet property="categoryPickerView" destination="ajr-yn-XEj" id="Tsv-9l-OZf"/>
-                        <outlet property="contactTextFieldOutlet" destination="G0h-PB-ov4" id="cKe-np-qyX"/>
-                        <outlet property="lowerPriceTextFieldOutlet" destination="mgb-EK-EVD" id="eEU-YC-x2h"/>
-                        <outlet property="nameTextFieldOutlet" destination="8di-Qs-iAe" id="9oa-DF-WeA"/>
-                        <outlet property="placesTextFieldOutlet" destination="bbf-Jh-qqW" id="oLE-aV-jI8"/>
+                        <outlet property="contactTextField" destination="G0h-PB-ov4" id="cKe-np-qyX"/>
+                        <outlet property="lowerPriceTextField" destination="mgb-EK-EVD" id="eEU-YC-x2h"/>
+                        <outlet property="nameTextField" destination="8di-Qs-iAe" id="9oa-DF-WeA"/>
+                        <outlet property="placeTextField" destination="bbf-Jh-qqW" id="oLE-aV-jI8"/>
                         <outlet property="star1" destination="dlv-cq-lSt" id="5pP-F2-1qU"/>
                         <outlet property="star2" destination="hh5-51-Em5" id="eHp-6V-ubL"/>
                         <outlet property="star3" destination="sXb-OF-Ww5" id="huS-wd-Vzq"/>
                         <outlet property="star4" destination="rWg-Ns-SBS" id="as4-Df-hTm"/>
                         <outlet property="star5" destination="ZNA-gB-VwR" id="gVe-cn-Pf1"/>
-                        <outlet property="upperPriceTextFieldOutlet" destination="eRI-7S-NY4" id="Rty-Ks-4VQ"/>
+                        <outlet property="upperPriceTextField" destination="eRI-7S-NY4" id="Rty-Ks-4VQ"/>
                         <outlet property="viewBackground" destination="6Mk-pq-WBA" id="DJd-GH-6rj"/>
-                        <outlet property="webSiteTextFieldOutlet" destination="dly-PQ-8in" id="psc-0C-dsb"/>
+                        <outlet property="webSiteTextField" destination="dly-PQ-8in" id="psc-0C-dsb"/>
                         <segue destination="jx3-Oe-H8n" kind="show" identifier="WebViewSegue" id="KTc-Ng-Vrw"/>
                     </connections>
                 </viewController>
@@ -626,7 +626,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome attività" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3jV-CT-YJ4">
-                                                                        <rect key="frame" x="20" y="54" width="277" height="41"/>
+                                                                        <rect key="frame" x="20" y="54" width="277" height="42"/>
                                                                         <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="35"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -703,7 +703,25 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ti trovi:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZq-vK-AQy">
+                                                    <rect key="frame" x="207" y="15" width="52" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                    <color key="textColor" red="0.55308985710000003" green="0.55254918340000003" blue="0.57255214450000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="caricamento..." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="RNu-rc-lMD">
+                                                    <rect key="frame" x="259" y="15" width="97" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="fZq-vK-AQy" firstAttribute="top" secondItem="WsC-Vk-B5v" secondAttribute="topMargin" constant="4" id="3Z2-Ux-tiP"/>
+                                                <constraint firstItem="RNu-rc-lMD" firstAttribute="top" secondItem="WsC-Vk-B5v" secondAttribute="topMargin" constant="4" id="Fzg-ht-KUv"/>
+                                                <constraint firstItem="RNu-rc-lMD" firstAttribute="leading" secondItem="fZq-vK-AQy" secondAttribute="trailing" id="GId-uH-3tR"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="RNu-rc-lMD" secondAttribute="trailing" constant="3" id="UeQ-Ob-bFf"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -996,8 +1014,8 @@
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </collectionReusableView>
                                                 </collectionView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Resort" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTR-qS-Tdt">
-                                                    <rect key="frame" x="16" y="11" width="90" height="35"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cibo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTR-qS-Tdt">
+                                                    <rect key="frame" x="16" y="11" width="64" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
                                                     <nil key="textColor"/>
@@ -1146,8 +1164,8 @@
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </collectionReusableView>
                                                 </collectionView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sport estremi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WrR-4T-xaq">
-                                                    <rect key="frame" x="16" y="11" width="184" height="35"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Attività" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WrR-4T-xaq">
+                                                    <rect key="frame" x="16" y="11" width="98" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
                                                     <nil key="textColor"/>
@@ -1167,6 +1185,7 @@
                     <navigationItem key="navigationItem" title="Home" id="WXC-cS-z7K"/>
                     <size key="freeformSize" width="375" height="1500"/>
                     <connections>
+                        <outlet property="placeLabel" destination="RNu-rc-lMD" id="OeC-8n-N04"/>
                         <outlet property="section1CollectionView" destination="5M0-VS-gyz" id="c6z-F9-nAo"/>
                         <outlet property="section2CollectionView" destination="d5k-JG-D2J" id="IXR-6B-XLq"/>
                         <outlet property="section3CollectionView" destination="Iu5-9R-tCl" id="iTL-6k-o07"/>
@@ -1355,7 +1374,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdS-pa-C5r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1081" y="1340"/>
+            <point key="canvasLocation" x="-1087" y="1381"/>
         </scene>
         <!--Structure Detail View Controller-->
         <scene sceneID="xge-vb-MzE">
@@ -1569,11 +1588,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eln-RE-FPG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4292" y="2387"/>
+            <point key="canvasLocation" x="-2748" y="2531"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Gkc-qy-0g0"/>
+        <segue reference="a1u-Hx-FMj"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="0stars" width="95" height="18"/>
