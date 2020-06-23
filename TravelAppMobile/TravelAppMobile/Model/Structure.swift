@@ -17,15 +17,13 @@ struct Structure: Decodable, Hashable {
     let place : String?
     let category : String?
     let price : Int?
-    // let webSite : URL?
+    let webSite : String?
     let contacts : String?
-    // let tag : String?
     let description : String?
     let image : String?
     let nReviews : Int?
     let avgPoints : Float?
     
     var imageDownloaded: UIImageCodable?
-    
 }
 

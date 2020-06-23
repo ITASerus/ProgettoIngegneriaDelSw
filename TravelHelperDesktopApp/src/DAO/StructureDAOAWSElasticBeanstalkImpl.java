@@ -34,9 +34,9 @@ import Singleton.LoggedUserSingleton;
  */
 public class StructureDAOAWSElasticBeanstalkImpl implements StructureDAO {
     private static final String GET_NUM_STRUCTURES = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/getNum";
-    private static final String CREATE_STRUCTURE = "http://localhost:5000/structures/create";
-    private static final String DELETE_STRUCTURE = "http://localhost:5000/structures/id=";
-    private static final String UPDATE_STRUCTURE = "http://localhost:5000/structures/id=";
+    private static final String CREATE_STRUCTURE = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/create";
+    private static final String DELETE_STRUCTURE = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/id=";
+    private static final String UPDATE_STRUCTURE = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/id=";
     private static final String GET_ALL_STRUCTURES = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/getAll";
     private static final String GET_BY_STRID = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/id=";
     private static final String GET_BY_STR_NAME= "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/name=";

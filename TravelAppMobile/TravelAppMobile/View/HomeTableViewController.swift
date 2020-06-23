@@ -11,12 +11,14 @@ import MapKit
 import CoreLocation
 
 class HomeTableViewController: UITableViewController {
+    var sectionSelected: Int?
+    var indexCellSelected: Int?
+    
     let locationManager = CLLocationManager()
     let regionInMeters: Double = 10000
      
-    var sectionSelected: Int?
-    var indexCellSelected: Int?
-
+    let loadingStructure = Structure(id: -1, name: "Caricamento", place: nil, category: "caricamento", price: 0, webSite: nil,contacts: nil, description: nil, image: nil, nReviews: 0, avgPoints: 5, imageDownloaded: UIImageCodable.init(withImage: UIImage.init(named: "DownloadingImageWBlackShade.pdf")!))
+    
     var structuresSection1 = [Structure]()
     var structuresSection2 = [Structure]()
     var structuresSection3 = [Structure]()
@@ -33,6 +35,8 @@ class HomeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        structuresSection1.append(loadingStructure)
+        
         locationManager.delegate = self
         checkLocationServices()
         
@@ -48,9 +52,9 @@ class HomeTableViewController: UITableViewController {
         section4CollectionView.delegate = self
         section4CollectionView.dataSource = self
             
-        structuresSection2 = self.controller.getStructureByFilter(name: "", place: "", category: "", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: "4 e oltre")//controller.getAllStructuresWithAvgPoints()
-        structuresSection3 = self.controller.getStructureByFilter(name: "", place: "", category: "Cibo", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: "")//controller.getAllStructuresWithAvgPoints()
-        structuresSection4 = controller.getAllStructuresWithAvgPoints()
+        structuresSection2 = self.controller.getStructureByFilter(name: "", place: "", category: "", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: "4 e oltre")
+        structuresSection3 = self.controller.getStructureByFilter(name: "", place: "", category: "Cibo", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: "")
+        structuresSection4 = self.controller.getStructureByFilter(name: "", place: "", category: "Attivita", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: "")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -74,6 +78,7 @@ class HomeTableViewController: UITableViewController {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             checkLocationAuthorization()
         } else {
+            // Show alert letting the user know they have to turn this on.
         }
     }
     
@@ -107,16 +112,13 @@ class HomeTableViewController: UITableViewController {
                     for place in placemarks {
                         self.placeLabel.text = place.administrativeArea?.description
                         self.controller.setUserPlace(userPlace: place)
-                        
-                        print("cerco a " + self.controller.getUserPlace().locality!)
+                    
                         self.structuresSection1 = self.controller.getStructureByFilter(name: "", place: self.controller.getUserPlace().locality!, category: "", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: "")
                         
                         if(self.structuresSection1.count < 7) {
-                            print("cerco a " + self.controller.getUserPlace().administrativeArea!)
                             self.structuresSection1.append(contentsOf: self.controller.getStructureByFilter(name: "", place: self.controller.getUserPlace().administrativeArea!, category: "", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: ""))
                             
                             if(self.structuresSection1.count < 7) {
-                                print("cerco a " + self.controller.getUserPlace().country!)
                                  self.structuresSection1.append(contentsOf: self.controller.getStructureByFilter(name: "", place: self.controller.getUserPlace().country!, category: "", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: ""))
                             }
                         }
@@ -187,6 +189,8 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
                     cell.imageview.image = self.structuresSection1[indexPath.row].imageDownloaded?.getImage()
                 }
             } else {
+                let image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
+                self.structuresSection1[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
                 cell.imageview.image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
             }
             
@@ -226,6 +230,8 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
                     cell.imageView.image = self.structuresSection2[indexPath.row].imageDownloaded?.getImage()
                 }
             } else {
+                let image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
+                self.structuresSection1[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
                 cell.imageView.image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
             }
             
@@ -265,6 +271,8 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
                     cell.imageView.image = self.structuresSection3[indexPath.row].imageDownloaded?.getImage()
                 }
             } else {
+                let image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
+                self.structuresSection1[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
                 cell.imageView.image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
             }
             
@@ -303,6 +311,8 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
                     cell.imageView.image = self.structuresSection4[indexPath.row].imageDownloaded?.getImage()
                 }
             } else {
+                let image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
+                self.structuresSection1[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
                 cell.imageView.image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
             }
             

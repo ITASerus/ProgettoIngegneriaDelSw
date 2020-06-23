@@ -65,9 +65,9 @@ class SearchFilterViewController: UIViewController {
     @IBAction func starButtonAction(_ sender: UIButton) {
         for (i, button) in starButtonsArray.enumerated() {
             if i < sender.tag {
-                button.setImage(UIImage(named: "Star.png"), for: .normal)
+                button.setImage(UIImage(named: "star.pdf"), for: .normal)
             } else {
-                button.setImage(UIImage(named: "StarGrey.png"), for: .normal)
+                button.setImage(UIImage(named: "starGrey.pdf"), for: .normal)
             }
         }
         totalStars = sender.tag
