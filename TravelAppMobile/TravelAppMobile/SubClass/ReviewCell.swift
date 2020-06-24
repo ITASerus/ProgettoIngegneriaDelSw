@@ -26,4 +26,5 @@ class ReviewCell: UITableViewCell {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var pointsImageView: UIImageView!
     @IBOutlet weak var profilePictureImageView: UIImageView!
+    @IBOutlet weak var backgroundImageView: UIImageView!
 }

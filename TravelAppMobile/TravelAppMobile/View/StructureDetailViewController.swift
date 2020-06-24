@@ -38,6 +38,13 @@ class StructureDetailViewController: UIViewController {
     @IBOutlet weak var pointsImageView: UIImageView!
     @IBOutlet weak var contactButton: UIButton!
     
+    // Colors for review cell'sbackground
+    let colorList = [UIColor(red: 1.00, green: 0.60, blue: 0.60, alpha: 1.00),
+                     UIColor(red: 1.00, green: 0.82, blue: 0.53, alpha: 1.00),
+                     UIColor(red: 0.68, green: 1.00, blue: 0.93, alpha: 1.00),
+                     UIColor(red: 0.69, green: 0.84, blue: 1.00, alpha: 1.00),
+                     UIColor(red: 0.94, green: 0.66, blue: 1.00, alpha: 1.00)]
+    
     var structure: Structure!
     
     override func viewDidLoad() {
@@ -111,7 +118,7 @@ class StructureDetailViewController: UIViewController {
             let destinationViewController = segue.destination as! ReviewDetailViewController
             
             destinationViewController.review = reviewsList[indexCellSelected!]
-            
+            destinationViewController.backgroundColor = colorList[indexCellSelected! % colorList.count]
         }
     }
 }
@@ -128,13 +135,14 @@ extension StructureDetailViewController: UITableViewDelegate, UITableViewDataSou
         cell.bodyLabel.text = reviewsList[indexPath.row].description
         let points = reviewsList[indexPath.row].points ?? 0.0
         cell.pointsImageView.image = UIImage (imageLiteralResourceName: GeneralReusables.starsImageAssetName(avgPoints: points))
-        
         cell.authorLabel.text = reviewsList[indexPath.row].firstName
+        
+        
+        cell.backgroundImageView.backgroundColor = colorList[indexPath.row % colorList.count]
         
         // Manage image
         if (reviewsList[indexPath.row].image != nil) {
             if(reviewsList[indexPath.row].imageDownloaded == nil) {
-                print("Scarico immagine per " + reviewsList[indexPath.row].firstName!)
                 cell.profilePictureImageView.image = UIImage.init(named: "DownloadingImageWBlackShade.pdf")
                 
                 let imageURL = URL(string: reviewsList[indexPath.row].image!)!
@@ -148,8 +156,6 @@ extension StructureDetailViewController: UITableViewDelegate, UITableViewDataSou
                         self.reviewsList[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
                         
                         cell.profilePictureImageView.image = self.reviewsList[indexPath.row].imageDownloaded?.getImage()
-                        
-                        print("Immagine di " + self.reviewsList[indexPath.row].firstName! + "scaricata")
                     }
                 }
             } else {
