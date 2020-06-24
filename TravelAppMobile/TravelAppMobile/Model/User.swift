@@ -8,19 +8,18 @@
 
 import Foundation
 
-struct Users: Codable {
-  
+struct User: Decodable, Hashable {
+    let id : Int
+    let firstName : String?
+    let lastName : String?
+    let gender : String?
+    let image : String?
+    let username : String?
+    let email:  String?
+    let password : String?
+    //let createdAt
+    //let updatedAt
     
-  let  id : Int
-  let  email:  String?
-  let  username : String?
-  let  password : String?
-  let  registrationDate : String?
-    var  realName : String?
-    var  realSurname : String?
-  let  viewRealName : Bool?
-  let  role : String?
-  let  image : Array<Int>?
-
+    var imageDownloaded: UIImageCodable?
 }
 

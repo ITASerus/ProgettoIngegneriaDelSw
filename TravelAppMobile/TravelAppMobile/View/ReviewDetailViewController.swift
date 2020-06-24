@@ -14,15 +14,14 @@ class ReviewDetailViewController: UIViewController {
     @IBOutlet weak var bodyTextView: UITextView!
     @IBOutlet weak var authorLabel: UILabel!
     
-    
-    
     var review: Review!
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         titleLabel.text = review.title
         bodyTextView.text = review.description
-        authorLabel.text = review.author
+        //authorLabel.text = review.author
     }
 }

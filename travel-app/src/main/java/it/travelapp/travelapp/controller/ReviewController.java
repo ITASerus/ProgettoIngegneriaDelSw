@@ -82,7 +82,7 @@ public class ReviewController {
 
     //---- ENDPOINT FOR FOREIGN KEYS
 
-    // Get UserOLD by ReviewID
+    // Get User by ReviewID
     @GetMapping("/id={id}/getUser")
     public User getUserByReviewId(@PathVariable(value = "id") Long reviewID) {
         Review review = reviewRepository.findById(reviewID).orElseThrow(() -> new ResourceNotFoundException("Review", "id", reviewID));

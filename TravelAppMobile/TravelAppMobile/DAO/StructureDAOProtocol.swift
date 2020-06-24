@@ -17,4 +17,7 @@ protocol StructureDAOProtocol {
     func getAllStructuresWithAvgPoints() -> [Structure]?
     
     func getStructuresByFilter(name: String, place: String, category: String, contacts: String, webSite: String, lowerPrice: String, upperPrice: String, avgPoints: String) -> [Structure]?
+    
+    func getReviewsByStructureID(id: Int) -> [Review]?
+    func getReviewsWUserInfoByStructureID(id: Int) -> [Review]?
 }

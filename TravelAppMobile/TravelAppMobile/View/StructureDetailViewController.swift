@@ -15,14 +15,11 @@ weak var mapViewPlaceOfStructure: MKMapView!
 
 
 class StructureDetailViewController: UIViewController {
-
-    var recensione1 = Review(id: 9, title: "Tutto bello", description: "Camere confortevoli e pulite. Ci tornerò sicuramente!", points: 4, date: "10/01/1996", author: "Maria")
-    var recensione2 = Review(id: 3, title: "Carino", description: "Nulla di eccezionale ma visto il rapporto qualità prezzo, non mi lamento.", points: 3, date: "02/10/2020", author: "Enrico")
-    var recensione3 = Review(id: 10, title: "Pessimo!", description: "Non capisco come possa essere ancora aperto! Il trattamento riservatomi è ridicolo! Chiamerò la polizia e li farò chiudere baracca e baracchini!!!!", points: 0, date: "12/07/2019", author: "Genoveffa")
+    
+    let controller = StructureDetailController()
     
     var indexCellSelected: Int?
     var reviewsList = [Review]()
-    
     
     @IBOutlet weak var viewBackground: UIView!
     
@@ -37,6 +34,8 @@ class StructureDetailViewController: UIViewController {
     @IBOutlet weak var webSiteLabel: UILabel!
     @IBOutlet weak var reviewsTableView: UITableView!
     
+    @IBOutlet weak var nReviewLabel: UILabel!
+    @IBOutlet weak var pointsImageView: UIImageView!
     @IBOutlet weak var contactButton: UIButton!
     
     var structure: Structure!
@@ -54,22 +53,26 @@ class StructureDetailViewController: UIViewController {
         reviewsTableView.dataSource = self
 
         nameLabel.text = structure.name
-        categoryLabel.text = structure.category == nil ? "Non disponibile" : structure.category
-        imageOfStructure.image = structure.imageDownloaded?.getImage()
-        priceLabel.text = structure.price == nil ? "Non disponibile" : structure.price?.description
-        placeLabel.text = structure.place == nil ? "Non disponibile" : structure.place
-        descriptionTextView.text = structure.description == nil ? "Non disponibile" : structure.description
-        webSiteLabel.text = structure.webSite == nil ? "Non disponibile" : structure.webSite
-        contactButton.setTitle(structure.contacts == nil ? "Non disponibile" : structure.contacts, for: .normal)
-        if structure.contacts == nil {
-            contactButton.isEnabled = false
-        }
         
-        reviewsList.append(recensione1)
-        reviewsList.append(recensione2)
-        reviewsList.append(recensione3)
-        reviewsList.append(recensione2)
-        reviewsList.append(recensione1)
+        categoryLabel.text = structure.category == nil ? "Non disponibile" : structure.category
+        
+        imageOfStructure.image = structure.imageDownloaded?.getImage()
+        
+        priceLabel.text = structure.price == nil ? "Non disponibile" : structure.price?.description
+    
+        placeLabel.text = structure.place == nil ? "Non disponibile" : structure.place
+        
+        descriptionTextView.text = structure.description == nil ? "Non disponibile" : structure.description
+        
+        webSiteLabel.text = structure.webSite == nil ? "Non disponibile" : structure.webSite
+        
+        contactButton.setTitle(structure.contacts == nil ? "Non disponibile" : structure.contacts, for: .normal)
+        if structure.contacts == nil { contactButton.isEnabled = false }
+        
+        let points = structure.avgPoints ?? 0.0
+        pointsImageView.image = UIImage (imageLiteralResourceName: GeneralReusables.starsImageAssetName(avgPoints: points))
+        
+        nReviewLabel.text = structure.nReviews!.description + " recensioni"
         
         var placemark: CLPlacemark!
         var postoCheCerco : String = structure.place!
@@ -90,6 +93,7 @@ class StructureDetailViewController: UIViewController {
             }
                 })
         
+        reviewsList = controller.getAllReviewsWUserInfo(structureId: structure.id)
     }
     
     
@@ -107,6 +111,7 @@ class StructureDetailViewController: UIViewController {
             let destinationViewController = segue.destination as! ReviewDetailViewController
             
             destinationViewController.review = reviewsList[indexCellSelected!]
+            
         }
     }
 }
@@ -119,10 +124,42 @@ extension StructureDetailViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath) as! ReviewCell
         
-        cell.authorLabel.text = reviewsList[indexPath.row].author
-        cell.bodyLabel.text = reviewsList[indexPath.row].description
         cell.titleLabel.text = reviewsList[indexPath.row].title
-        cell.profilePictureImageView.image = UIImage(named: "photo-1500648767791-00dcc994a43e")
+        cell.bodyLabel.text = reviewsList[indexPath.row].description
+        let points = reviewsList[indexPath.row].points ?? 0.0
+        cell.pointsImageView.image = UIImage (imageLiteralResourceName: GeneralReusables.starsImageAssetName(avgPoints: points))
+        
+        cell.authorLabel.text = reviewsList[indexPath.row].firstName
+        
+        // Manage image
+        if (reviewsList[indexPath.row].image != nil) {
+            if(reviewsList[indexPath.row].imageDownloaded == nil) {
+                print("Scarico immagine per " + reviewsList[indexPath.row].firstName!)
+                cell.profilePictureImageView.image = UIImage.init(named: "DownloadingImageWBlackShade.pdf")
+                
+                let imageURL = URL(string: reviewsList[indexPath.row].image!)!
+
+                // just not to cause a deadlock in UI!
+                DispatchQueue.global().async {
+                    let imageData = try? Data(contentsOf: imageURL)
+
+                    let image = UIImage(data: imageData!)
+                    DispatchQueue.main.async {
+                        self.reviewsList[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
+                        
+                        cell.profilePictureImageView.image = self.reviewsList[indexPath.row].imageDownloaded?.getImage()
+                        
+                        print("Immagine di " + self.reviewsList[indexPath.row].firstName! + "scaricata")
+                    }
+                }
+            } else {
+                cell.profilePictureImageView.image = self.reviewsList[indexPath.row].imageDownloaded?.getImage()
+            }
+        } else {
+            let image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
+            self.reviewsList[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
+            cell.profilePictureImageView.image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
+        }
         
         return cell
     }

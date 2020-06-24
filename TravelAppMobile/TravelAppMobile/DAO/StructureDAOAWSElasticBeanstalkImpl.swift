@@ -14,6 +14,7 @@ public class StructureDAOAWSElasticbeanstalkImpl: StructureDAOProtocol {
     private let GET_ALL_STRUCTURES = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/getAll"
     private let GET_ALL_WITH_AVG_POINTS = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/getAllWithAvgPoints"
     private let GET_BY_FILTER = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/search/"
+    private let GET_REVIEWS_BY_STRUCTURE_ID = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/structures/id="
     
     func getByID(id: Int) -> Structure? {
         let dataStructures = try! Data.init(contentsOf: URL.init(string: GET_BY_ID + String(id))!)
@@ -35,9 +36,9 @@ public class StructureDAOAWSElasticbeanstalkImpl: StructureDAOProtocol {
         
         do {
             let decoder: JSONDecoder = JSONDecoder.init()
-            let structure: [Structure] = try decoder.decode([Structure].self, from: dataStructures)
+            let structures: [Structure] = try decoder.decode([Structure].self, from: dataStructures)
             
-            return structure
+            return structures
         } catch let e {
             print(e)
         }
@@ -87,6 +88,40 @@ public class StructureDAOAWSElasticbeanstalkImpl: StructureDAOProtocol {
             print(e)
         }
         
+        return nil
+    }
+    
+    func getReviewsByStructureID(id: Int) -> [Review]? {
+        let FINAL_URL = GET_REVIEWS_BY_STRUCTURE_ID + id.description + "/getReviews"
+        
+        let dataStructures = try! Data.init(contentsOf: URL.init(string: FINAL_URL)!)
+        
+        do {
+            let decoder: JSONDecoder = JSONDecoder.init()
+            let reviews: [Review] = try decoder.decode([Review].self, from: dataStructures)
+
+            return reviews
+        } catch let e {
+            print(e)
+        }
+
+        return nil
+    }
+    
+    func getReviewsWUserInfoByStructureID(id: Int) -> [Review]? {
+        let FINAL_URL = GET_REVIEWS_BY_STRUCTURE_ID + id.description + "/getReviewsWUserInfo"
+        
+        let dataStructures = try! Data.init(contentsOf: URL.init(string: FINAL_URL)!)
+        
+        do {
+            let decoder: JSONDecoder = JSONDecoder.init()
+            let reviews: [Review] = try decoder.decode([Review].self, from: dataStructures)
+
+            return reviews
+        } catch let e {
+            print(e)
+        }
+
         return nil
     }
 }

@@ -8,23 +8,17 @@
 
 import Foundation
 
-
-// DA CONVERTIRE IN STRUCT. AL MOMENTO E' UNA CLASS PERCHE' MI SERVIVANO LE CAPACITA' DI UNA CLASS PER FINGERE I DATI. PRENDERE SPUNTO DALLA STRUCT 'STRUCTURE'
-
-class Review: Codable {
-    var  id : Int
-    var  title: String
-    var  description:  String
-    var  points : Int
-    var  date : String
-    var  author : String
+struct Review: Decodable, Hashable {
     
-    init(id: Int, title: String, description: String, points: Int, date: String, author: String) {
-        self.id = id
-        self.title = title
-        self.description = description
-        self.points = points
-        self.date = date
-        self.author = author
-    }
+    let id : Int
+    let title:  String
+    let description : String?
+    let points : Float?
+    //let date : Date?
+    let structureID: Int
+    let userID: Int
+    let firstName: String?
+    let image: String?
+    
+    var imageDownloaded: UIImageCodable?
 }

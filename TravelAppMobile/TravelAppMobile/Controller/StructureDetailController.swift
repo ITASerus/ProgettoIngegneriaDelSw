@@ -10,6 +10,13 @@ import Foundation
 
 public class StructureDetailController {
     private static let structureDAO = DAOFactory.getStructureDAO(type: "AWSElasticBeanstalk")
+    private static let reviewDAO = DAOFactory.getReviewDAO(type: "AWSElasticBeanstalk")
 
-    //Metodi che richiamano i metodi del DAO e altre cose esterne che non fanno parte degli elementi visuali (quelli vanno in StructureDetaliViewController
+    func getAllReviewsWUserInfo(structureId: Int) -> [Review] {
+        return StructureDetailController.structureDAO.getReviewsWUserInfoByStructureID(id: structureId)!
+    }
+    
+    func getUserOfReview(reviewId: Int) -> User {
+        return StructureDetailController.reviewDAO.getUserByReviewID(id: reviewId)!
+    }
 }

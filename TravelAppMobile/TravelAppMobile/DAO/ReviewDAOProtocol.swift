@@ -9,5 +9,5 @@
 import Foundation
 
 protocol ReviewDAOProtocol {
-    
+    func getUserByReviewID(id: Int) -> User?
 }

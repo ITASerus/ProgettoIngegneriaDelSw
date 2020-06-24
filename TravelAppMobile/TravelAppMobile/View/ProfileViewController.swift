@@ -13,8 +13,8 @@ import Foundation
 
 class ProfileViewController: UIViewController, UITextFieldDelegate {
     
-    var user: Users! = nil
-    var userWithChenges : Users?
+    var user: User! = nil
+    var userWithChenges : User?
     
     @IBOutlet weak var timerWaitSymbol: UIImageView!
     
@@ -90,7 +90,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
 
                 do {
                     let decoder: JSONDecoder = JSONDecoder.init()
-                     user = try decoder.decode(Users.self, from: dataUser)
+                    user = try decoder.decode(User.self, from: dataUser)
                     userWithChenges = user
                     
 
@@ -98,8 +98,8 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
                     
                     nickNameTopLabel.text = user.username
                     emailTopLabel.text = user.email
-                    realNameTextField.text = user.realName
-                    realSurnameTextField.text = user.realSurname
+                    realNameTextField.text = user.firstName
+                    realSurnameTextField.text = user.lastName
                     nickNameTextField.text = user.username
                     emailTextFieldLockEver.text = user.email
                     

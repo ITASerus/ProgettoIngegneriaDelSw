@@ -13,6 +13,7 @@ import it.travelapp.travelapp.exception.ResourceNotFoundException;
 import it.travelapp.travelapp.model.Review;
 import it.travelapp.travelapp.model.Structure;
 import it.travelapp.travelapp.repository.StructureRepository;
+import it.travelapp.travelapp.model.User;
 
 @RestController
 @RequestMapping("/structures")
@@ -280,5 +281,36 @@ public class StructureController {
         }
 
         return false;
+    }
+
+
+    @GetMapping("/id={id}/getReviewsWUserInfo")
+    public List<Map<String, Object>> getReviewsWUserInfoByStructureId(@PathVariable(value = "id") Long structureId) {
+        Structure structure = structureRepository.findById(structureId).orElseThrow(() -> new ResourceNotFoundException("Structure", "id", structureId));
+
+        Set<Review> reviewList = structure.getReviews();
+        List<Map<String, Object>> reviewListWUserInfo = new ArrayList<>();
+
+        for (Review review : reviewList) {
+            User user = review.getUser();
+
+            Map<String, Object> map = new HashMap<>();
+
+            System.out.println("Aggiungo " + review.getTitle());
+
+            map.put("id", review.getId());
+            map.put("title", review.getTitle());
+            map.put("description", review.getDescription());
+            map.put("points", review.getPoints());
+            map.put("date", review.getDate());
+            map.put("structureID", review.getStructureID());
+            map.put("userID", review.getUserID());
+            map.put("firstName", user.getFirstName());
+            map.put("image", user.getImage());
+
+            reviewListWUserInfo.add(map);
+        }
+
+        return reviewListWUserInfo;
     }
 }

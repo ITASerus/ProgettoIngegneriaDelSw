@@ -164,7 +164,6 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
             cell.nReviewsLabel.text = structuresSection1[indexPath.row].nReviews?.description
             
             let points = structuresSection1[indexPath.row].avgPoints ?? 0.0
-
             cell.pointsImageView.image = UIImage (imageLiteralResourceName: GeneralReusables.starsImageAssetName(avgPoints: points))
                         
             // Manage image

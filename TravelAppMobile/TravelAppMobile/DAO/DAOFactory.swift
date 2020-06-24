@@ -18,4 +18,12 @@ public class DAOFactory {
         }
     }
     
+    static func getReviewDAO(type: String) -> ReviewDAOProtocol {
+        if type == "AWSElasticBeanstalk" {
+            return ReviewDAOAWSElasticbeanstalkImpl()
+        } else { // Altre implementazioni possibili diverse da AWS Elastic Beanstalk
+            return ReviewDAOAWSElasticbeanstalkImpl()
+        }
+    }
+    
 }

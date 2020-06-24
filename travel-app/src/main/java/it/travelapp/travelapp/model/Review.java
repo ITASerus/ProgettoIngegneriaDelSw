@@ -70,7 +70,7 @@ public class Review implements Serializable{
     public Long getStructureID() { return this.structureID; }
     public void setStructure(Long structureID) { this.structureID = structureID; }
 
-    public Long getUseID() { return this.userID; }
+    public Long getUserID() { return this.userID; }
     public void setUserID(Long userID) { this.userID = userID; }
 
     public Structure getStructure() { return this.structure; }
