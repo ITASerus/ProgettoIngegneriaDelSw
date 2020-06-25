@@ -13,27 +13,27 @@ class SearchFilterViewController: UIViewController {
     let controller = SearchFilterController()
     
     @IBOutlet weak var viewBackground: UIView!
-    
-    private let categoryArray = ["---", "Hotel", "Resort","Attività", "Cibo"]
-    var starButtonsArray : [UIButton] = []
-    var totalStars : Int = 0
-    
+
     //Star's Outlet
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
     @IBOutlet weak var star3: UIButton!
     @IBOutlet weak var star4: UIButton!
     @IBOutlet weak var star5: UIButton!
-
+    var starButtonsArray : [UIButton] = []
+    var totalStars : Int = 0
+    
     @IBOutlet weak var categoryPickerView: UIPickerView!
     
     //TextFieldOutlet
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var placeTextField: UITextField!
+    @IBOutlet weak var contactTextField: UITextField!
     @IBOutlet weak var webSiteTextField: UITextField!
     @IBOutlet weak var lowerPriceTextField: UITextField!
     @IBOutlet weak var upperPriceTextField: UITextField!
-    @IBOutlet weak var contactTextField: UITextField!
+    
+    private let categoryArray = ["---", "Hotel", "Resort","Attività", "Cibo"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,27 +41,35 @@ class SearchFilterViewController: UIViewController {
         categoryPickerView.dataSource = self
         categoryPickerView.delegate = self
         
+        nameTextField.delegate = self
+        placeTextField.delegate = self
+        contactTextField.delegate = self
+        webSiteTextField.delegate = self
+        lowerPriceTextField.delegate = self
+        upperPriceTextField.delegate = self
+    
+        // To add "Invio" (done) button to numPad keyboard
+        self.addDoneButtonOnKeyboard()
+        
+        // To resign keyboard when the user tap outside keyboard
         self.hideKeyboardWhenTappedAround()
-        
-        starButtonsArray = [star1, star2, star3, star4, star5]
-        
-        lowerPriceTextField.keyboardType = .asciiCapableNumberPad
-        upperPriceTextField.keyboardType = .asciiCapableNumberPad
-        
+    
+        // Background management
         let gradient = CAGradientLayer()
         gradient.cornerRadius = 20
         gradient.frame = viewBackground.bounds
-        gradient.colors = [UIColor(red: 0.88, green: 0.83, blue: 0.71, alpha: 1.00).cgColor, UIColor(red: 0.94, green: 0.93, blue: 0.87, alpha: 1.00).cgColor]
-
+        gradient.colors = [UIColor(red: 0.88, green: 0.83, blue: 0.71, alpha: 1.00).cgColor,
+                           UIColor(red: 0.94, green: 0.93, blue: 0.87, alpha: 1.00).cgColor]
         viewBackground.layer.cornerRadius = 20
         viewBackground.layer.shadowRadius = 5
         viewBackground.layer.shadowOpacity = 0.5
         viewBackground.layer.shadowOffset = CGSize(width: 0, height: 3)
         viewBackground.layer.insertSublayer(gradient, at: 70)
         viewBackground.alpha = 0.85
+        
+        starButtonsArray = [star1, star2, star3, star4, star5]
     }
     
-    //Set value of stars
     @IBAction func starButtonAction(_ sender: UIButton) {
         for (i, button) in starButtonsArray.enumerated() {
             if i < sender.tag {
@@ -73,64 +81,34 @@ class SearchFilterViewController: UIViewController {
         totalStars = sender.tag
     }
     
-    @IBAction func printEndpointGetFinal(_ sender: UIButton) {
-        var stringAvgPoints = String()
-        if (totalStars > 0 && totalStars < 5){
-            stringAvgPoints = stringAvgPoints + String(totalStars) + "%20e%20oltre"
-        }
-        if  (totalStars == 5){
-            stringAvgPoints = stringAvgPoints + String(totalStars)
-        }
-        if  (totalStars == 0){
-            stringAvgPoints = stringAvgPoints + "null"
-        }
+    @IBAction func searchButtonPressed(_ sender: Any) {
         
-        controller.getStructureByFilter(name: nameTextField.text!,
-                                        place: placeTextField.text!,
-                                        category: categoryArray[categoryPickerView.selectedRow(inComponent: 0)],
-                                        contacts: contactTextField.text!,
-                                        webSite: webSiteTextField.text!,
-                                        lowerPrice: lowerPriceTextField.text!,
-                                        upperPrice: upperPriceTextField.text!,
-                                        avgPoints: stringAvgPoints)
-    }
-}
-
-extension String {
-    mutating func changeCharachtersOfSpaces() {
-        var stringCopy = ""
-        for char in self {
-            if char == " " {
-                stringCopy.append("%20")
-            } else {
-                stringCopy.append(char)
-            }
-        }
-        self = stringCopy
     }
     
-    mutating func changeCharachtersOfSpaces2() -> String{
-        var stringCopy = ""
-        for char in self {
-            if char == " " {
-                stringCopy.append("%20")
-            } else {
-                stringCopy.append(char)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "resultsSegue" {
+            let destinationViewController = segue.destination as! ResultsViewController
+            
+            var stringAvgPoints = String()
+            if (totalStars > 0 && totalStars < 5){
+                stringAvgPoints = stringAvgPoints + String(totalStars) + " e oltre"
             }
-        }
-        return stringCopy
-    }
-    
-    mutating func removeSpaces() {
-        var stringCopy = ""
-        for char in self {
-            if char == " " {
-                stringCopy.append("")
-            } else {
-                stringCopy.append(char)
+            if  (totalStars == 5){
+                stringAvgPoints = stringAvgPoints + String(totalStars)
             }
+            if  (totalStars == 0){
+                stringAvgPoints = stringAvgPoints + "null"
+            }
+            
+            destinationViewController.structureList = controller.getStructureByFilter(name: nameTextField.text!,
+                                                                                      place: placeTextField.text!,
+                                                                                      category: categoryArray[categoryPickerView.selectedRow(inComponent: 0)],
+                                                                                      contacts: contactTextField.text!,
+                                                                                      webSite: webSiteTextField.text!,
+                                                                                      lowerPrice: lowerPriceTextField.text!,
+                                                                                      upperPrice: upperPriceTextField.text!,
+                                                                                      avgPoints: stringAvgPoints)
         }
-        self = stringCopy
     }
 }
 
@@ -149,7 +127,7 @@ extension SearchFilterViewController: UIPickerViewDelegate, UIPickerViewDataSour
     }
 }
 
-// close keyboard
+// Close keyboard
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -159,5 +137,38 @@ extension UIViewController {
 
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+}
+
+extension SearchFilterViewController: UITextFieldDelegate {
+    
+    // To resign keyboard when return key is pressed
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    // To add "Invio" (done) button to numPad keyboard
+    func addDoneButtonOnKeyboard() {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: 320, height: 50))
+        doneToolbar.barStyle = UIBarStyle.default
+
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Invio", style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonAction))
+
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+
+        self.lowerPriceTextField.inputAccessoryView = doneToolbar
+        self.upperPriceTextField.inputAccessoryView = doneToolbar
+    }
+
+    @objc func doneButtonAction() {
+        self.lowerPriceTextField.resignFirstResponder()
+        self.upperPriceTextField.resignFirstResponder()
     }
 }

@@ -12,6 +12,8 @@ class ResultsViewController: UIViewController {
 
     @IBOutlet weak var resultsCollectionView: UICollectionView!
 
+    var structureList: [Structure]!
+    
     var indexCellSelected: Int?
     
     override func viewDidLoad() {
@@ -20,6 +22,7 @@ class ResultsViewController: UIViewController {
         resultsCollectionView.delegate = self
         resultsCollectionView.dataSource = self
         
+        print(structureList)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -33,15 +36,15 @@ class ResultsViewController: UIViewController {
 
 extension ResultsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       return 0//structureList.count
+       structureList.count
    }
    
    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LittleStructureCell", for: indexPath) as! LittleStructureCell
                    
-    /*cell.nameLabel.text = structureList[indexPath.row].name
+    cell.nameLabel.text = structureList[indexPath.row].name
     cell.categoryLabel.text = structureList[indexPath.row].category
-    cell.priceLabel.text = structureList[indexPath.row].price.description
+    cell.priceLabel.text = structureList[indexPath.row].price?.description
     cell.nReviewsLabel.text = arc4random_uniform(9000).description
                    
     let points = arc4random_uniform(5);
@@ -68,7 +71,7 @@ extension ResultsViewController: UICollectionViewDelegate, UICollectionViewDataS
     default:
         cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
         break
-    }*/
+    }
     
     return cell
    }

@@ -55,7 +55,6 @@ class StructureDetailViewController: UIViewController {
         viewBackground.layer.shadowOpacity = 0.5
         viewBackground.layer.shadowOffset = CGSize(width: 0, height: 3)
 
-        
         reviewsTableView.delegate = self
         reviewsTableView.dataSource = self
 
@@ -180,8 +179,7 @@ extension StructureDetailViewController: UITableViewDelegate, UITableViewDataSou
 
 
 private func callNumberOfStructure(phoneNum: String) {
-    var phoneNumToUse = phoneNum
-    phoneNumToUse.removeSpaces()
+    let phoneNumToUse = phoneNum.replacingOccurrences(of: " ", with: "")
     if let url = URL(string: "tel://+39\(phoneNumToUse)") {
         let application = UIApplication.shared
         guard application.canOpenURL(url) else {

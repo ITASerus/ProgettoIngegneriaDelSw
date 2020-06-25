@@ -65,7 +65,7 @@ public class StructureDAOAWSElasticbeanstalkImpl: StructureDAOProtocol {
         
         let stringName : String = "name=" + (name.isEmpty ? "null" : name)
         let stringPlace : String = "&place=" + (place.isEmpty ? "null" : place)
-        let stringCategory : String = "&category=" + (category.isEmpty ? "null" : category)
+        let stringCategory : String = "&category=" + ((category.isEmpty || category == "---") ? "null" : category)
         let stringContacts : String = "&contacts=" + (contacts.isEmpty ? "null" : contacts)
         let stringWebSite : String = "&webSite=" + (webSite.isEmpty ? "null" : webSite)
         let stringLowerPrice : String = "&lowerPrice=" + (lowerPrice.isEmpty ? "-1" : lowerPrice)
@@ -75,7 +75,8 @@ public class StructureDAOAWSElasticbeanstalkImpl: StructureDAOProtocol {
         var FINAL_URL = GET_BY_FILTER + stringName + stringPlace + stringCategory + stringContacts + stringWebSite + stringLowerPrice + stringUpperPrice + stringAvgPoints
         
         FINAL_URL = FINAL_URL.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
-        //print(FINAL_URL)
+        
+        print(FINAL_URL)
         
         let dataStructures = try! Data.init(contentsOf: URL.init(string: FINAL_URL)!)
         
