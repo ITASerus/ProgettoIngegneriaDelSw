@@ -35,6 +35,8 @@ class SearchFilterViewController: UIViewController {
     
     private let categoryArray = ["---", "Hotel", "Resort","Attività", "Cibo"]
     
+    private var resultList = [Structure]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -82,32 +84,43 @@ class SearchFilterViewController: UIViewController {
     }
     
     @IBAction func searchButtonPressed(_ sender: Any) {
+        var stringAvgPoints = String()
+        if (totalStars > 0 && totalStars < 5){
+            stringAvgPoints = stringAvgPoints + String(totalStars) + " e oltre"
+        }
+        if  (totalStars == 5){
+            stringAvgPoints = stringAvgPoints + String(totalStars)
+        }
+        if  (totalStars == 0){
+            stringAvgPoints = stringAvgPoints + "null"
+        }
+        
+        resultList = controller.getStructureByFilter(name: nameTextField.text!,
+                                                     place: placeTextField.text!,
+                                                     category: categoryArray[categoryPickerView.selectedRow(inComponent: 0)],
+                                                     contacts: contactTextField.text!,
+                                                     webSite: webSiteTextField.text!,
+                                                     lowerPrice: lowerPriceTextField.text!,
+                                                     upperPrice: upperPriceTextField.text!,
+                                                     avgPoints: stringAvgPoints)
+        
+        if(!resultList.isEmpty) {
+            performSegue(withIdentifier: "resultsSegue", sender: self)
+        } else {
+            let alertController = UIAlertController(title: "Nessuna corrispondenza trovata", message:
+                "Non è stata trovata nessuna struttura o attrazione che corrisponde ai parametri inseriti.", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: .default))
+
+            self.present(alertController, animated: true, completion: nil)
+        }
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "resultsSegue" {
             let destinationViewController = segue.destination as! ResultsViewController
-            
-            var stringAvgPoints = String()
-            if (totalStars > 0 && totalStars < 5){
-                stringAvgPoints = stringAvgPoints + String(totalStars) + " e oltre"
-            }
-            if  (totalStars == 5){
-                stringAvgPoints = stringAvgPoints + String(totalStars)
-            }
-            if  (totalStars == 0){
-                stringAvgPoints = stringAvgPoints + "null"
-            }
-            
-            destinationViewController.structureList = controller.getStructureByFilter(name: nameTextField.text!,
-                                                                                      place: placeTextField.text!,
-                                                                                      category: categoryArray[categoryPickerView.selectedRow(inComponent: 0)],
-                                                                                      contacts: contactTextField.text!,
-                                                                                      webSite: webSiteTextField.text!,
-                                                                                      lowerPrice: lowerPriceTextField.text!,
-                                                                                      upperPrice: upperPriceTextField.text!,
-                                                                                      avgPoints: stringAvgPoints)
+
+            destinationViewController.structureList = resultList
         }
     }
 }

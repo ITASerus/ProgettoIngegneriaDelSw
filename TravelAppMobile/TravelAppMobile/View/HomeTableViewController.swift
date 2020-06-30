@@ -230,7 +230,7 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
                 }
             } else {
                 let image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
-                self.structuresSection1[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
+                self.structuresSection2[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
                 cell.imageView.image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
             }
             
@@ -271,7 +271,7 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
                 }
             } else {
                 let image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
-                self.structuresSection1[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
+                self.structuresSection3[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
                 cell.imageView.image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
             }
             
@@ -311,7 +311,7 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
                 }
             } else {
                 let image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
-                self.structuresSection1[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
+                self.structuresSection4[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
                 cell.imageView.image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
             }
             

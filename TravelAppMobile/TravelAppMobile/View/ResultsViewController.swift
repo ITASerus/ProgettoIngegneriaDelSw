@@ -21,15 +21,13 @@ class ResultsViewController: UIViewController {
 
         resultsCollectionView.delegate = self
         resultsCollectionView.dataSource = self
-        
-        print(structureList)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SearchResultDetailStructureSegue" {
-            //let destinationViewController = segue.destination as! StructureDetailViewController
+            let destinationViewController = segue.destination as! StructureDetailViewController
             
-            //destinationViewController.structure = structureList[indexCellSelected!]
+            destinationViewController.structure = structureList[indexCellSelected!]
         }
     }
 }
@@ -45,32 +43,36 @@ extension ResultsViewController: UICollectionViewDelegate, UICollectionViewDataS
     cell.nameLabel.text = structureList[indexPath.row].name
     cell.categoryLabel.text = structureList[indexPath.row].category
     cell.priceLabel.text = structureList[indexPath.row].price?.description
-    cell.nReviewsLabel.text = arc4random_uniform(9000).description
-                   
-    let points = arc4random_uniform(5);
-                   
-    switch points {
-    case 0:
-        cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
-        break
-    case 1:
-        cell.pointsImageView.image = UIImage (imageLiteralResourceName: "1stars.pdf")
-        break
-    case 2:
-        cell.pointsImageView.image = UIImage (imageLiteralResourceName: "2stars.pdf")
-        break
-    case 3:
-        cell.pointsImageView.image = UIImage (imageLiteralResourceName: "3stars.pdf")
-        break
-    case 4:
-        cell.pointsImageView.image = UIImage (imageLiteralResourceName: "4stars.pdf")
-        break
-    case 5:
-        cell.pointsImageView.image = UIImage (imageLiteralResourceName: "5stars.pdf")
-        break
-    default:
-        cell.pointsImageView.image = UIImage (imageLiteralResourceName: "0stars.pdf")
-        break
+    cell.nReviewsLabel.text = structureList[indexPath.row].nReviews?.description
+    
+    let points = structureList[indexPath.row].avgPoints ?? 0.0
+    cell.pointsImageView.image = UIImage (imageLiteralResourceName: GeneralReusables.starsImageAssetName(avgPoints: points))
+    
+    // Manage image
+    if (structureList[indexPath.row].image != nil) {
+        if(structureList[indexPath.row].imageDownloaded == nil) {
+            cell.imageView.image = UIImage.init(named: "DownloadingImageWBlackShadeV2.pdf")
+            
+            let imageURL = URL(string: structureList[indexPath.row].image!)!
+
+            // just not to cause a deadlock in UI!
+            DispatchQueue.global().async {
+                let imageData = try? Data(contentsOf: imageURL)
+
+                let image = UIImage(data: imageData!)
+                DispatchQueue.main.async {
+                    self.structureList[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
+                    
+                    cell.imageView.image = self.structureList[indexPath.row].imageDownloaded?.getImage()
+                }
+            }
+        } else {
+            cell.imageView.image = self.structureList[indexPath.row].imageDownloaded?.getImage()
+        }
+    } else {
+        let image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
+        self.structureList[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
+        cell.imageView.image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
     }
     
     return cell

@@ -75,8 +75,9 @@ public class StructureDAOAWSElasticbeanstalkImpl: StructureDAOProtocol {
         var FINAL_URL = GET_BY_FILTER + stringName + stringPlace + stringCategory + stringContacts + stringWebSite + stringLowerPrice + stringUpperPrice + stringAvgPoints
         
         FINAL_URL = FINAL_URL.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+        FINAL_URL = FINAL_URL.replacingOccurrences(of: "à", with: "a", options: .literal, range: nil) // Da implementare meglio ma per prototipo è accettabile
         
-        print(FINAL_URL)
+        //print(FINAL_URL)
         
         let dataStructures = try! Data.init(contentsOf: URL.init(string: FINAL_URL)!)
         

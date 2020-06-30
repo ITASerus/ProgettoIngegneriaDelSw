@@ -146,7 +146,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="searchButtonPressed:" destination="AGg-bY-ZJO" eventType="touchUpInside" id="KFo-Vo-gzX"/>
-                                    <segue destination="Eu9-cl-MhJ" kind="show" identifier="resultsSegue" id="287-dg-0P0"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -168,6 +167,7 @@
                         <outlet property="upperPriceTextField" destination="eRI-7S-NY4" id="Rty-Ks-4VQ"/>
                         <outlet property="viewBackground" destination="6Mk-pq-WBA" id="DJd-GH-6rj"/>
                         <outlet property="webSiteTextField" destination="dly-PQ-8in" id="psc-0C-dsb"/>
+                        <segue destination="Eu9-cl-MhJ" kind="show" identifier="resultsSegue" id="h6e-R5-iNu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zdW-gf-MGW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -376,7 +376,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GLb-1D-F3t">
-                                    <size key="itemSize" width="375" height="145"/>
+                                    <size key="itemSize" width="346" height="145"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -487,6 +487,7 @@
                                         <size key="customSize" width="346" height="145"/>
                                         <connections>
                                             <outlet property="categoryLabel" destination="PIX-WE-UHg" id="G3o-ue-wNf"/>
+                                            <outlet property="imageView" destination="EOD-Rf-vjM" id="19i-0S-uqh"/>
                                             <outlet property="nReviewsLabel" destination="vT9-ZR-cEg" id="nNM-iK-nub"/>
                                             <outlet property="nameLabel" destination="I2q-xV-aQQ" id="ZRn-Jt-mhi"/>
                                             <outlet property="pointsImageView" destination="4SN-p5-QBj" id="cSk-Lg-maq"/>
@@ -1749,7 +1750,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="a1u-Hx-FMj"/>
+        <segue reference="Gkc-qy-0g0"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="0stars" width="95" height="18"/>
