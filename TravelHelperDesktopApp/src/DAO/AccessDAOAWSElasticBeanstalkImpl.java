@@ -26,7 +26,7 @@ public class AccessDAOAWSElasticBeanstalkImpl implements AccessDAO {
     private static final String SIGN_UP = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/api/auth/signup";
     
     @Override
-    public HttpResponse<String> signIn(String firstName, String lastName, String email, String username, String password) {
+    public HttpResponse<String> signUp(String firstName, String lastName, String email, String username, String password) {
         String body = new StringBuilder()
                 .append("{")
                 

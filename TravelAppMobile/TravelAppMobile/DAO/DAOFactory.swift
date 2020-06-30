@@ -18,11 +18,27 @@ public class DAOFactory {
         }
     }
     
+    static func getUserDAO(type: String) -> UserDAOProtocol {
+        if type == "AWSElasticBeanstalk" {
+            return UserDAOAWSElasticbeanstalkImpl()
+        } else { // Altre implementazioni possibili diverse da AWS Elastic Beanstalk
+            return UserDAOAWSElasticbeanstalkImpl()
+        }
+    }
+    
     static func getReviewDAO(type: String) -> ReviewDAOProtocol {
         if type == "AWSElasticBeanstalk" {
             return ReviewDAOAWSElasticbeanstalkImpl()
         } else { // Altre implementazioni possibili diverse da AWS Elastic Beanstalk
             return ReviewDAOAWSElasticbeanstalkImpl()
+        }
+    }
+    
+    static func getAccessDAO(type: String) -> AccessDAOProtocol {
+        if type == "AWSElasticBeanstalk" {
+            return AccessDAOAWSElasticbeanstalkImpl()
+        } else { // Altre implementazioni possibili diverse da AWS Elastic Beanstalk
+            return AccessDAOAWSElasticbeanstalkImpl()
         }
     }
     

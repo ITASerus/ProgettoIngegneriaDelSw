@@ -14,7 +14,7 @@ import java.net.http.HttpResponse;
  * @author ernestodecrecchio
  */
 public interface AccessDAO {
-    public HttpResponse<String> signIn(String firstName, String lastName, String email, String username, String password);
+    public HttpResponse<String> signUp(String firstName, String lastName, String email, String username, String password);
     
     public String logIn(String usernameOrEmail, String password);
 }

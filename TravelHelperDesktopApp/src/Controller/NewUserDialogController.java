@@ -39,7 +39,7 @@ public class NewUserDialogController {
     }
     
     public int createNewUser(String firstName, String lastName, String email, String username, String password) {     
-        HttpResponse<String> response = accessDAO.signIn(firstName, lastName, email, username, password);
+        HttpResponse<String> response = accessDAO.signUp(firstName, lastName, email, username, password);
         Gson gson = new Gson();
         JsonObject object = gson.fromJson(response.body(), JsonObject.class); // Convert json text to JsonArray               
         
