@@ -24,7 +24,17 @@ class AccessViewController: UIViewController {
     }
     
     @IBAction func logInButtonPressed(_ sender: Any) {
-        controller.logInUser(usernameOrEmail: usernameOrEmailTextField.text!, password: passwordTextField.text!)
+        controller.logInUser(usernameOrEmail: usernameOrEmailTextField.text!, password: passwordTextField.text!) { (isLogged) in
+            DispatchQueue.main.async {
+                if(isLogged == 1) {
+                
+                } else {
+                    let alertController = UIAlertController(title: "Credenziali errate", message: "Ricontrollare i dati inseriti", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "Ok", style: .default))
+                
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
     }
-    
 }

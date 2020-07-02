@@ -21,5 +21,7 @@ struct User: Decodable, Hashable {
     //let updatedAt
     
     var imageDownloaded: UIImageCodable?
+    
+    var token : String?
 }
 

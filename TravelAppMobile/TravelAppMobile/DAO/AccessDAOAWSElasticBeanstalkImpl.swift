@@ -12,11 +12,9 @@ public class AccessDAOAWSElasticbeanstalkImpl: AccessDAOProtocol {
     
     private let LOG_IN = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/api/auth/signin"
     
-    func logIn(usernameOrEmail: String, password: String) -> String? {
-
+    //Output con closure come dizionario per gestire sia errori che accesso effettuato correttamente
+    func logIn(usernameOrEmail: String, password: String, completion: @escaping ([String: Any]) -> Void) {
         let body: [String: Any] = ["usernameOrEmail": usernameOrEmail, "password": password]
-        
-        print(body)
         
         let jsonData = try? JSONSerialization.data(withJSONObject: body)
 
@@ -35,13 +33,11 @@ public class AccessDAOAWSElasticbeanstalkImpl: AccessDAOProtocol {
                 print(error?.localizedDescription ?? "No data")
                 return
             }
+            
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let responseJSON = responseJSON as? [String: Any] {
-                print(responseJSON)
-            }
+            completion(responseJSON as! [String : Any])
         }
 
         task.resume()
-        return "ciao"
     }
 }

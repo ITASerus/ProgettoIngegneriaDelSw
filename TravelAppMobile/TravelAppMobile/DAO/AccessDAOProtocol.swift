@@ -10,6 +10,6 @@ import Foundation
 
 protocol AccessDAOProtocol {
     
-    func logIn(usernameOrEmail: String, password: String) -> String?
+    func logIn(usernameOrEmail: String, password: String, completion: @escaping ([String: Any]) -> Void)
     
 }

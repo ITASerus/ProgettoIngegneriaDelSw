@@ -113,7 +113,7 @@ public class AccessDAOAWSElasticBeanstalkImpl implements AccessDAO {
         response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException e) {
             e.printStackTrace();
-        }catch (InterruptedException i) {
+        } catch (InterruptedException i) {
             i.printStackTrace();
         } finally {
             if (response.statusCode() == 200) { // Accesso effettuato con successo      
