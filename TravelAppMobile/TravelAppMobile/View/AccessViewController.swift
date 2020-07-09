@@ -28,6 +28,7 @@ class AccessViewController: UIViewController {
             DispatchQueue.main.async {
                 if(isLogged == 1) {
                     self.performSegue(withIdentifier: "LogInSegue", sender: self)
+                    self.dismissKeyboard()
                 } else {
                     let alertController = UIAlertController(title: "Credenziali errate", message: "Ricontrollare i dati inseriti", preferredStyle: .alert)
                     alertController.addAction(UIAlertAction(title: "Ok", style: .default))

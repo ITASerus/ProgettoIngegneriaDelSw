@@ -31,9 +31,7 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationItem.leftBarButtonItem = nil
-        
+    
         // Manage image
         if (loggedUser?.image != nil) {
             if(loggedUser?.imageDownloaded == nil) {
@@ -79,8 +77,8 @@ class ProfileViewController: UIViewController {
         switch loggedUser?.gender {
         case "M":
             setGenderSegmentedControlContent(profileGender: "M")
-            headerView.backgroundColor = UIColor(red: 0.69, green: 0.84, blue: 1.00, alpha: 1.00)
-            infoView.backgroundColor = UIColor(red: 0.69, green: 0.84, blue: 1.00, alpha: 1.00)
+            headerView.backgroundColor = UIColor(red: 0.40, green: 0.53, blue: 0.67, alpha: 1.00)
+            infoView.backgroundColor = UIColor(red: 0.40, green: 0.53, blue: 0.67, alpha: 1.00)
             break
         case "F":
             setGenderSegmentedControlContent(profileGender: "F")
@@ -89,15 +87,13 @@ class ProfileViewController: UIViewController {
             break
         default:
             setGenderSegmentedControlContent(profileGender: "N")
-            headerView.backgroundColor = UIColor(red: 1.00, green: 0.82, blue: 0.53, alpha: 1.00)
-            infoView.backgroundColor = UIColor(red: 1.00, green: 0.82, blue: 0.53, alpha: 1.00)
+            headerView.backgroundColor = UIColor(red: 0.75, green: 0.59, blue: 0.32, alpha: 1.00)
+            infoView.backgroundColor = UIColor(red: 0.75, green: 0.59, blue: 0.32, alpha: 1.00)
         }
-        
     }
     
     @IBAction func editButtonPressed(_ sender: Any) {
         profileEditing = true
-        self.navigationItem.leftBarButtonItem = self.cancelButton
         
         firstNameTextField.textColor = .black
         firstNameTextField.borderStyle = .roundedRect
@@ -111,24 +107,29 @@ class ProfileViewController: UIViewController {
         genderSegmentedControl.isUserInteractionEnabled = true
         
         editButton.title = "Salva"
+        cancelButton.title = "Annulla"
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
-        profileEditing = false
-        self.navigationItem.leftBarButtonItem = nil
+        if(profileEditing) {
+            profileEditing = false
+
+            firstNameTextField.textColor = .white
+            firstNameTextField.borderStyle = .none
+            firstNameTextField.isUserInteractionEnabled = false
                
-        firstNameTextField.textColor = .white
-        firstNameTextField.borderStyle = .none
-        firstNameTextField.isUserInteractionEnabled = false
+            lastNameTextField.textColor = .white
+            lastNameTextField.borderStyle = .none
+            lastNameTextField.isUserInteractionEnabled = false
+            
+            setGenderSegmentedControlContent(profileGender: loggedUser?.gender)
+            genderSegmentedControl.isUserInteractionEnabled = false
                
-        lastNameTextField.textColor = .white
-        lastNameTextField.borderStyle = .none
-        lastNameTextField.isUserInteractionEnabled = false
-        
-        setGenderSegmentedControlContent(profileGender: loggedUser?.gender)
-        genderSegmentedControl.isUserInteractionEnabled = false
-               
-        editButton.title = "Modifica"
+            editButton.title = "Modifica"
+            cancelButton.title = "Log Out"
+        } else {
+            _ = navigationController?.popViewController(animated: true)
+        }
     }
     
     func setGenderSegmentedControlContent(profileGender: String?) {
