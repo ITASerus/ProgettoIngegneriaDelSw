@@ -22,12 +22,14 @@ class ShadowRoundedImageView: UIView {
     
     @IBInspectable
     var cornerRadius: CGFloat {
-        get {
-            return layer.cornerRadius
-        }
-        set {
-            layer.cornerRadius = newValue
-        }
+        get { return layer.cornerRadius }
+        set { layer.cornerRadius = newValue }
+    }
+    
+    @IBInspectable
+    var filterEnabled: Bool {
+        get { return !filterLayer.isHidden }
+        set { filterLayer.isHidden = !newValue}
     }
     
     var shape: UIBezierPath {
@@ -46,22 +48,14 @@ class ShadowRoundedImageView: UIView {
     
     @IBInspectable
     var shadowOpacity: Float {
-        get {
-            return shadowLayer.shadowOpacity
-        }
-        set {
-            shadowLayer.shadowOpacity = newValue
-        }
+        get { return shadowLayer.shadowOpacity }
+        set { shadowLayer.shadowOpacity = newValue }
     }
     
     @IBInspectable
     var shadowRadius: CGFloat {
-        get {
-            return shadowLayer.shadowRadius
-        }
-        set {
-            shadowLayer.shadowRadius = newValue
-        }
+        get { return shadowLayer.shadowRadius }
+        set { shadowLayer.shadowRadius = newValue }
     }
     
     override func layoutSubviews() {

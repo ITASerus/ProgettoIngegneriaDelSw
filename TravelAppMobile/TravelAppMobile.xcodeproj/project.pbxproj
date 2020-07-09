@@ -23,6 +23,8 @@
 		2560E17F246BFD36001669A3 /* ShadowRoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560E17E246BFD36001669A3 /* ShadowRoundedImageView.swift */; };
 		2560EDFD24A2098100464536 /* SearchFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560EDFC24A2098100464536 /* SearchFilterController.swift */; };
 		25777C1024ADD8A800B84882 /* LoggedUserSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25777C0F24ADD8A800B84882 /* LoggedUserSingleton.swift */; };
+		2582B32324B707CE001650F3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2582B32224B707CE001650F3 /* ProfileViewController.swift */; };
+		2582B32524B7127A001650F3 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2582B32424B7127A001650F3 /* ProfileController.swift */; };
 		2584B6B4247BB59200F2B007 /* ReviewDAOProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2584B6B3247BB59200F2B007 /* ReviewDAOProtocol.swift */; };
 		2584B6B6247BB5B900F2B007 /* ReviewDAOAWSElasticBeanstalkImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2584B6B5247BB5B900F2B007 /* ReviewDAOAWSElasticBeanstalkImpl.swift */; };
 		2584B6B8247BB5E100F2B007 /* UserDAOProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2584B6B7247BB5E100F2B007 /* UserDAOProtocol.swift */; };
@@ -46,7 +48,6 @@
 		D54EC28324A0C602005AB51A /* TravelAppMobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54EC28224A0C602005AB51A /* TravelAppMobileTests.swift */; };
 		D54EC28B24A0C630005AB51A /* GeneralReusables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54EC28A24A0C630005AB51A /* GeneralReusables.swift */; };
 		D54EC28E24A0C713005AB51A /* GeneralReusables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54EC28A24A0C630005AB51A /* GeneralReusables.swift */; };
-		D5F68470247D721C00FA5F58 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F6846F247D721C00FA5F58 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,8 @@
 		2560E17E246BFD36001669A3 /* ShadowRoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowRoundedImageView.swift; sourceTree = "<group>"; };
 		2560EDFC24A2098100464536 /* SearchFilterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterController.swift; sourceTree = "<group>"; };
 		25777C0F24ADD8A800B84882 /* LoggedUserSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedUserSingleton.swift; sourceTree = "<group>"; };
+		2582B32224B707CE001650F3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		2582B32424B7127A001650F3 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		2584B6B3247BB59200F2B007 /* ReviewDAOProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDAOProtocol.swift; sourceTree = "<group>"; };
 		2584B6B5247BB5B900F2B007 /* ReviewDAOAWSElasticBeanstalkImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDAOAWSElasticBeanstalkImpl.swift; sourceTree = "<group>"; };
 		2584B6B7247BB5E100F2B007 /* UserDAOProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDAOProtocol.swift; sourceTree = "<group>"; };
@@ -102,7 +105,6 @@
 		D54EC28224A0C602005AB51A /* TravelAppMobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelAppMobileTests.swift; sourceTree = "<group>"; };
 		D54EC28424A0C602005AB51A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D54EC28A24A0C630005AB51A /* GeneralReusables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralReusables.swift; sourceTree = "<group>"; };
-		D5F6846F247D721C00FA5F58 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,9 +161,9 @@
 				25094137246AEC5A0045F135 /* ResultsViewController.swift */,
 				25167372247456C70096FC5D /* StructureDetailViewController.swift */,
 				250C253C24754392000F834D /* ReviewDetailViewController.swift */,
-				D5F6846F247D721C00FA5F58 /* ProfileViewController.swift */,
 				D53A5F642482B7F800B67C8C /* SearchFilterViewController.swift */,
 				25517CC924AB30DD00A9756E /* AccessViewController.swift */,
+				2582B32224B707CE001650F3 /* ProfileViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -185,6 +187,7 @@
 				D54EC28A24A0C630005AB51A /* GeneralReusables.swift */,
 				2560EDFC24A2098100464536 /* SearchFilterController.swift */,
 				25517CCB24AB329700A9756E /* AccessController.swift */,
+				2582B32424B7127A001650F3 /* ProfileController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				250C253B247529CD000F834D /* ReviewCell.swift in Sources */,
 				2592BACC246AAD4200F220C3 /* AppDelegate.swift in Sources */,
 				25517CCC24AB329700A9756E /* AccessController.swift in Sources */,
+				2582B32324B707CE001650F3 /* ProfileViewController.swift in Sources */,
 				25777C1024ADD8A800B84882 /* LoggedUserSingleton.swift in Sources */,
 				25ED3A57246F0DAF00A1FBA8 /* StructureDetailController.swift in Sources */,
 				2584B6B8247BB5E100F2B007 /* UserDAOProtocol.swift in Sources */,
@@ -384,10 +388,10 @@
 				25ED3A5B246F0F9700A1FBA8 /* Review.swift in Sources */,
 				253B8E522473C5B700C346F2 /* LittleStructureCell.swift in Sources */,
 				2560E17F246BFD36001669A3 /* ShadowRoundedImageView.swift in Sources */,
-				D5F68470247D721C00FA5F58 /* ProfileViewController.swift in Sources */,
 				25167373247456C70096FC5D /* StructureDetailViewController.swift in Sources */,
 				25517CD224AB35A600A9756E /* AccessDAOAWSElasticBeanstalkImpl.swift in Sources */,
 				250C253D24754392000F834D /* ReviewDetailViewController.swift in Sources */,
+				2582B32524B7127A001650F3 /* ProfileController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

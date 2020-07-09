@@ -27,11 +27,10 @@ class AccessViewController: UIViewController {
         controller.logInUser(usernameOrEmail: usernameOrEmailTextField.text!, password: passwordTextField.text!) { (isLogged) in
             DispatchQueue.main.async {
                 if(isLogged == 1) {
-                
+                    self.performSegue(withIdentifier: "LogInSegue", sender: self)
                 } else {
                     let alertController = UIAlertController(title: "Credenziali errate", message: "Ricontrollare i dati inseriti", preferredStyle: .alert)
                     alertController.addAction(UIAlertAction(title: "Ok", style: .default))
-                
                     self.present(alertController, animated: true, completion: nil)
                 }
             }

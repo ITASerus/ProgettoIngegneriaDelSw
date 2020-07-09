@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public class AccessController {
     private static let userDAO = DAOFactory.getUserDAO(type: "AWSElasticBeanstalk")
@@ -20,11 +21,9 @@ public class AccessController {
                 completion(0)
             } else { //Utente loggato
                 AccessController.userDAO.getByUsernameOrEmail(usernameOrEmail: usernameOrEmail) { (userInstance) in
+                    
                     LoggedUserSingleton.shared.setLoggedUser(loggedUser: userInstance!, token: responseJSON["accessToken"] as! String)
                     
-                    print(LoggedUserSingleton.shared.getLoggedUser()!.firstName!)
-                    print(LoggedUserSingleton.shared.getLoggedUser()!.email!)
-                    print(LoggedUserSingleton.shared.getLoggedUser()!.token!)
                     completion(1)
                 }
             }
