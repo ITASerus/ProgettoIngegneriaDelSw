@@ -24,6 +24,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var infoView: UIView!
     
+    var loggedUser = LoggedUserSingleton.shared.getLoggedUser()
     var profileEditing = false
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet var cancelButton: UIBarButtonItem!
@@ -33,8 +34,6 @@ class ProfileViewController: UIViewController {
         
         self.navigationItem.leftBarButtonItem = nil
         
-        var loggedUser = LoggedUserSingleton.shared.getLoggedUser()
-               
         // Manage image
         if (loggedUser?.image != nil) {
             if(loggedUser?.imageDownloaded == nil) {
@@ -48,9 +47,9 @@ class ProfileViewController: UIViewController {
 
                     let image = UIImage(data: imageData!)
                     DispatchQueue.main.async {
-                        loggedUser?.imageDownloaded = UIImageCodable.init(withImage: image!)
+                        self.loggedUser?.imageDownloaded = UIImageCodable.init(withImage: image!)
                                
-                        self.profileImageView.image = loggedUser?.imageDownloaded?.getImage()
+                        self.profileImageView.image = self.loggedUser?.imageDownloaded?.getImage()
                     }
                 }
             } else {
@@ -63,11 +62,11 @@ class ProfileViewController: UIViewController {
         }
         
         //Initialization components
-        firstNameTextField.isEnabled = false
-        lastNameTextField.isEnabled = false
-        usernameTextField.isEnabled = false
-        emailTextField.isEnabled = false
-        genderSegmentedControl.isEnabled = false
+        firstNameTextField.isUserInteractionEnabled = false
+        lastNameTextField.isUserInteractionEnabled = false
+        usernameTextField.isUserInteractionEnabled = false
+        emailTextField.isUserInteractionEnabled = false
+        genderSegmentedControl.isUserInteractionEnabled = false
         
         usernameTopLabel.text = loggedUser?.username ?? "Non specificato"
         emailTopLabel.text = loggedUser?.email ?? "Non specificato"
@@ -76,19 +75,20 @@ class ProfileViewController: UIViewController {
         lastNameTextField.text = loggedUser?.lastName ?? "Non specificato"
         usernameTextField.text = loggedUser?.username ?? "Non specificato"
         emailTextField.text = loggedUser?.email ?? "Non specificato"
+       
         switch loggedUser?.gender {
         case "M":
-            genderSegmentedControl.selectedSegmentIndex = 0
+            setGenderSegmentedControlContent(profileGender: "M")
             headerView.backgroundColor = UIColor(red: 0.69, green: 0.84, blue: 1.00, alpha: 1.00)
             infoView.backgroundColor = UIColor(red: 0.69, green: 0.84, blue: 1.00, alpha: 1.00)
             break
         case "F":
-            genderSegmentedControl.selectedSegmentIndex = 1
+            setGenderSegmentedControlContent(profileGender: "F")
             headerView.backgroundColor = UIColor(red: 0.45, green: 0.35, blue: 0.47, alpha: 1.00)
             infoView.backgroundColor = UIColor(red: 0.45, green: 0.35, blue: 0.47, alpha: 1.00)
             break
         default:
-            genderSegmentedControl.selectedSegmentIndex = 2
+            setGenderSegmentedControlContent(profileGender: "N")
             headerView.backgroundColor = UIColor(red: 1.00, green: 0.82, blue: 0.53, alpha: 1.00)
             infoView.backgroundColor = UIColor(red: 1.00, green: 0.82, blue: 0.53, alpha: 1.00)
         }
@@ -101,12 +101,14 @@ class ProfileViewController: UIViewController {
         
         firstNameTextField.textColor = .black
         firstNameTextField.borderStyle = .roundedRect
-        firstNameTextField.isEnabled = true
+        firstNameTextField.isUserInteractionEnabled = true
         
         lastNameTextField.textColor = .black
         lastNameTextField.borderStyle = .roundedRect
-        lastNameTextField.isEnabled = true
-        genderSegmentedControl.isEnabled = true
+        lastNameTextField.isUserInteractionEnabled = true
+        
+        setGenderSegmentedControlContent(profileGender: nil)
+        genderSegmentedControl.isUserInteractionEnabled = true
         
         editButton.title = "Salva"
     }
@@ -117,14 +119,50 @@ class ProfileViewController: UIViewController {
                
         firstNameTextField.textColor = .white
         firstNameTextField.borderStyle = .none
-        firstNameTextField.isEnabled = false
+        firstNameTextField.isUserInteractionEnabled = false
                
         lastNameTextField.textColor = .white
         lastNameTextField.borderStyle = .none
-        lastNameTextField.isEnabled = false
+        lastNameTextField.isUserInteractionEnabled = false
         
-        genderSegmentedControl.isEnabled = false
+        setGenderSegmentedControlContent(profileGender: loggedUser?.gender)
+        genderSegmentedControl.isUserInteractionEnabled = false
                
         editButton.title = "Modifica"
+    }
+    
+    func setGenderSegmentedControlContent(profileGender: String?) {
+        switch profileGender {
+        case "M":
+            genderSegmentedControl.removeAllSegments()
+            genderSegmentedControl.insertSegment(withTitle: "Uomo", at: 0, animated: true)
+            genderSegmentedControl.selectedSegmentIndex = 0
+            break
+        case "F":
+            genderSegmentedControl.removeAllSegments()
+            genderSegmentedControl.insertSegment(withTitle: "Donna", at: 0, animated: true)
+            genderSegmentedControl.selectedSegmentIndex = 0
+            break
+        case "N":
+            genderSegmentedControl.removeAllSegments()
+            genderSegmentedControl.insertSegment(withTitle: "Non Specificato", at: 0, animated: true)
+            genderSegmentedControl.selectedSegmentIndex = 0
+            break
+        default:
+            genderSegmentedControl.removeAllSegments()
+            genderSegmentedControl.insertSegment(withTitle: "Uomo", at: 0, animated: true)
+            genderSegmentedControl.insertSegment(withTitle: "Donna", at: 1, animated: true)
+            genderSegmentedControl.insertSegment(withTitle: "N/A", at: 2, animated: true)
+            switch loggedUser?.gender {
+            case "M":
+                genderSegmentedControl.selectedSegmentIndex = 0
+                break
+            case "F":
+                genderSegmentedControl.selectedSegmentIndex = 1
+                break
+            default:
+                genderSegmentedControl.selectedSegmentIndex = 2
+            }
+        }
     }
 }
