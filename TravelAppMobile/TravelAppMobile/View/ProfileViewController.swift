@@ -196,11 +196,12 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         // Date Management
         var jsonDate = reviewsList[indexPath.row].date
         let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        //2020-06-22T09:15:56.000+0000
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS+SSSS"
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "dd/MM/yyyy"  //"MMM d, h:mm a" for  Sep 12, 2:11 PM
         let datee = dateFormatterGet.date(from: jsonDate)
-        jsonDate =  dateFormatterPrint.string(from: datee ?? Date())
+        jsonDate =  dateFormatterPrint.string(from: datee! /*?? Date()*/)
         
         cell.dateLabel.text = jsonDate
         
