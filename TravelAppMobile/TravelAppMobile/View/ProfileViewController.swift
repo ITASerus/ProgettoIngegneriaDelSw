@@ -24,13 +24,21 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var infoView: UIView!
     
+    @IBOutlet var reviewsCollectionView: UICollectionView!
+    var reviewsList = [Review]()
+    
     var loggedUser = LoggedUserSingleton.shared.getLoggedUser()
     var profileEditing = false
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet var cancelButton: UIBarButtonItem!
-
+    
+    let controller = ProfileController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        reviewsCollectionView.delegate = self
+        reviewsCollectionView.dataSource = self
     
         // Manage image
         if (loggedUser?.image != nil) {
@@ -90,6 +98,8 @@ class ProfileViewController: UIViewController {
             headerView.backgroundColor = UIColor(red: 0.75, green: 0.59, blue: 0.32, alpha: 1.00)
             infoView.backgroundColor = UIColor(red: 0.75, green: 0.59, blue: 0.32, alpha: 1.00)
         }
+    
+        reviewsList = controller.getReviews(userID: loggedUser!.id)
     }
     
     @IBAction func editButtonPressed(_ sender: Any) {
@@ -167,3 +177,52 @@ class ProfileViewController: UIViewController {
         }
     }
 }
+
+extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return reviewsList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReviewCell", for: indexPath) as! ProfileReviewCell
+        
+        cell.structureNameLabel.text = reviewsList[indexPath.row].structureName
+        cell.reviewTitleLabel.text = reviewsList[indexPath.row].title
+        cell.reviewBodyLabel.text = reviewsList[indexPath.row].description
+        let points = reviewsList[indexPath.row].points ?? 0.0
+        cell.pointsImageView.image = UIImage (imageLiteralResourceName: GeneralReusables.starsImageAssetName(avgPoints: points))
+        
+        // Manage image
+        if (reviewsList[indexPath.row].structureImage != nil) {
+            if(reviewsList[indexPath.row].structureDownloadedImage == nil) {
+                cell.imageView.image = UIImage.init(named: "DownloadingImageWBlackShade.pdf")
+                
+                let imageURL = URL(string: reviewsList[indexPath.row].structureImage!)!
+
+                // just not to cause a deadlock in UI!
+                DispatchQueue.global().async {
+                    let imageData = try? Data(contentsOf: imageURL)
+
+                    let image = UIImage(data: imageData!)
+                    DispatchQueue.main.async {
+                        self.reviewsList[indexPath.row].structureDownloadedImage = UIImageCodable.init(withImage: image!)
+                        
+                        cell.imageView.image = self.reviewsList[indexPath.row].structureDownloadedImage?.getImage()
+                    }
+                }
+            } else {
+                cell.imageView.image = self.reviewsList[indexPath.row].structureDownloadedImage?.getImage()
+            }
+        } else {
+            let image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
+            self.reviewsList[indexPath.row].structureDownloadedImage = UIImageCodable.init(withImage: image!)
+            cell.imageView.image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
+        }
+        
+        return cell
+    }
+    
+}
+
+

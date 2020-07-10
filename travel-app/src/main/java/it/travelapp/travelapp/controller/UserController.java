@@ -1,6 +1,9 @@
 package it.travelapp.travelapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import javax.validation.Valid;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import it.travelapp.travelapp.exception.ResourceNotFoundException;
 import it.travelapp.travelapp.model.Review;
 import it.travelapp.travelapp.repository.UserRepository;
+
+import it.travelapp.travelapp.model.Structure;
 
 @RestController
 @RequestMapping("/users")
@@ -123,5 +128,37 @@ public class UserController {
     public Set<Review> getReviewsByUserId(@PathVariable(value = "id") Long userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
         return user.getReviews();
+    }
+
+    // Get Reviews by UserID with Structure Info
+    @SuppressWarnings("Duplicates")
+    @GetMapping("/id={id}/getReviewsWStructureInfo")
+    public List<Map<String, Object>> getReviewsWStructureInfoByUserId(@PathVariable(value = "id") Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
+        Set<Review> reviewList = user.getReviews();
+
+        List<Map<String, Object>> reviewListWStructureInfo = new ArrayList<>();
+
+        for (Review review : reviewList) {
+            Structure structure = review.getStructure();
+
+            Map<String, Object> map = new HashMap<>();
+
+            map.put("id", review.getId());
+            map.put("title", review.getTitle());
+            map.put("description", review.getDescription());
+            map.put("points", review.getPoints());
+            map.put("date", review.getDate());
+            map.put("structureID", review.getStructureID());
+            map.put("userID", review.getUserID());
+
+            map.put("structureName", structure.getName());
+            map.put("structureImage", structure.getImage());
+
+            reviewListWStructureInfo.add(map);
+        }
+
+
+        return reviewListWStructureInfo;
     }
 }

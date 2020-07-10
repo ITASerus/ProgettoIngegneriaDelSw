@@ -9,8 +9,7 @@
 import Foundation
 
 protocol UserDAOProtocol {
-    
-    //func getByUsernameOrEmail(usernameOrEmail: String) -> User?
-    
     func getByUsernameOrEmail(usernameOrEmail: String, completion: @escaping (User?) -> Void)
+
+    func getReviewsWStructureInfoByUserID(userID: Int) -> [Review]?
 }

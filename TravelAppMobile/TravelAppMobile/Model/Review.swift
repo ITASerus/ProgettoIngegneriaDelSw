@@ -12,8 +12,8 @@ struct Review: Decodable, Hashable {
     
     let id : Int
     let title:  String
-    let description : String?
-    let points : Float?
+    let description: String?
+    let points: Float?
     //let date : Date?
     let structureID: Int
     let userID: Int
@@ -21,4 +21,8 @@ struct Review: Decodable, Hashable {
     let image: String?
     
     var imageDownloaded: UIImageCodable?
+    
+    var structureName: String?
+    var structureImage: String?
+    var structureDownloadedImage: UIImageCodable?
 }

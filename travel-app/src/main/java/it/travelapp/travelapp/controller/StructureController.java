@@ -284,6 +284,7 @@ public class StructureController {
     }
 
 
+    @SuppressWarnings("Duplicates")
     @GetMapping("/id={id}/getReviewsWUserInfo")
     public List<Map<String, Object>> getReviewsWUserInfoByStructureId(@PathVariable(value = "id") Long structureId) {
         Structure structure = structureRepository.findById(structureId).orElseThrow(() -> new ResourceNotFoundException("Structure", "id", structureId));
@@ -295,8 +296,6 @@ public class StructureController {
             User user = review.getUser();
 
             Map<String, Object> map = new HashMap<>();
-
-            System.out.println("Aggiungo " + review.getTitle());
 
             map.put("id", review.getId());
             map.put("title", review.getTitle());
