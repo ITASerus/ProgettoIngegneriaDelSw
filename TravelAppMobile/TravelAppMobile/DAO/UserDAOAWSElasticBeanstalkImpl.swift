@@ -38,6 +38,8 @@ public class UserDAOAWSElasticbeanstalkImpl: UserDAOProtocol {
             let decoder: JSONDecoder = JSONDecoder.init()
             let reviews: [Review] = try decoder.decode([Review].self, from: dataStructures)
             
+            print(reviews)
+            
             return reviews
         } catch let e {
             print(e)

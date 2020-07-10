@@ -14,7 +14,7 @@ struct Review: Decodable, Hashable {
     let title:  String
     let description: String?
     let points: Float?
-    //let date : Date?
+    let date : String
     let structureID: Int
     let userID: Int
     let firstName: String?

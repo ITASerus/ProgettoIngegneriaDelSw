@@ -193,6 +193,17 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         let points = reviewsList[indexPath.row].points ?? 0.0
         cell.pointsImageView.image = UIImage (imageLiteralResourceName: GeneralReusables.starsImageAssetName(avgPoints: points))
         
+        // Date Management
+        var jsonDate = reviewsList[indexPath.row].date
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "dd/MM/yyyy"  //"MMM d, h:mm a" for  Sep 12, 2:11 PM
+        let datee = dateFormatterGet.date(from: jsonDate)
+        jsonDate =  dateFormatterPrint.string(from: datee ?? Date())
+        
+        cell.dateLabel.text = jsonDate
+        
         // Manage image
         if (reviewsList[indexPath.row].structureImage != nil) {
             if(reviewsList[indexPath.row].structureDownloadedImage == nil) {
