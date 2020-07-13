@@ -73,14 +73,21 @@ class SearchFilterViewController: UIViewController {
     }
     
     @IBAction func starButtonAction(_ sender: UIButton) {
-        for (i, button) in starButtonsArray.enumerated() {
-            if i < sender.tag {
-                button.setImage(UIImage(named: "star.pdf"), for: .normal)
-            } else {
-                button.setImage(UIImage(named: "starGrey.pdf"), for: .normal)
+        if (sender.tag == totalStars) {
+            for button: UIButton in starButtonsArray {
+                    button.setImage(UIImage(named: "starGrey.pdf"), for: .normal)
             }
+            totalStars = 0
+        } else {
+            for (i, button) in starButtonsArray.enumerated() {
+                if i < sender.tag {
+                    button.setImage(UIImage(named: "star.pdf"), for: .normal)
+                } else {
+                    button.setImage(UIImage(named: "starGrey.pdf"), for: .normal)
+                }
+            }
+            totalStars = sender.tag
         }
-        totalStars = sender.tag
     }
     
     @IBAction func searchButtonPressed(_ sender: Any) {

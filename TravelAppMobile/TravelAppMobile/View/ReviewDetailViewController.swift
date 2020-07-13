@@ -15,6 +15,7 @@ class ReviewDetailViewController: UIViewController {
     @IBOutlet weak var bodyTextView: UITextView!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var authorImageView: UIImageView!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var pointsImageView: UIImageView!
     
     var review: Review!
@@ -38,5 +39,16 @@ class ReviewDetailViewController: UIViewController {
         
         let points = review.points ?? 0.0
         pointsImageView.image = UIImage (imageLiteralResourceName: GeneralReusables.starsImageAssetName(avgPoints: points))
+        
+        // Date Management
+        var jsonDate = review.date
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS+SSSS"
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "dd/MM/yyyy"
+        let datee = dateFormatterGet.date(from: jsonDate)
+        jsonDate =  dateFormatterPrint.string(from: datee!)
+               
+        dateLabel.text = jsonDate
     }
 }

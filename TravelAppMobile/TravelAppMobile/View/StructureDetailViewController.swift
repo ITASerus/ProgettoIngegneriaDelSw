@@ -2,8 +2,8 @@
 //  StructureDetailViewController.swift
 //  TravelAppMobile
 //
-//  Created by Piero Junior Gaetani on 19/05/2020.
-//  Copyright © 2020 Piero Junior Gaetani. All rights reserved.
+//  Created by Ernesto De Crecchio on 23/06/2020.
+//  Copyright © 2020 Ernesto De Crecchio. All rights reserved.
 //
 
 import UIKit
@@ -112,12 +112,20 @@ class StructureDetailViewController: UIViewController {
             callNumberOfStructure(phoneNum: structure.contacts!)
     }
     
+    @IBAction func addReviewButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "AddReviewSegue", sender: self)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ReviewDetailSegue" {
             let destinationViewController = segue.destination as! ReviewDetailViewController
             
             destinationViewController.review = reviewsList[indexCellSelected!]
             destinationViewController.backgroundColor = colorList[indexCellSelected! % colorList.count]
+        } else if segue.identifier == "AddReviewSegue" {
+            let destinationViewController = segue.destination as! AddReviewViewController
+            
+            destinationViewController.structure = structure
         }
     }
 }

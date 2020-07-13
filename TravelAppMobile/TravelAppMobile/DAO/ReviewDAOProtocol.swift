@@ -9,5 +9,8 @@
 import Foundation
 
 protocol ReviewDAOProtocol {
+    
     func getUserByReviewID(id: Int) -> User?
+    
+    func addReview(title: String, body: String, points: Int, userID: Int, structureID: Int, completion: @escaping ([String: Any]) -> Void)
 }
