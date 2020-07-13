@@ -136,6 +136,16 @@ extension StructureDetailViewController: UITableViewDelegate, UITableViewDataSou
         cell.pointsImageView.image = UIImage (imageLiteralResourceName: GeneralReusables.starsImageAssetName(avgPoints: points))
         cell.authorLabel.text = reviewsList[indexPath.row].firstName
         
+        // Date Management
+        var jsonDate = reviewsList[indexPath.row].date
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS+SSSS"
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "dd/MM/yyyy"  //"MMM d, h:mm a" for  Sep 12, 2:11 PM
+        let datee = dateFormatterGet.date(from: jsonDate)
+        jsonDate =  dateFormatterPrint.string(from: datee! /*?? Date()*/)
+               
+        cell.dateLabel.text = jsonDate
         
         cell.backgroundImageView.backgroundColor = colorList[indexPath.row % colorList.count]
         

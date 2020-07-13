@@ -12,6 +12,7 @@ class ReviewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var pointsImageView: UIImageView!
     @IBOutlet weak var profilePictureImageView: UIImageView!
     @IBOutlet weak var backgroundImageView: UIImageView!
