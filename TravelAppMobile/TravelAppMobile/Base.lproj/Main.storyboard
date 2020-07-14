@@ -1375,6 +1375,7 @@
                     <navigationItem key="navigationItem" title="Home" id="WXC-cS-z7K"/>
                     <size key="freeformSize" width="375" height="1500"/>
                     <connections>
+                        <outlet property="globalTableView" destination="mIO-3f-3h5" id="wKq-85-LV7"/>
                         <outlet property="placeLabel" destination="RNu-rc-lMD" id="OeC-8n-N04"/>
                         <outlet property="section1CollectionView" destination="5M0-VS-gyz" id="c6z-F9-nAo"/>
                         <outlet property="section2CollectionView" destination="d5k-JG-D2J" id="IXR-6B-XLq"/>
@@ -2024,7 +2025,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Gkc-qy-0g0"/>
+        <segue reference="a1u-Hx-FMj"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="0stars" width="95" height="18"/>

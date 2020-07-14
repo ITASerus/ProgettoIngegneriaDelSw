@@ -19,17 +19,22 @@ class HomeTableViewController: UITableViewController {
      
     let loadingStructure = Structure(id: -1, name: "Caricamento", place: nil, category: "caricamento", price: 0, webSite: nil,contacts: nil, description: nil, image: nil, nReviews: 0, avgPoints: 5, imageDownloaded: UIImageCodable.init(withImage: UIImage.init(named: "DownloadingImageWBlackShade.pdf")!))
     
+ 
+    
+    @IBOutlet weak var placeLabel: UILabel!
+    
     var structuresSection1 = [Structure]()
     var structuresSection2 = [Structure]()
     var structuresSection3 = [Structure]()
     var structuresSection4 = [Structure]()
     
-    @IBOutlet weak var placeLabel: UILabel!
+    @IBOutlet var globalTableView: UITableView!
     @IBOutlet weak var section1CollectionView: UICollectionView!
     @IBOutlet weak var section2CollectionView: UICollectionView!
     @IBOutlet weak var section3CollectionView: UICollectionView!
     @IBOutlet weak var section4CollectionView: UICollectionView!
-        
+    
+    
     let controller = HomeController()
     
     override func viewDidLoad() {
@@ -38,7 +43,6 @@ class HomeTableViewController: UITableViewController {
         structuresSection1.append(loadingStructure)
         
         locationManager.delegate = self
-        checkLocationServices()
         
         section1CollectionView.delegate = self
         section1CollectionView.dataSource = self
@@ -52,16 +56,32 @@ class HomeTableViewController: UITableViewController {
         section4CollectionView.delegate = self
         section4CollectionView.dataSource = self
             
+        checkLocationServices() //Check Location and load structures for section 1
+        
         structuresSection2 = self.controller.getStructureByFilter(name: "", place: "", category: "", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: "4 e oltre")
         structuresSection3 = self.controller.getStructureByFilter(name: "", place: "", category: "Cibo", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: "")
         structuresSection4 = self.controller.getStructureByFilter(name: "", place: "", category: "Attivita", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: "")
+        
+        
+        // Refresh Table Control
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:  #selector(refreshTable), for: .valueChanged)
+        self.refreshControl = refreshControl
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    @objc func refreshTable() {
+        checkLocationServices()
+        
+        structuresSection2 = self.controller.getStructureByFilter(name: "", place: "", category: "", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: "4 e oltre")
+        structuresSection3 = self.controller.getStructureByFilter(name: "", place: "", category: "Cibo", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: "")
+        structuresSection4 = self.controller.getStructureByFilter(name: "", place: "", category: "Attivita", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: "")
+            
         section1CollectionView.reloadData()
         section2CollectionView.reloadData()
         section3CollectionView.reloadData()
         section4CollectionView.reloadData()
+        
+        refreshControl?.endRefreshing()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -142,9 +162,12 @@ class HomeTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
+    
+    
 }
 
 // MARK: - Collection view methods
