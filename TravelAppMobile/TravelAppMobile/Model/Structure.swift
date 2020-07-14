@@ -21,7 +21,7 @@ struct Structure: Decodable, Hashable {
     let contacts : String?
     let description : String?
     let image : String?
-    let nReviews : Int?
+    var nReviews : Int?
     let avgPoints : Float?
     
     var imageDownloaded: UIImageCodable?

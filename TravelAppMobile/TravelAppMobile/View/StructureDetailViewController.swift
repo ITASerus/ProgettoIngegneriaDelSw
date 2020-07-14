@@ -78,8 +78,6 @@ class StructureDetailViewController: UIViewController {
         let points = structure.avgPoints ?? 0.0
         pointsImageView.image = UIImage (imageLiteralResourceName: GeneralReusables.starsImageAssetName(avgPoints: points))
         
-        nReviewLabel.text = structure.nReviews!.description + " recensioni"
-        
         var placemark: CLPlacemark!
         var postoCheCerco : String = structure.place!
                 
@@ -98,10 +96,14 @@ class StructureDetailViewController: UIViewController {
                         
             }
                 })
-        
-        reviewsList = controller.getAllReviewsWUserInfo(structureId: structure.id)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        reviewsList = controller.getAllReviewsWUserInfo(structureId: structure.id)
+        nReviewLabel.text = structure.nReviews!.description + " recensioni"
+        
+        reviewsTableView.reloadData()
+    }
     
     @IBAction func actionButtonGoByMapToStructure(_ sender: UIButton) {
          print("posto ->\(structure.place!)")

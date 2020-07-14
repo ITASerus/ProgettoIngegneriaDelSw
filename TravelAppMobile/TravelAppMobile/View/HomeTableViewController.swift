@@ -57,6 +57,13 @@ class HomeTableViewController: UITableViewController {
         structuresSection4 = self.controller.getStructureByFilter(name: "", place: "", category: "Attivita", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: "")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        section1CollectionView.reloadData()
+        section2CollectionView.reloadData()
+        section3CollectionView.reloadData()
+        section4CollectionView.reloadData()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "StructureDetailHomeSegue" {
             let destinationViewController = segue.destination as! StructureDetailViewController
