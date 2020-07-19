@@ -24,4 +24,7 @@ public class LoggedUserSingleton {
         self.loggedUser?.token = token
     }
     
+    func logOut() {
+        loggedUser = nil
+    }
 }

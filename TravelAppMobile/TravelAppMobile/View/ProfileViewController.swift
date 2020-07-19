@@ -62,9 +62,9 @@ class ProfileViewController: UIViewController {
                 profileImageView.image = loggedUser?.imageDownloaded?.getImage()
             }
         } else {
-            let image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
-            loggedUser?.imageDownloaded = UIImageCodable.init(withImage: image!)
-            profileImageView.image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
+            let defaultImage = UIImage.init(named: "DefaultProfile.pdf")
+            loggedUser?.imageDownloaded = UIImageCodable.init(withImage: defaultImage!)
+            profileImageView.image = defaultImage
         }
         
         //Initialization components

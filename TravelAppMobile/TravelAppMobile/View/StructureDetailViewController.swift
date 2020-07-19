@@ -78,24 +78,25 @@ class StructureDetailViewController: UIViewController {
         let points = structure.avgPoints ?? 0.0
         pointsImageView.image = UIImage (imageLiteralResourceName: GeneralReusables.starsImageAssetName(avgPoints: points))
         
+        
+        
+        // Map Management
         var placemark: CLPlacemark!
-        var postoCheCerco : String = structure.place!
-                
-                CLGeocoder().geocodeAddressString(postoCheCerco, completionHandler: {(placemarks, error)->Void in
-                    if error == nil {
-                        
-                        placemark = placemarks![0]
-                        
-                        self.mapViewPlaceOfStructure.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2DMake (placemark.location!.coordinate.latitude, placemark.location!.coordinate.longitude), span: MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)), animated: true)
-                        
-                        let puntoCercato = MKPointAnnotation()
-                        puntoCercato.coordinate = placemark.location!.coordinate
-                        puntoCercato.title = placemark.locality
-                        puntoCercato.subtitle = postoCheCerco
-                        self.mapViewPlaceOfStructure.addAnnotation(puntoCercato)
-                        
+        let structurePlace: String = structure.place ?? "Non disponibile"
+        CLGeocoder().geocodeAddressString(structurePlace, completionHandler: {(placemarks, error)->Void in
+            if error == nil {
+                placemark = placemarks![0]
+                            
+                self.mapViewPlaceOfStructure.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2DMake (placemark.location!.coordinate.latitude, placemark.location!.coordinate.longitude), span: MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)), animated: true)
+                            
+                let puntoCercato = MKPointAnnotation()
+                puntoCercato.coordinate = placemark.location!.coordinate
+                puntoCercato.title = placemark.locality
+                puntoCercato.subtitle = structurePlace
+                self.mapViewPlaceOfStructure.addAnnotation(puntoCercato)
             }
-                })
+        })
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,7 +118,20 @@ class StructureDetailViewController: UIViewController {
     }
     
     @IBAction func addReviewButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "AddReviewSegue", sender: self)
+        if LoggedUserSingleton.shared.getLoggedUser()?.token != nil {
+             performSegue(withIdentifier: "AddReviewSegue", sender: self)
+        } else {
+            let alertController = UIAlertController(title: "Accesso richiesto", message: "Per inserire una recensione è necessario effettuare l'accesso", preferredStyle: .alert)
+            
+            let goToAccess = UIAlertAction.init(title: "Vai al pannello accesso", style: .default) { (UIAlertAction) in
+                self.tabBarController?.selectedIndex = 2
+            }
+            
+            alertController.addAction(goToAccess)
+            alertController.addAction(UIAlertAction(title: "Annulla", style: .cancel))
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -183,9 +197,9 @@ extension StructureDetailViewController: UITableViewDelegate, UITableViewDataSou
                 cell.profilePictureImageView.image = self.reviewsList[indexPath.row].imageDownloaded?.getImage()
             }
         } else {
-            let image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
-            self.reviewsList[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: image!)
-            cell.profilePictureImageView.image = UIImage.init(named: "DefaultImageWBlackShade.pdf")
+            let defaultImage = UIImage.init(named: "DefaultProfile.pdf")
+            self.reviewsList[indexPath.row].imageDownloaded = UIImageCodable.init(withImage: defaultImage!)
+            cell.profilePictureImageView.image = defaultImage
         }
         
         return cell
