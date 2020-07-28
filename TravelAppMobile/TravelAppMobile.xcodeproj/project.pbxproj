@@ -23,6 +23,8 @@
 		255719B2246E9F1600F463C8 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 255719B1246E9F1600F463C8 /* SF-Pro-Display-Bold.otf */; };
 		2560E17F246BFD36001669A3 /* ShadowRoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560E17E246BFD36001669A3 /* ShadowRoundedImageView.swift */; };
 		2560EDFD24A2098100464536 /* SearchFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560EDFC24A2098100464536 /* SearchFilterController.swift */; };
+		256149C624D06C100003E7B7 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256149C524D06C100003E7B7 /* RegistrationViewController.swift */; };
+		256149C824D06C210003E7B7 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256149C724D06C210003E7B7 /* RegistrationController.swift */; };
 		25777C1024ADD8A800B84882 /* LoggedUserSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25777C0F24ADD8A800B84882 /* LoggedUserSingleton.swift */; };
 		2582B32324B707CE001650F3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2582B32224B707CE001650F3 /* ProfileViewController.swift */; };
 		2582B32524B7127A001650F3 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2582B32424B7127A001650F3 /* ProfileController.swift */; };
@@ -80,6 +82,8 @@
 		255719B1246E9F1600F463C8 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		2560E17E246BFD36001669A3 /* ShadowRoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowRoundedImageView.swift; sourceTree = "<group>"; };
 		2560EDFC24A2098100464536 /* SearchFilterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterController.swift; sourceTree = "<group>"; };
+		256149C524D06C100003E7B7 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		256149C724D06C210003E7B7 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		25777C0F24ADD8A800B84882 /* LoggedUserSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedUserSingleton.swift; sourceTree = "<group>"; };
 		2582B32224B707CE001650F3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		2582B32424B7127A001650F3 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 				25517CC924AB30DD00A9756E /* AccessViewController.swift */,
 				2582B32224B707CE001650F3 /* ProfileViewController.swift */,
 				2584CFDF24BC4EEE00F767AB /* AddReviewViewController.swift */,
+				256149C524D06C100003E7B7 /* RegistrationViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 				25517CCB24AB329700A9756E /* AccessController.swift */,
 				2582B32424B7127A001650F3 /* ProfileController.swift */,
 				2584CFE124BC59E400F767AB /* AddReviewController.swift */,
+				256149C724D06C210003E7B7 /* RegistrationController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -369,6 +375,7 @@
 			files = (
 				2584B6B6247BB5B900F2B007 /* ReviewDAOAWSElasticBeanstalkImpl.swift in Sources */,
 				2597F0A02476700D00A7E2D5 /* StructureDAOAWSElasticBeanstalkImpl.swift in Sources */,
+				256149C624D06C100003E7B7 /* RegistrationViewController.swift in Sources */,
 				25094136246AB37C0045F135 /* BigStructureCell.swift in Sources */,
 				250C253B247529CD000F834D /* ReviewCell.swift in Sources */,
 				2592BACC246AAD4200F220C3 /* AppDelegate.swift in Sources */,
@@ -391,6 +398,7 @@
 				25ED3A53246F0D9500A1FBA8 /* HomeController.swift in Sources */,
 				2584B6B4247BB59200F2B007 /* ReviewDAOProtocol.swift in Sources */,
 				2597F09E24766F7800A7E2D5 /* DAOFactory.swift in Sources */,
+				256149C824D06C210003E7B7 /* RegistrationController.swift in Sources */,
 				25ED3A55246F0DA100A1FBA8 /* ResultsController.swift in Sources */,
 				25517CCE24AB354700A9756E /* AccessDAOProtocol.swift in Sources */,
 				2584B6BA247BB5F900F2B007 /* UserDAOAWSElasticBeanstalkImpl.swift in Sources */,

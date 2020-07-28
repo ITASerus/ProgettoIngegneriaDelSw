@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 protocol AccessDAOProtocol {
     
-    func logIn(usernameOrEmail: String, password: String, completion: @escaping ([String: Any]) -> Void)
+    func signUp(firstName: String, lastName: String, email: String, username: String, gender: String, password: String, image: UIImage, completion: @escaping ([String: Any]) -> Void)
     
+    func logIn(usernameOrEmail: String, password: String, completion: @escaping ([String: Any]) -> Void)
 }
