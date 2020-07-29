@@ -15,11 +15,20 @@ public class AccessDAOAWSElasticbeanstalkImpl: AccessDAOProtocol {
     private let LOG_IN = "http://Travelapplication-dev.eba-ixtj8ubn.eu-central-1.elasticbeanstalk.com/api/auth/signin"
     
     func signUp(firstName: String, lastName: String, email: String, username: String, gender: String, password: String, image: UIImage, completion: @escaping ([String: Any]) -> Void) {
+        
+        let convertedGender: String
+        if gender == "Uomo" {
+            convertedGender = "M"
+        } else if gender == "Donna" {
+            convertedGender = "F"
+        } else {
+            convertedGender = "N"
+        }
+        
         let body: [String: Any] =
             ["firstName": firstName,
              "lastName": lastName,
-             "gender": "N",
-             "image": "null",
+             "gender": convertedGender,
              "username": username,
              "email": email,
              "password": password,
@@ -46,7 +55,6 @@ public class AccessDAOAWSElasticbeanstalkImpl: AccessDAOProtocol {
             }
             
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            print(responseJSON)
             completion(responseJSON as! [String : Any])
         }
 
