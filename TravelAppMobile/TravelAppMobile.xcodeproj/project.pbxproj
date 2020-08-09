@@ -16,6 +16,8 @@
 		2517B4A82473E8E90067B3DB /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2517B4A72473E8E90067B3DB /* HomeTableViewController.swift */; };
 		251840E524B8502B00CB3266 /* ProfileReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251840E424B8502B00CB3266 /* ProfileReviewCell.swift */; };
 		253B8E522473C5B700C346F2 /* LittleStructureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B8E512473C5B700C346F2 /* LittleStructureCell.swift */; };
+		2540DCED24DFE312001FEF20 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2540DCEC24DFE312001FEF20 /* MapViewController.swift */; };
+		2540DCEF24E002B2001FEF20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2540DCEE24E002B2001FEF20 /* Assets.xcassets */; };
 		25517CCA24AB30DD00A9756E /* AccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25517CC924AB30DD00A9756E /* AccessViewController.swift */; };
 		25517CCC24AB329700A9756E /* AccessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25517CCB24AB329700A9756E /* AccessController.swift */; };
 		25517CCE24AB354700A9756E /* AccessDAOProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25517CCD24AB354700A9756E /* AccessDAOProtocol.swift */; };
@@ -39,7 +41,6 @@
 		2592BACC246AAD4200F220C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2592BACB246AAD4200F220C3 /* AppDelegate.swift */; };
 		2592BACE246AAD4200F220C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2592BACD246AAD4200F220C3 /* SceneDelegate.swift */; };
 		2592BAD3246AAD4200F220C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2592BAD1246AAD4200F220C3 /* Main.storyboard */; };
-		2592BAD5246AAD4300F220C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2592BAD4246AAD4300F220C3 /* Assets.xcassets */; };
 		2592BAD8246AAD4300F220C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2592BAD6246AAD4300F220C3 /* LaunchScreen.storyboard */; };
 		2597F09E24766F7800A7E2D5 /* DAOFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2597F09D24766F7800A7E2D5 /* DAOFactory.swift */; };
 		2597F0A02476700D00A7E2D5 /* StructureDAOAWSElasticBeanstalkImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2597F09F2476700D00A7E2D5 /* StructureDAOAWSElasticBeanstalkImpl.swift */; };
@@ -76,6 +77,8 @@
 		2517B4A72473E8E90067B3DB /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		251840E424B8502B00CB3266 /* ProfileReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileReviewCell.swift; sourceTree = "<group>"; };
 		253B8E512473C5B700C346F2 /* LittleStructureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LittleStructureCell.swift; sourceTree = "<group>"; };
+		2540DCEC24DFE312001FEF20 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		2540DCEE24E002B2001FEF20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		25517CC924AB30DD00A9756E /* AccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessViewController.swift; sourceTree = "<group>"; };
 		25517CCB24AB329700A9756E /* AccessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessController.swift; sourceTree = "<group>"; };
 		25517CCD24AB354700A9756E /* AccessDAOProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessDAOProtocol.swift; sourceTree = "<group>"; };
@@ -100,7 +103,6 @@
 		2592BACB246AAD4200F220C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2592BACD246AAD4200F220C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2592BAD2246AAD4200F220C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		2592BAD4246AAD4300F220C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2592BAD7246AAD4300F220C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2592BAD9246AAD4300F220C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2597F09D24766F7800A7E2D5 /* DAOFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAOFactory.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				2584CFDF24BC4EEE00F767AB /* AddReviewViewController.swift */,
 				256149C524D06C100003E7B7 /* RegistrationViewController.swift */,
 				2513552624D1C8830053B93B /* ImagePicker.swift */,
+				2540DCEC24DFE312001FEF20 /* MapViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -231,7 +234,7 @@
 		2592BACA246AAD4200F220C3 /* TravelAppMobile */ = {
 			isa = PBXGroup;
 			children = (
-				2592BAD4246AAD4300F220C3 /* Assets.xcassets */,
+				2540DCEE24E002B2001FEF20 /* Assets.xcassets */,
 				2592BAD9246AAD4300F220C3 /* Info.plist */,
 				2592BACB246AAD4200F220C3 /* AppDelegate.swift */,
 				2592BACD246AAD4200F220C3 /* SceneDelegate.swift */,
@@ -357,8 +360,8 @@
 				255719B0246E9F0C00F463C8 /* SF-Pro-Display-Semibold.otf in Resources */,
 				255719B2246E9F1600F463C8 /* SF-Pro-Display-Bold.otf in Resources */,
 				2592BAD8246AAD4300F220C3 /* LaunchScreen.storyboard in Resources */,
-				2592BAD5246AAD4300F220C3 /* Assets.xcassets in Resources */,
 				2592BAD3246AAD4200F220C3 /* Main.storyboard in Resources */,
+				2540DCEF24E002B2001FEF20 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +411,7 @@
 				2597F0A22476702800A7E2D5 /* StructureDAOProtocol.swift in Sources */,
 				25ED3A5B246F0F9700A1FBA8 /* Review.swift in Sources */,
 				253B8E522473C5B700C346F2 /* LittleStructureCell.swift in Sources */,
+				2540DCED24DFE312001FEF20 /* MapViewController.swift in Sources */,
 				2584CFE024BC4EEE00F767AB /* AddReviewViewController.swift in Sources */,
 				2560E17F246BFD36001669A3 /* ShadowRoundedImageView.swift in Sources */,
 				25167373247456C70096FC5D /* StructureDetailViewController.swift in Sources */,

@@ -28,8 +28,16 @@ class ResultsViewController: UIViewController {
             let destinationViewController = segue.destination as! StructureDetailViewController
             
             destinationViewController.structure = structureList[indexCellSelected!]
+        } else if segue.identifier == "MapViewSegue" {
+            let destinationViewController = segue.destination as! MapViewController
+            destinationViewController.structureList = structureList
         }
     }
+    
+    @IBAction func mapViewButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "MapViewSegue", sender: self)
+    }
+    
 }
 
 extension ResultsViewController: UICollectionViewDelegate, UICollectionViewDataSource {

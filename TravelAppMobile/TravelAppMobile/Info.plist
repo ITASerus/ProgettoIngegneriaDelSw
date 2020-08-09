@@ -30,7 +30,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This is why we need your location</string>
+	<string>Permesso di accedere alla tua posizione</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SF-Pro-display-Semibold.otf</string>

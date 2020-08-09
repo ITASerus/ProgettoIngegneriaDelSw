@@ -803,7 +803,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YFF-TA-lDM">
-                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="544"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GLb-1D-F3t">
@@ -927,6 +927,14 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XMh-Ln-8rt">
+                                <rect key="frame" x="117" y="665" width="140" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Visualizza su mappa"/>
+                                <connections>
+                                    <action selector="mapViewButtonPressed:" destination="Eu9-cl-MhJ" eventType="touchUpInside" id="LlC-3d-Ddv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="VEt-3U-bz3"/>
@@ -935,11 +943,12 @@
                     <connections>
                         <outlet property="resultsCollectionView" destination="YFF-TA-lDM" id="YN1-q0-34S"/>
                         <segue destination="Afh-LC-8ea" kind="show" identifier="SearchResultDetailStructureSegue" id="Gkc-qy-0g0"/>
+                        <segue destination="Y16-n4-ByF" kind="show" identifier="MapViewSegue" id="LTX-ax-j8L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t9C-DY-ftE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1844" y="1364"/>
+            <point key="canvasLocation" x="-1844" y="1363.3004926108374"/>
         </scene>
         <!--Home-->
         <scene sceneID="7aU-Fk-tGq">
@@ -1813,6 +1822,31 @@
             </objects>
             <point key="canvasLocation" x="-1844" y="2080.7881773399017"/>
         </scene>
+        <!--Map View Controller-->
+        <scene sceneID="8os-FO-yTL">
+            <objects>
+                <viewController id="Y16-n4-ByF" customClass="MapViewController" customModule="TravelAppMobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rhN-PR-nzZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e9d-us-0k8">
+                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="gLG-aP-yyn"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="kdO-Cd-6vm"/>
+                    <connections>
+                        <outlet property="mapView" destination="e9d-us-0k8" id="pfR-Kd-HHp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="41G-ZQ-VzF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-906.39999999999998" y="2079.3103448275865"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="oFW-pi-k09">
             <objects>
@@ -2252,7 +2286,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="a1u-Hx-FMj"/>
+        <segue reference="Gkc-qy-0g0"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="0stars" width="95" height="18"/>
