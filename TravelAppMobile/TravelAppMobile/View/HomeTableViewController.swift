@@ -19,10 +19,8 @@ class HomeTableViewController: UITableViewController {
      
     let loadingStructure = Structure(id: -1, name: "Caricamento", place: nil, category: "caricamento", price: 0, webSite: nil,contacts: nil, description: nil, image: nil, nReviews: 0, avgPoints: 5, imageDownloaded: UIImageCodable.init(withImage: UIImage.init(named: "DownloadingImageWBlackShade.pdf")!))
     
- 
-    
     @IBOutlet weak var placeLabel: UILabel!
-    
+
     var structuresSection1 = [Structure]()
     var structuresSection2 = [Structure]()
     var structuresSection3 = [Structure]()
@@ -39,7 +37,7 @@ class HomeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         structuresSection1.append(loadingStructure)
         
         locationManager.delegate = self
@@ -62,11 +60,20 @@ class HomeTableViewController: UITableViewController {
         structuresSection3 = self.controller.getStructureByFilter(name: "", place: "", category: "Cibo", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: "")
         structuresSection4 = self.controller.getStructureByFilter(name: "", place: "", category: "Attivita", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: "")
         
-        
         // Refresh Table Control
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action:  #selector(refreshTable), for: .valueChanged)
         self.refreshControl = refreshControl
+        
+        //Wallpaper management
+        section1CollectionView.backgroundColor = .clear
+        section2CollectionView.backgroundColor = .clear
+        section3CollectionView.backgroundColor = .clear
+        section4CollectionView.backgroundColor = .clear
+                      
+        let backgroundImageView = UIImageView(image: UIImage(named: "wallpaperBlur1"))
+        backgroundImageView.contentMode = .scaleAspectFill
+        tableView.backgroundView = backgroundImageView
     }
     
     @objc func refreshTable() {
