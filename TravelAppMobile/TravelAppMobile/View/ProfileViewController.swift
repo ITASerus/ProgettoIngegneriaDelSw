@@ -87,6 +87,7 @@ class ProfileViewController: UIViewController {
             setGenderSegmentedControlContent(profileGender: "M")
             headerView.backgroundColor = UIColor(red: 0.40, green: 0.53, blue: 0.67, alpha: 1.00)
             infoView.backgroundColor = UIColor(red: 0.40, green: 0.53, blue: 0.67, alpha: 1.00)
+           
             break
         case "F":
             setGenderSegmentedControlContent(profileGender: "F")

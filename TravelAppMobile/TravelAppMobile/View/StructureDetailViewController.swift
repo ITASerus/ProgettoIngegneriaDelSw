@@ -58,6 +58,7 @@ class StructureDetailViewController: UIViewController {
         reviewsTableView.delegate = self
         reviewsTableView.dataSource = self
 
+        navigationItem.title = structure.name
         nameLabel.text = structure.name
         
         categoryLabel.text = structure.category == nil ? "Non disponibile" : structure.category

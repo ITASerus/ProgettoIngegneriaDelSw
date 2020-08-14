@@ -67,7 +67,7 @@ class SearchFilterViewController: UIViewController {
         viewBackground.layer.shadowOpacity = 0.5
         viewBackground.layer.shadowOffset = CGSize(width: 0, height: 3)
         viewBackground.layer.insertSublayer(gradient, at: 70)
-        viewBackground.alpha = 0.85
+        viewBackground.alpha = 1//0.85
         
         starButtonsArray = [star1, star2, star3, star4, star5]
     }
