@@ -144,7 +144,7 @@ class HomeTableViewController: UITableViewController {
             geocoder.reverseGeocodeLocation(newLocation) { (placemarks, error) in
                 if let placemarks = placemarks {
                     for place in placemarks {
-                        self.placeLabel.text = place.administrativeArea?.description
+                        self.placeLabel.text = place.locality?.description
                         self.controller.setUserPlace(userPlace: place)
                     
                         self.structuresSection1 = self.controller.getStructureByFilter(name: "", place: self.controller.getUserPlace().locality!, category: "", contacts: "", webSite: "", lowerPrice: "", upperPrice: "", avgPoints: "")
@@ -196,7 +196,7 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BigStructureCell", for: indexPath) as! BigStructureCell
                 
             cell.nameLabel.text = structuresSection1[indexPath.row].name
-            cell.categoryLabel.text = structuresSection1[indexPath.row].category
+            cell.categoryLabel.text = structuresSection1[indexPath.row].category == "Attivita" ? "Attività" : structuresSection1[indexPath.row].category
             cell.priceLabel.text = structuresSection1[indexPath.row].price?.description
             cell.nReviewsLabel.text = structuresSection1[indexPath.row].nReviews?.description
             
@@ -317,7 +317,7 @@ extension HomeTableViewController: UICollectionViewDelegate, UICollectionViewDat
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LittleStructureCell3", for: indexPath) as! LittleStructureCell
                     
             cell.nameLabel.text = structuresSection4[indexPath.row].name
-            cell.categoryLabel.text = structuresSection4[indexPath.row].category
+           cell.categoryLabel.text = structuresSection4[indexPath.row].category == "Attivita" ? "Attività" : structuresSection4[indexPath.row].category
             cell.priceLabel.text = structuresSection4[indexPath.row].price?.description
             cell.nReviewsLabel.text = structuresSection4[indexPath.row].nReviews?.description
                 

@@ -62,7 +62,7 @@ class StructureDetailViewController: UIViewController {
         navigationItem.title = structure.name
         nameLabel.text = structure.name
         
-        categoryLabel.text = structure.category == nil ? "Non disponibile" : structure.category
+        categoryLabel.text = structure.category == "Attivita" ? "Attività" : structure.category
         
         imageOfStructure.image = structure.imageDownloaded?.getImage()
         

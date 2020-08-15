@@ -2368,7 +2368,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="actionButtonGoByMapToStructure:" destination="Afh-LC-8ea" eventType="touchUpInside" id="hbT-e1-oHD"/>
                                                     <action selector="addReviewButtonPressed:" destination="Afh-LC-8ea" eventType="touchUpInside" id="JhW-VD-5KX"/>
                                                 </connections>
                                             </button>

@@ -49,7 +49,7 @@ extension ResultsViewController: UICollectionViewDelegate, UICollectionViewDataS
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LittleStructureCell", for: indexPath) as! LittleStructureCell
                    
     cell.nameLabel.text = structureList[indexPath.row].name
-    cell.categoryLabel.text = structureList[indexPath.row].category
+    cell.categoryLabel.text = structureList[indexPath.row].category == "Attivita" ? "Attività" : structureList[indexPath.row].category
     cell.priceLabel.text = structureList[indexPath.row].price?.description
     cell.nReviewsLabel.text = structureList[indexPath.row].nReviews?.description
     
