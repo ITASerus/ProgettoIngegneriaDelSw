@@ -14,7 +14,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var emailTopLabel: UILabel!
     @IBOutlet weak var profileImageView: ShadowRoundedImageView!
     
-    
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
@@ -87,7 +86,6 @@ class ProfileViewController: UIViewController {
             setGenderSegmentedControlContent(profileGender: "M")
             headerView.backgroundColor = UIColor(red: 0.40, green: 0.53, blue: 0.67, alpha: 1.00)
             infoView.backgroundColor = UIColor(red: 0.40, green: 0.53, blue: 0.67, alpha: 1.00)
-           
             break
         case "F":
             setGenderSegmentedControlContent(profileGender: "F")
@@ -104,21 +102,49 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func editButtonPressed(_ sender: Any) {
-        profileEditing = true
-        
-        firstNameTextField.textColor = .black
-        firstNameTextField.borderStyle = .roundedRect
-        firstNameTextField.isUserInteractionEnabled = true
-        
-        lastNameTextField.textColor = .black
-        lastNameTextField.borderStyle = .roundedRect
-        lastNameTextField.isUserInteractionEnabled = true
-        
-        setGenderSegmentedControlContent(profileGender: nil)
-        genderSegmentedControl.isUserInteractionEnabled = true
-        
-        editButton.title = "Salva"
-        cancelButton.title = "Annulla"
+        if profileEditing == false {
+            profileEditing = true
+            
+            firstNameTextField.textColor = .black
+            firstNameTextField.borderStyle = .roundedRect
+            firstNameTextField.backgroundColor = .white
+            firstNameTextField.isUserInteractionEnabled = true
+            
+            lastNameTextField.textColor = .black
+            lastNameTextField.borderStyle = .roundedRect
+            lastNameTextField.backgroundColor = .white
+            lastNameTextField.isUserInteractionEnabled = true
+            
+            setGenderSegmentedControlContent(profileGender: nil)
+            genderSegmentedControl.isUserInteractionEnabled = true
+            
+            editButton.title = "Salva"
+            cancelButton.title = "Annulla"
+        } else {
+            profileEditing = false
+            
+            firstNameTextField.textColor = .white
+            firstNameTextField.borderStyle = .none
+            firstNameTextField.backgroundColor = .clear
+            firstNameTextField.isUserInteractionEnabled = false
+            
+            lastNameTextField.textColor = .white
+            lastNameTextField.borderStyle = .none
+            lastNameTextField.backgroundColor = .clear
+            lastNameTextField.isUserInteractionEnabled = false
+            
+            if loggedUser?.gender == "M" {
+                setGenderSegmentedControlContent(profileGender: "M")
+            } else if loggedUser?.gender == "F" {
+                setGenderSegmentedControlContent(profileGender: "F")
+            } else {
+                setGenderSegmentedControlContent(profileGender: "N")
+            }
+            genderSegmentedControl.isUserInteractionEnabled = false
+            
+            editButton.title = "Modifica"
+            cancelButton.title = "LogOut"
+        }
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
@@ -235,7 +261,6 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         return cell
     }
-    
 }
 
 

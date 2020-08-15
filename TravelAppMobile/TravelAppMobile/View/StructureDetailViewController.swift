@@ -102,7 +102,7 @@ class StructureDetailViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if reviewsList.count < structure.nReviews! { // A new review is present so need to reload 
+        if  structure.nReviews != nil && reviewsList.count < structure.nReviews! { // A new review is present so need to reload
             reviewsList = controller.getAllReviewsWUserInfo(structureId: structure.id)
             nReviewLabel.text = structure.nReviews!.description + " recensioni"
             

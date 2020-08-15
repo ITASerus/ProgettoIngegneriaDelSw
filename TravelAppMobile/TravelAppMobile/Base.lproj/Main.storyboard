@@ -200,8 +200,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="wallpaper15Opacity" translatesAutoresizingMaskIntoConstraints="NO" id="ta3-ag-lC0">
+                                <rect key="frame" x="0.0" y="85" width="375" height="641"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cZr-0I-spd" userLabel="HeaderView">
-                                <rect key="frame" x="0.0" y="88" width="375" height="107"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="127"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xih-w4-eyX" userLabel="OpacityLayerTop">
@@ -342,7 +346,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Tk6-4z-Ewa">
                                 <rect key="frame" x="0.0" y="550" width="375" height="164"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="J2n-NR-9y3">
                                     <size key="itemSize" width="346" height="162"/>
                                     <size key="headerReferenceSize" width="15" height="0.0"/>
@@ -434,7 +438,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </collectionViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <size key="customSize" width="346" height="162"/>
                                         <connections>
                                             <outlet property="dateLabel" destination="MiP-8N-s1f" id="GOu-Cq-FEV"/>
@@ -449,6 +455,7 @@
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="UdC-7j-G0N">
                                     <rect key="frame" x="0.0" y="0.0" width="15" height="164"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </collectionReusableView>
                             </collectionView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E5y-LI-WCu" customClass="ShadowRoundedImageView" customModule="TravelAppMobile" customModuleProvider="target">
@@ -503,7 +510,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wcV-AZ-GsM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-906.39999999999998" y="1362.5615763546798"/>
+            <point key="canvasLocation" x="-22" y="1363"/>
         </scene>
         <!--Accesso e Registrazione-->
         <scene sceneID="kDS-k2-zhv">
@@ -889,7 +896,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kew-mH-f6i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-82.400000000000006" y="643.9655172413793"/>
+            <point key="canvasLocation" x="743" y="644"/>
         </scene>
         <!--Risultati-->
         <scene sceneID="h43-aK-671">
@@ -1829,7 +1836,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pVy-oy-3Ci" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1844" y="2787.9310344827586"/>
+            <point key="canvasLocation" x="-1844" y="2212"/>
         </scene>
         <!--Nuova Recensione-->
         <scene sceneID="or7-ve-kW8">
@@ -1956,7 +1963,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RnT-tS-K3m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1844" y="2080.7881773399017"/>
+            <point key="canvasLocation" x="-1844" y="2927"/>
         </scene>
         <!--Mappa dei risultati-->
         <scene sceneID="8os-FO-yTL">
@@ -1981,7 +1988,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="41G-ZQ-VzF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-906.39999999999998" y="2079.3103448275865"/>
+            <point key="canvasLocation" x="-906" y="1363"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="oFW-pi-k09">
@@ -2425,11 +2432,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eln-RE-FPG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2748" y="2433.6206896551726"/>
+            <point key="canvasLocation" x="-2745" y="2453"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Gkc-qy-0g0"/>
+        <segue reference="a1u-Hx-FMj"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="0stars" width="95" height="18"/>

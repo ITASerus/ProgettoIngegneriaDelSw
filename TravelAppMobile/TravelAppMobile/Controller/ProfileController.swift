@@ -15,4 +15,8 @@ public class ProfileController {
     func getReviews(userID: Int) -> [Review] {
         return ProfileController.userDAO.getReviewsWStructureInfoByUserID(userID: userID)!
     }
+    
+    func getStructureOfReview(review: Review, completion: @escaping (Structure) -> Void) {
+         completion(ProfileController.structureDAO.getByID(id: review.structureID)!)
+    }
 }
