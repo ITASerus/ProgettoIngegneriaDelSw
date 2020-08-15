@@ -31,12 +31,13 @@ class StructureDetailViewController: UIViewController {
     @IBOutlet weak var placeLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
-    @IBOutlet weak var webSiteLabel: UILabel!
     @IBOutlet weak var reviewsTableView: UITableView!
     
     @IBOutlet weak var nReviewLabel: UILabel!
     @IBOutlet weak var pointsImageView: UIImageView!
     @IBOutlet weak var contactButton: UIButton!
+    @IBOutlet weak var webSiteButton: UIButton!
+    @IBOutlet weak var takeMeHereButton: UIButton!
     
     // Colors for review cell'sbackground
     let colorList = [UIColor(red: 1.00, green: 0.60, blue: 0.60, alpha: 1.00),
@@ -68,18 +69,18 @@ class StructureDetailViewController: UIViewController {
         priceLabel.text = structure.price == nil ? "Non disponibile" : structure.price?.description
     
         placeLabel.text = structure.place == nil ? "Non disponibile" : structure.place
+        if structure.place == nil { takeMeHereButton.isEnabled = false }
         
         descriptionTextView.text = structure.description == nil ? "Non disponibile" : structure.description
         
-        webSiteLabel.text = structure.webSite == nil ? "Non disponibile" : structure.webSite
+        webSiteButton.setTitle(structure.webSite == nil ? "Sito Web non disponibile" : "Sito Web", for: .normal)
+        if structure.webSite == nil { webSiteButton.isEnabled = false }
         
-        contactButton.setTitle(structure.contacts == nil ? "Non disponibile" : structure.contacts, for: .normal)
+        contactButton.setTitle(structure.contacts == nil ? "Numero di telefono non disponibile" : structure.contacts, for: .normal)
         if structure.contacts == nil { contactButton.isEnabled = false }
         
         let points = structure.avgPoints ?? 0.0
         pointsImageView.image = UIImage (imageLiteralResourceName: GeneralReusables.starsImageAssetName(avgPoints: points))
-        
-        
         
         // Map Management
         var placemark: CLPlacemark!
@@ -109,14 +110,44 @@ class StructureDetailViewController: UIViewController {
         }
     }
     
-    @IBAction func actionButtonGoByMapToStructure(_ sender: UIButton) {
-         print("posto ->\(structure.place!)")
-       // goToMapOfStructure(addressPlace: structure.place!)
+    @IBAction func takeMeHereButtonPressed(_ sender: Any) {
+        //Defining destination
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(structure.place!) {
+            placemarks, error in
+            let placemark = placemarks?.first
+            let latitude = placemark?.location?.coordinate.latitude
+            let longitude = placemark?.location?.coordinate.longitude
+
+            let regionDistance:CLLocationDistance = 1000;
+            let coordinates = CLLocationCoordinate2DMake(latitude!, longitude!)
+            let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+                   
+            let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)]
+                   
+            let placemarkMap = MKPlacemark(coordinate: coordinates)
+            let mapItem = MKMapItem(placemark: placemarkMap)
+            mapItem.name = self.structure.name
+            mapItem.openInMaps(launchOptions: options)
+        }
+    }
+        
+    @IBAction func callNumberButtonPressed(_ sender: UIButton) {
+            let phoneNumToUse = structure.contacts!.replacingOccurrences(of: " ", with: "")
+            
+            if let url = URL(string: "tel://+39\(phoneNumToUse)") {
+                let application = UIApplication.shared
+                guard application.canOpenURL(url) else {
+                    return
+                }
+                application.open(url, options: [:], completionHandler: nil)
+            }
     }
     
-    @IBAction func actionButtoCallNumberoOfStructure(_ sender: UIButton) {
-            callNumberOfStructure(phoneNum: structure.contacts!)
+    @IBAction func webSiteButtonPressed(_ sender: Any) {
+        UIApplication.shared.open(URL(string: structure.webSite!)!)
     }
+    
     
     @IBAction func addReviewButtonPressed(_ sender: Any) {
         if LoggedUserSingleton.shared.getLoggedUser()?.token != nil {
@@ -212,38 +243,3 @@ extension StructureDetailViewController: UITableViewDelegate, UITableViewDataSou
         performSegue(withIdentifier: "ReviewDetailSegue", sender: self)
     }
 }
-
-
-
-private func callNumberOfStructure(phoneNum: String) {
-    let phoneNumToUse = phoneNum.replacingOccurrences(of: " ", with: "")
-    if let url = URL(string: "tel://+39\(phoneNumToUse)") {
-        let application = UIApplication.shared
-        guard application.canOpenURL(url) else {
-            return
-        }
-        application.open(url, options: [:], completionHandler: nil)
-    }
-}
-
-/*
-private func goToMapOfStructure(addressPlace: String) {
-        
-    let source = CLGeocoder()
-    geoCoder.geocodeAddressString("via manzoni 75, napoli, italy")
-
-    MKMapItem.openMaps(with: [source, addressPlace], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
-    
-    var addressPlaceToUse = addressPlace
-     addressPlaceToUse.removeSpaces()
-    
-    if let url = URL(string: "map://\(addressPlaceToUse)") {
-        let application = UIApplication.shared
-        guard application.canOpenURL(url) else {
-            return
-        }
-        application.open(url, options: [:], completionHandler: nil)
-    }
-
-}
-*/

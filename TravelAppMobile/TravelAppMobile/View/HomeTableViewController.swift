@@ -71,7 +71,7 @@ class HomeTableViewController: UITableViewController {
         section3CollectionView.backgroundColor = .clear
         section4CollectionView.backgroundColor = .clear
                       
-        let backgroundImageView = UIImageView(image: UIImage(named: "wallpaperBlur1"))
+        let backgroundImageView = UIImageView(image: UIImage(named: "wallpaper15Opacity"))
         backgroundImageView.contentMode = .scaleAspectFill
         tableView.backgroundView = backgroundImageView
     }
