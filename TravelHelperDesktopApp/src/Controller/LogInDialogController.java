@@ -33,7 +33,7 @@ public class LogInDialogController {
         userDAO = DAOFactory.getUserDAO("AWSElasticBeanstalk");
     }
     
-    public int logInUser(String usernameOrEmail, String password) {     
+    public int logInUser(String usernameOrEmail, String password) {
         String response = accessDAO.logIn(usernameOrEmail, password);
         
         if (response != null) {
@@ -48,7 +48,7 @@ public class LogInDialogController {
                     LoggedUserSingleton user = LoggedUserSingleton.getIstance();
                     user.setLoggedUser(loggedUser, response);
                    
-                    return 1;
+                    return 1; // Logged
                 } 
             }
             
