@@ -101,7 +101,7 @@ public class NewStructurePanelController {
             Structure structure = gson.fromJson(response.body(), Structure.class); // Convert json text to Structure
         
             if(!imagePath.isBlank()) {
-                final AWSCredentials credentials = new BasicAWSCredentials("AKIA573JGNGLCBRFBHGV", "547iI8dzMOR/wnCLUh36BFjWAqj+nCJVdujELqN+");
+                final AWSCredentials credentials = new BasicAWSCredentials("CENSURATO", "CENSURATO");
         
                 //set-up the client
                 AmazonS3 s3client = AmazonS3ClientBuilder
